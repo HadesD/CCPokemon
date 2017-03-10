@@ -36,11 +36,11 @@
     <ClCompile Include="..\Classes\SceneManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Characters\Characters.cpp">
-      <Filter>src\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\stdafx.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Characters\Character.cpp">
+      <Filter>src\Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,11 +65,11 @@
     <ClInclude Include="..\Classes\SceneManager.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Characters\Characters.h">
-      <Filter>src\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\stdafx.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Characters\Character.h">
+      <Filter>src\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
