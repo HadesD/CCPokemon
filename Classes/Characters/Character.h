@@ -19,6 +19,19 @@ public:
 	//static Character* create();
 	//static Character* getInstance();
 
+	virtual void update(float delta);
+
+
+
+#pragma region GETs/SETs
+
+	void setSprite(Sprite *sprite);
+	Sprite* getSprite();
+
+	bool getIsMoving();
+
+#pragma endregion
+
 private:
 
 #pragma region CharAttrs
@@ -31,12 +44,4 @@ private:
 	DIRECTION direction;
 #pragma endregion
 
-	virtual void update(float delta);
-
-#pragma region GETs/SETs
-
-	void setSprite(Sprite *sprite);
-	Sprite* getSprite();
-
-#pragma endregion
 };

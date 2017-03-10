@@ -16,11 +16,12 @@ Character::~Character()
 	delete(this->sprite);
 }
 
-
 void Character::update(float delta)
 {
 
 }
+
+
 
 #pragma region GETs/SETs
 

@@ -3,6 +3,10 @@
 
 Trainer::Trainer()
 {
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(Trainer::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
+	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 }
 
 

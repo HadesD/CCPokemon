@@ -23,9 +23,6 @@ public:
     virtual bool init();
     void back(Object* pSender);
 
-	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
-	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
-
     CREATE_FUNC(PlayLayer);
 };
 
