@@ -20,8 +20,8 @@ bool MenuLayer::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     float delayTime = 0.3f;
     
-    TTFConfig config_font96("res/fonts/Marker Felt.ttf", 96);
-    TTFConfig config_font52("res/fonts/Marker Felt.ttf", 52);
+    TTFConfig config_font96("res/UI/Fonts/Marker Felt.ttf", 96);
+    TTFConfig config_font52("res/UI/Fonts/Marker Felt.ttf", 52);
     
     Label *titleLeft = Label::createWithTTF(config_font96, "Menu ");
     Label *titleRight = Label::createWithTTF(config_font96, " System");

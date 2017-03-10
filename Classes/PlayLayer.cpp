@@ -25,11 +25,14 @@ bool PlayLayer::init()
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    
-    auto back = MenuItemFont::create("back", CC_CALLBACK_1(PlayLayer::back, this));
-    auto menu = Menu::create(back, NULL);
-    menu->setPosition(visibleSize.width/2, visibleSize.height/2);
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto back = MenuItemImage::create("res/UI/Icons/Home.png", "res/UI/Icons/Home.png", CC_CALLBACK_1(PlayLayer::back, this));
+    back->setPosition(Vec2(origin.x + visibleSize.width - back->getContentSize().width ,
+                                origin.y + back->getContentSize().height));
+
+    auto menu = Menu::create(back, NULL);
+	menu->setPosition(Vec2::ZERO);
     this->addChild(menu);
     
     return true;
