@@ -7,6 +7,7 @@
 //
 
 #include "PlayLayer.h"
+
 USING_NS_CC;
 
 PlayLayer::PlayLayer()
@@ -27,6 +28,7 @@ bool PlayLayer::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	//Create BackToMainMenu Button
     auto back = MenuItemImage::create("res/UI/Icons/Home.png", "res/UI/Icons/Home.png", CC_CALLBACK_1(PlayLayer::back, this));
     back->setPosition(Vec2(origin.x + visibleSize.width - back->getContentSize().width ,
                                 origin.y + back->getContentSize().height));
@@ -35,6 +37,9 @@ bool PlayLayer::init()
 	menu->setPosition(Vec2::ZERO);
     this->addChild(menu);
     
+	//Main Game
+
+
     return true;
 }
 
