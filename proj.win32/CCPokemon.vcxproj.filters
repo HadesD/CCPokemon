@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Characters">
+      <UniqueIdentifier>{eed10e7c-2123-4bf7-9b91-528737feed29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="..\Classes\SceneManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Characters\Characters.cpp">
+      <Filter>src\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -55,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SceneManager.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Characters\Characters.h">
+      <Filter>src\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

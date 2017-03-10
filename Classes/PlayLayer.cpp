@@ -7,6 +7,7 @@
 //
 
 #include "PlayLayer.h"
+#include <SimpleAudioEngine.h>
 
 USING_NS_CC;
 
@@ -38,7 +39,8 @@ bool PlayLayer::init()
     this->addChild(menu);
     
 	//Main Game
-
+	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic("res/Sounds/Musics/PalletTownTheme.mp3", true);
 
     return true;
 }

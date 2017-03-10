@@ -8,6 +8,8 @@
 
 #include "MenuLayer.h"
 #include "SceneManager.h"
+#include <SimpleAudioEngine.h>
+
 USING_NS_CC;
 
 bool MenuLayer::init()
@@ -91,6 +93,9 @@ bool MenuLayer::init()
 		each->runAction(action);
 	}
     this->addChild(menu, 2);
+
+	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic("res/Sounds/Musics/Opening.mp3", true);
 
     return true;
 }
