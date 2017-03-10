@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "SceneManager.h"
 
 USING_NS_CC;
 
@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("CCPokemon", Rect(0, 0, 960, 640));
+        glview = GLViewImpl::createWithRect("Pokemon", Rect(0, 0, 960, 640));
         director->setOpenGLView(glview);
     }
 
@@ -42,10 +42,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    //auto scene = HelloWorld::createScene();
 
     // run
-    director->runWithScene(scene);
+    //director->runWithScene(scene);
+
+	SceneManager::goMenu();
 
     return true;
 }
