@@ -39,6 +39,9 @@
     <ClCompile Include="..\Classes\Characters\Characters.cpp">
       <Filter>src\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Characters\Characters.h">
       <Filter>src\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\stdafx.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
 //
 //
 
+#include "stdafx.h"
 #include "PlayLayer.h"
 #include <SimpleAudioEngine.h>
 
@@ -30,7 +31,7 @@ bool PlayLayer::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//Create BackToMainMenu Button
-    auto back = MenuItemImage::create("res/UI/Icons/Home.png", "res/UI/Icons/Home.png", CC_CALLBACK_1(PlayLayer::back, this));
+	auto back = MenuItemImage::create(RES_DIR + "/UI/Icons/Home.png", RES_DIR + "/UI/Icons/Home.png", CC_CALLBACK_1(PlayLayer::back, this));
     back->setPosition(Vec2(origin.x + visibleSize.width - back->getContentSize().width ,
                                 origin.y + back->getContentSize().height));
 
@@ -40,7 +41,12 @@ bool PlayLayer::init()
     
 	//Main Game
 	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-	audio->playBackgroundMusic("res/Sounds/Musics/PalletTownTheme.mp3", true);
+	char music[100];
+	sprintf(music, "%s/PalletTownTheme.mp3", RD_S_MUSICS.c_str());
+	audio->playBackgroundMusic(music, true);
+
+	Sprite *trainer;
+	trainer = Sprite::create(RD_CHARACTERS + "/trainer2.png", Rect(0, 0, 32, 32));
 
     return true;
 }
