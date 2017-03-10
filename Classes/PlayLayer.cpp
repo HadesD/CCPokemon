@@ -46,11 +46,40 @@ bool PlayLayer::init()
 	audio->playBackgroundMusic(music, true);
 
 	Sprite *trainer;
-	trainer = Sprite::create(RD_CHARACTERS + "/trainer2.png", Rect(0, 0, 32, 32));
+	trainer = Sprite::create(RD_C_TRAINERS + "/trainer2.png", Rect(0, 32.f, 32.f, 32.f));
+	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
+	this->addChild(trainer);
+
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(PlayLayer::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(PlayLayer::onKeyReleased, this);
+	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
     return true;
 }
 
+void PlayLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+{
+
+	switch (keyCode)
+	{
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			
+			break;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			break;
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			break;
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			break;
+	}
+	CCLOG("Pushed Key: %d", (int)keyCode);
+}
+
+void PlayLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	CCLOG("Released Key: %d", (int)keyCode);
+}
 
 void PlayLayer::back(Object* pSender)
 {

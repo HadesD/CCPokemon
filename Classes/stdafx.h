@@ -1,5 +1,7 @@
 #include <iostream>
 
+#define COCOS2D_DEBUG 1
+
 using namespace std;
 
 extern std::string RES_DIR;
