@@ -16,6 +16,9 @@
     <Filter Include="src\Characters\Trainers">
       <UniqueIdentifier>{54a0f733-38ce-4bd4-8cef-429ba425e1e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Maps">
+      <UniqueIdentifier>{68fa68c1-b99d-40cb-9227-7cfd1d2314dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="..\Classes\Characters\Trainers\Trainer.cpp">
       <Filter>src\Characters\Trainers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Maps\MapManager.cpp">
+      <Filter>src\Maps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Characters\Trainers\Trainer.h">
       <Filter>src\Characters\Trainers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Maps\MapManager.h">
+      <Filter>src\Maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
