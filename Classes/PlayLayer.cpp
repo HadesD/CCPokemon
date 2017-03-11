@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "PlayLayer.h"
 #include <SimpleAudioEngine.h>
+#include "Characters/Trainers/Trainer.h"
 
 USING_NS_CC;
 
@@ -45,10 +46,13 @@ bool PlayLayer::init()
 	sprintf(music, "%s/PalletTownTheme.mp3", RD_S_MUSICS.c_str());
 	audio->playBackgroundMusic(music, true);
 
-	Sprite *trainer;
-	trainer = Sprite::create(RD_C_TRAINERS + "/trainer2.png", Rect(0, 32.f, 32.f, 32.f));
+	auto trainer = new Trainer;
+	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer2.png", Rect(0, 32.f, 32.f, 32.f)));
 	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
+	trainer->build();
 	this->addChild(trainer);
+
+	CCLOG("%s", trainer->getPositionX());
 
     return true;
 }

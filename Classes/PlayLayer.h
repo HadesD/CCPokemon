@@ -11,7 +11,6 @@
 
 #include "cocos2d.h"
 #include "SceneManager.h"
-#include "Characters/Trainers/Trainer.h"
 
 USING_NS_CC;
 

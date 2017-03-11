@@ -14,5 +14,6 @@ public:
 
 	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 
+	virtual void build();
 };
 

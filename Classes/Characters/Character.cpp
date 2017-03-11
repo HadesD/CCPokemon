@@ -21,7 +21,19 @@ void Character::update(float delta)
 
 }
 
+void Character::build()
+{
+	this->schedule(schedule_selector(Character::moveAnimate), 0.11f);
 
+	scheduleUpdate();
+
+	this->addChild(this->sprite);
+}
+
+void Character::moveAnimate(float delta)
+{
+
+}
 
 #pragma region GETs/SETs
 
@@ -35,4 +47,8 @@ Sprite* Character::getSprite()
 	return this->sprite;
 }
 
+bool Character::getIsMoving()
+{
+	return this->isMoving;
+}
 #pragma endregion

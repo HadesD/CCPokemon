@@ -16,12 +16,10 @@ class Character : public Node
 public:
 	Character();
 	~Character();
-	//static Character* create();
-	//static Character* getInstance();
 
 	virtual void update(float delta);
 
-
+	virtual void build();
 
 #pragma region GETs/SETs
 
@@ -44,4 +42,5 @@ private:
 	DIRECTION direction;
 #pragma endregion
 
+	void moveAnimate(float delta);
 };

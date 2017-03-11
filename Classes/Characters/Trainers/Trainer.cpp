@@ -3,15 +3,23 @@
 
 Trainer::Trainer()
 {
-	auto listener = EventListenerKeyboard::create();
-	listener->onKeyPressed = CC_CALLBACK_2(Trainer::onKeyPressed, this);
-	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
-	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 }
 
 
 Trainer::~Trainer()
 {
+}
+
+void Trainer::build()
+{
+	Character::build();
+
+	//Adding code here
+
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(Trainer::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
+	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 }
 
 void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
