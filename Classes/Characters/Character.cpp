@@ -40,6 +40,11 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	if (this->getPositionX() <= 0 || this->getPositionY() <= 0 || this->getPositionY() >= visibleSize.width || this->getPositionY() >= visibleSize.height)
+	{
+		return;
+	}
 	if (this->canMove == false)
 	{
 		return;

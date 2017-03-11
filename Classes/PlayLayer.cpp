@@ -46,6 +46,15 @@ bool PlayLayer::init()
 	sprintf(music, "%s/PalletTownTheme.mp3", RD_S_MUSICS.c_str());
 	audio->playBackgroundMusic(music, true);
 
+	auto map = TMXTiledMap::create(RD_MAPS+"/town.tmx");
+	this->addChild(map, 0);
+
+	// all tiles are aliased by default, let's set them anti-aliased
+	for (const auto& child : map->getChildren())
+	{
+		static_cast<SpriteBatchNode*>(child)->getTexture()->setAntiAliasTexParameters();
+	}
+
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f, 32.f, 32.f)));
 	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
