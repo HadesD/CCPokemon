@@ -5,10 +5,10 @@ USING_NS_CC;
 
 enum DIRECTION
 {
-	UP    = 1,
-	RIGHT = 2,
-	DOWN  = 3,
-	LEFT  = 4,
+	UP = 0,
+	DOWN = 1,
+	LEFT = 2,
+	RIGHT = 3,
 };
 
 class Character : public Node
@@ -26,6 +26,9 @@ public:
 	void setSprite(Sprite *sprite);
 	Sprite* getSprite();
 
+	void setDirection(DIRECTION direction);
+
+	void setIsMoving(bool isMoving);
 	bool getIsMoving();
 
 #pragma endregion
@@ -40,6 +43,7 @@ private:
 	bool canMove;
 	float speed;
 	DIRECTION direction;
+	int oldAnimePos;
 #pragma endregion
 
 	void moveAnimate(float delta);

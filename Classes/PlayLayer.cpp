@@ -52,7 +52,7 @@ bool PlayLayer::init()
 	trainer->build();
 	this->addChild(trainer);
 
-	CCLOG("%s", trainer->getPositionX());
+	//CCLOG("%s", trainer->getPositionX());
 
     return true;
 }
