@@ -40,32 +40,39 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	if (this->getPositionX() <= 0 || this->getPositionY() <= 0 || this->getPositionY() >= visibleSize.width || this->getPositionY() >= visibleSize.height)
-	{
-		return;
-	}
 	if (this->canMove == false)
 	{
 		return;
 	}
+	float xx, yy;
+
+	xx = this->getPositionX();
+	yy = this->getPositionY();
 
 	switch (this->direction)
 	{
 		case DIRECTION::UP:
-			this->setPosition(Vec2(this->getPositionX(), (this->getPositionY() + this->speed)));
+			yy += this->speed;
 			break;
 		case DIRECTION::DOWN:
 		default:
-			this->setPosition(Vec2(this->getPositionX(), (this->getPositionY() - this->speed)));
+			yy -= this->speed;
 			break;
 		case DIRECTION::LEFT:
-			this->setPosition(Vec2(this->getPositionX() - this->speed, this->getPositionY()));
+			xx -= this->speed;
 			break;
 		case DIRECTION::RIGHT:
-			this->setPosition(Vec2(this->getPositionX() + this->speed, this->getPositionY()));
+			xx += this->speed;
 			break;
 	}
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	if (xx <= 0 || yy <= 0 || xx >= visibleSize.width || yy >= visibleSize.height)
+	{
+		return;
+	}
+
+	this->setPosition(Vec2(xx, yy));
 }
 
 /*
