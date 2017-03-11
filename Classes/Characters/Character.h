@@ -46,5 +46,6 @@ private:
 	int oldAnimePos;
 #pragma endregion
 
-	void moveAnimate(float delta);
+	void moveAnimate(float delta); 
+	void setMovePos(float delta);
 };
