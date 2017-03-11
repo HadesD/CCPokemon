@@ -6,8 +6,8 @@ USING_NS_CC;
 enum DIRECTION
 {
 	UP = 0,
-	DOWN = 1,
-	LEFT = 2,
+	DOWN = 2,
+	LEFT = 1,
 	RIGHT = 3,
 };
 

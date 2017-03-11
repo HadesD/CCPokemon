@@ -47,7 +47,7 @@ bool PlayLayer::init()
 	audio->playBackgroundMusic(music, true);
 
 	auto trainer = new Trainer;
-	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer2.png", Rect(0, 32.f, 32.f, 32.f)));
+	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f, 32.f, 32.f)));
 	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
 	trainer->build();
 	this->addChild(trainer);
