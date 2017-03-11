@@ -31,7 +31,7 @@ void Character::update(float delta)
  */
 void Character::build()
 {
-	schedule(schedule_selector(Character::moveAnimate), 0.17f);
+	schedule(schedule_selector(Character::moveAnimate), 0.11f);
 
 	scheduleUpdate();
 
@@ -67,7 +67,7 @@ void Character::setMovePos(float delta)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	if (xx <= 0 || yy <= 0 || xx >= visibleSize.width || yy >= visibleSize.height)
+	if (xx <= 16 || yy <= 16 || xx >= (visibleSize.width - 16) || yy >= (visibleSize.height - 16))
 	{
 		return;
 	}
