@@ -3,7 +3,7 @@
 #include "../stdafx.h"
 #include "cocos2d.h"
 #include <SimpleAudioEngine.h>
-#include "../Characters/Character.h"
+#include "../Characters/Trainers/Trainer.h"
 
 USING_NS_CC;
 

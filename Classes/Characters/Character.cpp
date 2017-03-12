@@ -4,12 +4,13 @@ Character::Character()
 {
 	this->id = 0;
 	this->name = "Object";
-	//this->sprite
+	this->sprite = nullptr;
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
 	this->speed = 2.f;
+
 }
 
 Character::~Character()

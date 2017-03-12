@@ -27,7 +27,7 @@ void Trainer::build()
 
 void Trainer::update(float delta)
 {
-	//Character::update(delta);
+	Character::update(delta);
 
 	//this->cameraFollow();
 }

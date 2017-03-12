@@ -20,7 +20,6 @@ void MapManager::build()
 
 	this->addChild(this->info);
 }
-
 #pragma region GETs/SETs
 
 void MapManager::setInfo(TMXTiledMap *info)
@@ -38,3 +37,9 @@ TMXTiledMap* MapManager::getMapInfo()
 	return MapManager::mapInfo;
 }
 #pragma endregion
+
+void MapManager::addPlayerToTheMap(Character* character)
+{
+	MapManager::getMapInfo()->addChild(character, 1, "trainer");
+
+}
