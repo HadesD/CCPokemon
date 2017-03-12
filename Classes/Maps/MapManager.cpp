@@ -17,6 +17,10 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	auto mapSize = Vec2((this->info->getMapSize().width*this->info->getTileSize().width), (this->info->getMapSize().height*this->info->getTileSize().height));
+	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
+	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
 
 	this->addChild(this->info);
 	MapManager::mapInfo = this->info;
