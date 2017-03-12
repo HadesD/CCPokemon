@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "../Maps/MapManager.h"
 
 Character::Character()
 {

@@ -1,4 +1,5 @@
-
+#ifndef __CHARACTER_H_INCLUDED__
+#define __CHARACTER_H_INCLUDED__
 #include "cocos2d.h"
 
 USING_NS_CC;
@@ -50,3 +51,4 @@ private:
 	void moveAnimate(float delta); 
 	void setMovePos(float delta);
 };
+#endif
