@@ -1,4 +1,5 @@
 #include <iostream>
+#include <SimpleAudioEngine.h>
 
 #define COCOS2D_DEBUG 1
 
@@ -14,3 +15,5 @@ extern std::string RD_S_MUSICS;
 extern std::string RD_CHARACTERS;
 extern std::string RD_C_POKEMONS;
 extern std::string RD_C_TRAINERS;
+
+extern void playSound(char* filePath, std::string type, bool isLoop);

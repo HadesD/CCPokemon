@@ -10,3 +10,9 @@ std::string RD_S_MUSICS = RD_SOUNDS + "/Musics";
 std::string RD_CHARACTERS = RES_DIR + "/Characters";
 std::string RD_C_POKEMONS = RD_CHARACTERS + "/Pokemons";
 std::string RD_C_TRAINERS = RD_CHARACTERS + "/Trainers";
+
+void playSound(char* filePath, std::string type, bool isLoop)
+{
+	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic(filePath, isLoop);
+}

@@ -3,7 +3,6 @@
 #define __MAPMANAGER_H_INCLUDED__
 #include "../stdafx.h"
 #include "cocos2d.h"
-#include <SimpleAudioEngine.h>
 #include "../Characters/Trainers/Trainer.h"
 USING_NS_CC;
 

@@ -43,18 +43,18 @@ bool PlayLayer::init()
     this->addChild(menu);
     
 	//Main Game
-	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
 	char music[100];
 	sprintf(music, "%s/PalletTownTheme.mp3", RD_S_MUSICS.c_str());
-	audio->playBackgroundMusic(music, true);
+	playSound(music, "background", true);
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/town.tmx"));
+	map->setInfo(TMXTiledMap::create(RD_MAPS + "/town2.tmx"));
 	map->build();
+	auto playerStart = map->getInfo()->getObjectGroup("Events")->getObject("PLAYER_START");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
-	trainer->setPosition(map->getInfo()->getMapSize().width, map->getInfo()->getMapSize().height);
+	trainer->setPosition(Vec2(playerStart["x"].asFloat()/2, playerStart["y"].asFloat()/2));
 	trainer->build();
 	//this->addChild(trainer, 1);
 
