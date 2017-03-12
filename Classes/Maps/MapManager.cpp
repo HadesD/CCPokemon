@@ -40,6 +40,6 @@ TMXTiledMap* MapManager::getMapInfo()
 
 void MapManager::addPlayerToTheMap(Character* character)
 {
-	MapManager::getMapInfo()->addChild(character, 1, "trainer");
+	this->info->addChild(character);
 
 }

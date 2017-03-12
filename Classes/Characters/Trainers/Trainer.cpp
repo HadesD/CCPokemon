@@ -64,7 +64,9 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 void Trainer::cameraFollow()
 {
 	auto layer = Director::getInstance()->getRunningScene()->getChildByName("Game");
-	auto tileMap = MapManager::getMapInfo();
+	auto tileMap = static_cast<MapManager*>(this->getParent());
+
+	TMXTiledMap* info = tileMap->getInfo();
 
 	Size winSize = Director::getInstance()->getWinSize();
 
@@ -72,8 +74,8 @@ void Trainer::cameraFollow()
 
 	int x = MAX(position.x, winSize.width / 2);
 	int y = MAX(position.y, winSize.height / 2);
-	x = MIN(x, (tileMap->getMapSize().width * tileMap->getTileSize().width) - winSize.width / 2);
-	y = MIN(y, (tileMap->getMapSize().height * tileMap->getTileSize().height) - winSize.height / 2);
+	x = MIN(x, (info->getMapSize().width * info->getTileSize().width) - winSize.width / 2);
+	y = MIN(y, (info->getMapSize().height * info->getTileSize().height) - winSize.height / 2);
 	Vec2 actualPosition = Vec2(x, y);
 
 	Vec2 centerOfView = Vec2(winSize.width / 2, winSize.height / 2);

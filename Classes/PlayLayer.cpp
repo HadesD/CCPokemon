@@ -53,9 +53,9 @@ bool PlayLayer::init()
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f, 32.f, 32.f)));
 	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
 	trainer->build();
-	this->addChild(trainer, 1);
+	//this->addChild(trainer, 1);
 
-	//map->addPlayerToTheMap(trainer);
+	map->addPlayerToTheMap(trainer);
 
 	this->addChild(map, 0);
 
