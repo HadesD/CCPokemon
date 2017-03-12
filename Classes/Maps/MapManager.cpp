@@ -17,6 +17,7 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
+
 	this->addChild(this->info);
 	MapManager::mapInfo = this->info;
 }

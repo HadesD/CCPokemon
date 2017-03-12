@@ -10,7 +10,7 @@ Character::Character()
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
-	this->speed = 2.f;
+	this->speed = 1.5f;
 
 }
 
@@ -71,12 +71,15 @@ void Character::setMovePos(float delta)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto mapSize = MapManager::getMapInfo()->getMapSize();
 
-	CCLOG("MapSize: %f", mapSize.height);
-
-	if (xx <= 16 || yy <= 16 || xx >= (mapSize.width - 16) || yy >= (mapSize.height - 16))
+	if (xx <= 8 || yy <= 12)
 	{
-		//return;
+		return;
 	}
+	if (xx >= (mapSize.width - 16) || yy >= (mapSize.height - 16))
+	{
+
+	}
+	CCLOG("MapSize: %f", mapSize.height);
 
 	this->setPosition(Vec2(xx, yy));
 }
