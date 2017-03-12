@@ -125,4 +125,8 @@ void Character::setDirection(DIRECTION direction)
 {
 	this->direction = direction;
 }
+DIRECTION Character::getDirection()
+{
+	return this->direction;
+}
 #pragma endregion

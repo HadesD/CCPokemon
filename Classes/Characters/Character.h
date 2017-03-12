@@ -27,6 +27,7 @@ public:
 	Sprite* getSprite();
 
 	void setDirection(DIRECTION direction);
+	DIRECTION getDirection();
 
 	void setIsMoving(bool isMoving);
 	bool getIsMoving();

@@ -40,6 +40,6 @@ TMXTiledMap* MapManager::getMapInfo()
 
 void MapManager::addPlayerToTheMap(Character* character, int zOrder)
 {
-	this->info->addChild(character, ZORDER_CHARACTER, "character");
+	this->info->addChild(character, zOrder, "character");
 
 }

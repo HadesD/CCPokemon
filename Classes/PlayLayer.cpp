@@ -53,8 +53,8 @@ bool PlayLayer::init()
 	map->build();
 
 	auto trainer = new Trainer;
-	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f, 32.f, 32.f)));
-	trainer->setPosition(visibleSize.width/2, visibleSize.height/2);
+	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
+	trainer->setPosition(map->getInfo()->getMapSize().width, map->getInfo()->getMapSize().height);
 	trainer->build();
 	//this->addChild(trainer, 1);
 
