@@ -48,13 +48,13 @@ bool PlayLayer::init()
 	playSound(music, "background", true);
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/town2.tmx"));
+	map->setInfo(TMXTiledMap::create(RD_MAPS + "/pallet_town.tmx"));
 	map->build();
 	this->addChild(map, 0);
-	auto playerStart = map->getInfo()->getObjectGroup("Events")->getObject("PLAYER_START");
+	auto playerStart = map->getInfo()->getObjectGroup("EVENTS")->getObject("FLY_SPACE");
 
 	auto trainer = new Trainer;
-	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
+	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
 	trainer->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
 	trainer->build();
 

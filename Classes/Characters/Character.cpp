@@ -10,7 +10,7 @@ Character::Character()
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
-	this->speed = 1.5f;
+	this->speed = 11.5f;
 
 }
 

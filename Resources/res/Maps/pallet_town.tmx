@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="6">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="15800" columns="158">
+  <image source="Titlesets/tileset.png" width="2528" height="1600"/>
+ </tileset>
+ <layer name="BACKGROUND" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwzEJAAAMA7Cee+vfbGE6Ekgvqaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq+gduotC+
+  </data>
+ </layer>
+ <layer name="BARRIER" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt09tNA0EUBcEbD95YsEmLRzA4LtukwHyiDYBtyVXS+R/dUc/MfL/MXNc4xt/7v55mzmuXtbfTse96Rvv739bua4+1H//x7/b3f99mPtY+1762o1/3fPb318ex9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHy/7+v3H6zeE=
+  </data>
+ </layer>
+ <objectgroup name="EVENTS">
+  <object id="5" name="FLY_SPACE" x="768" y="496" width="15.75" height="16"/>
+ </objectgroup>
+</map>
