@@ -25,7 +25,7 @@ public:
 	virtual void build();
 
 	static TMXTiledMap* getMapInfo();
-	void addPlayerToTheMap(Character* character, int zOrder);
+	void addCharToMap(Character* character, int zOrder);
 
 #pragma region GETs/SETs
 	void setInfo(TMXTiledMap *info);

@@ -83,4 +83,6 @@ void Trainer::cameraFollow()
 	Vec2 centerOfView = Vec2(winSize.width / 2, winSize.height / 2);
 	Vec2 viewPoint = centerOfView - actualPosition;
 	layer->setPosition(viewPoint);
+
+	//CCLOG("xx-yy: %f-%f", tileMap->getMapSize().height * tileMap->getTileSize().height, tileMap->getMapSize().width * tileMap->getTileSize().width);
 }

@@ -69,17 +69,16 @@ void Character::setMovePos(float delta)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	auto mapSize = MapManager::getMapInfo()->getMapSize();
+	auto mapInfo = MapManager::getMapInfo();
 
 	if (xx <= 8 || yy <= 12)
 	{
 		return;
 	}
-	if (xx >= (mapSize.width - 16) || yy >= (mapSize.height - 16))
+	if (xx >= ((mapInfo->getMapSize().width * mapInfo->getTileSize().width) - 8) || yy >= ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - 12))
 	{
-
+		return;
 	}
-	CCLOG("MapSize: %f", mapSize.height);
 
 	this->setPosition(Vec2(xx, yy));
 }

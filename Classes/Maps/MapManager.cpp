@@ -39,7 +39,7 @@ TMXTiledMap* MapManager::getMapInfo()
 }
 #pragma endregion
 
-void MapManager::addPlayerToTheMap(Character* character, int zOrder)
+void MapManager::addCharToMap(Character* character, int zOrder)
 {
 	this->info->addChild(character, zOrder, "character");
 
