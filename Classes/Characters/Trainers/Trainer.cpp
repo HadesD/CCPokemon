@@ -35,21 +35,24 @@ void Trainer::update(float delta)
 
 void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-	this->setIsMoving(true);
 
 	switch (keyCode)
 	{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 			this->setDirection(DIRECTION::UP);
+			this->setIsMoving(true);
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 			this->setDirection(DIRECTION::DOWN);
+			this->setIsMoving(true);
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 			this->setDirection(DIRECTION::RIGHT);
+			this->setIsMoving(true);
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 			this->setDirection(DIRECTION::LEFT);
+			this->setIsMoving(true);
 			break;
 	}
 	CCLOG("Pushed Key: %d", (int)keyCode);
@@ -70,8 +73,6 @@ void Trainer::cameraFollow()
 	Size winSize = Director::getInstance()->getWinSize();
 
 	Vec2 position = this->getPosition();
-
-	CCLOG("Pos: %i", tileMap->getMapSize().width);
 
 	int x = MAX(position.x, winSize.width / 2);
 	int y = MAX(position.y, winSize.height / 2);
