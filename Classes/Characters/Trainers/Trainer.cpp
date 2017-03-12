@@ -1,4 +1,5 @@
 #include "Trainer.h"
+#include "../../Maps/MapManager.h"
 
 Trainer::Trainer()
 {
@@ -27,9 +28,9 @@ void Trainer::build()
 
 void Trainer::update(float delta)
 {
-	this->cameraFollow();
-
 	Character::update(delta);
+
+	this->cameraFollow();
 }
 
 void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
@@ -63,17 +64,14 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 
 void Trainer::cameraFollow()
 {
-
-	auto layer = Director::getInstance()->getRunningScene()->getChildByName("Game");
-	auto tileMap = (TMXTiledMap*)this->getParent();
-
-	CCLOG("MAP: %d", tileMap->getMapSize().width);
-
-	return;
+	auto layer = Director::getInstance()->getRunningScene()->getChildByName("GamePlay");
+	auto tileMap = MapManager::getMapInfo();
 
 	Size winSize = Director::getInstance()->getWinSize();
 
 	Vec2 position = this->getPosition();
+
+	CCLOG("Pos: %i", tileMap->getMapSize().width);
 
 	int x = MAX(position.x, winSize.width / 2);
 	int y = MAX(position.y, winSize.height / 2);

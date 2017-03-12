@@ -17,8 +17,8 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
-
 	this->addChild(this->info);
+	MapManager::mapInfo = this->info;
 }
 #pragma region GETs/SETs
 
@@ -38,8 +38,8 @@ TMXTiledMap* MapManager::getMapInfo()
 }
 #pragma endregion
 
-void MapManager::addPlayerToTheMap(Character* character)
+void MapManager::addPlayerToTheMap(Character* character, int zOrder)
 {
-	this->info->addChild(character);
+	this->info->addChild(character, ZORDER_CHARACTER, "character");
 
 }

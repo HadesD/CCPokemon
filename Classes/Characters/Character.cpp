@@ -68,9 +68,10 @@ void Character::setMovePos(float delta)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	if (xx <= 16 || yy <= 16 || xx >= (visibleSize.width - 16) || yy >= (visibleSize.height - 16))
+	//auto mapSize = MapManager::getMapInfo()->getMapSize();
+	//if (xx <= 16 || yy <= 16 || xx >= (mapSize.width - 16) || yy >= (mapSize.height - 16))
 	{
-		return;
+		//return;
 	}
 
 	this->setPosition(Vec2(xx, yy));

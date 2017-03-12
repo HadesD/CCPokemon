@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Character.h"
-#include "../../Maps/MapManager.h"
 
 USING_NS_CC;
 

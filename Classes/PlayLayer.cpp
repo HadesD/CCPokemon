@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "PlayLayer.h"
+#include "Maps/MapManager.h"
 #include "Characters/Trainers/Trainer.h"
 
 USING_NS_CC;
@@ -26,6 +27,8 @@ bool PlayLayer::init()
     {
         return false;
     }
+
+	this->setName("GamePlay");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -46,7 +49,7 @@ bool PlayLayer::init()
 	audio->playBackgroundMusic(music, true);
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/town2.tmx"));
+	map->setInfo(TMXTiledMap::create(RD_MAPS + "/town.tmx"));
 	map->build();
 
 	auto trainer = new Trainer;
@@ -55,7 +58,7 @@ bool PlayLayer::init()
 	trainer->build();
 	//this->addChild(trainer, 1);
 
-	map->addPlayerToTheMap(trainer);
+	map->addPlayerToTheMap(trainer, ZORDER_TRAINER);
 
 	this->addChild(map, 0);
 

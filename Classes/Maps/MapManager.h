@@ -7,6 +7,16 @@
 
 USING_NS_CC;
 
+#ifndef ZORDER_ABOVE
+#define ZORDER_ABOVE 15
+#endif
+#ifndef ZORDER_CHARACTER
+#define ZORDER_CHARACTER 3
+#endif
+#ifndef ZORDER_TRAINER
+#define ZORDER_TRAINER 4
+#endif
+
 class MapManager : public Node
 {
 public:
@@ -16,7 +26,7 @@ public:
 	virtual void build();
 
 	static TMXTiledMap* getMapInfo();
-	void addPlayerToTheMap(Character* character);
+	void addPlayerToTheMap(Character* character, int zOrder);
 
 #pragma region GETs/SETs
 	void setInfo(TMXTiledMap *info);
