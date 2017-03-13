@@ -79,7 +79,8 @@ void Character::setMovePos(float delta)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	auto mapInfo = MapManager::getMapInfo();
+
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
 	Size sprtSize = this->sprite->getContentSize();
 

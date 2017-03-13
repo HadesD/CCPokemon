@@ -35,7 +35,7 @@ bool PlayLayer::init()
 
 	//Create BackToMainMenu Button
 	auto back = MenuItemImage::create(RES_DIR + "/UI/Icons/Home.png", RES_DIR + "/UI/Icons/Home.png", CC_CALLBACK_1(PlayLayer::back, this));
-    back->setPosition(Vec2(origin.x + visibleSize.width - back->getContentSize().width ,
+    back->setPosition(Vec2(origin.x + visibleSize.width - back->getContentSize().width,
                                 origin.y + back->getContentSize().height));
 
     auto menu = Menu::create(back, NULL);

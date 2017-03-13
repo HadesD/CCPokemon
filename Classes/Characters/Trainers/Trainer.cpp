@@ -68,7 +68,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 void Trainer::cameraFollow()
 {
 	auto layer = Director::getInstance()->getRunningScene()->getChildByName("GamePlay");
-	auto tileMap = MapManager::getMapInfo();
+	auto *tileMap = (TMXTiledMap*)this->getParent();
 
 	Size winSize = Director::getInstance()->getWinSize();
 
