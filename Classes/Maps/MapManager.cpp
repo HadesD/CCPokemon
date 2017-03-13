@@ -22,6 +22,13 @@ void MapManager::build()
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
 	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
 
+	//Music
+	std:string musicName = this->info->getObjectGroup("DETAILS")->getObject("MORE_INFO").at("soundFile").asString();
+	if (musicName != "")
+	{
+		playSound((char *)(RD_S_MUSICS +"/"+ musicName).c_str(), "background", true);
+	}
+
 	this->addChild(this->info);
 	MapManager::mapInfo = this->info;
 }

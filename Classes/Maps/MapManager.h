@@ -1,4 +1,11 @@
 #pragma once
+/*
+ Map Create by TiledMap (TMX)
+ Must have:
+ - (Object)DETAILS.MORE_INFO.(soundFlle,mapName)
+ - 
+ */
+
 #ifndef __MAPMANAGER_H_INCLUDED__
 #define __MAPMANAGER_H_INCLUDED__
 #include "../stdafx.h"

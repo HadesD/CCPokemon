@@ -43,15 +43,12 @@ bool PlayLayer::init()
     this->addChild(menu);
     
 	//Main Game
-	char music[100];
-	sprintf(music, "%s/PalletTownTheme.mp3", RD_S_MUSICS.c_str());
-	playSound(music, "background", true);
 
 	auto map = new MapManager;
 	map->setInfo(TMXTiledMap::create(RD_MAPS + "/pallet_town.tmx"));
 	map->build();
 	this->addChild(map, 0);
-	auto playerStart = map->getInfo()->getObjectGroup("EVENTS")->getObject("FLY_SPACE");
+	auto playerStart = map->getInfo()->getObjectGroup("DETAILS")->getObject("FLY_SPACE");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
