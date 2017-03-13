@@ -22,36 +22,30 @@ void MapManager::build()
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
 	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
 
-	auto moreInfo = this->info->getObjectGroup("DETAILS")->getObject("MORE_INFO");
-
-	std:string musicName = moreInfo.at("soundFile").asString();
-	if (musicName != "")
+	auto mapDetails = this->info->getObjectGroup("DETAILS");
+	if (mapDetails)
 	{
-		playSound((char *)(RD_S_MUSICS +"/"+ musicName).c_str(), "background", true);
-	}
+		auto moreInfo = mapDetails->getObject("MORE_INFO");
 
-	if (this->name == "")
-	{
-		this->name = moreInfo.at("mapName").asString();
-	}
-
-	//Draw Barrier Space
-	auto barriersObj = this->info->getObjectGroup("BARRIERS");
-	for (auto obj : barriersObj->getObjects())
-	{
-		auto val = obj.asValueMap();
-
-		if (COCOS2D_DEBUG == 1)
+		std:string musicName = moreInfo.at("soundFile").asString();
+		if (musicName != "")
 		{
-			auto rect = DrawNode::create();
+			playSound((char *)(RD_S_MUSICS + "/" + musicName).c_str(), "background", true);
+		}
 
-			rect->drawRect(Vec2(val.at("x").asFloat(), val.at("y").asFloat()),
-				Vec2(val.at("x").asFloat() + val.at("width").asFloat(), val.at("y").asFloat() + val.at("height").asFloat()),
-				Color4F::RED);
-			this->addChild(rect, 99);
+		if (this->name == "")
+		{
+			this->name = moreInfo.at("mapName").asString();
 		}
 	}
 
+	//Hide Barrier Space
+	CCTMXLayer *_barrier;
+	_barrier = this->info->layerNamed("BARRIER");
+	if (_barrier)
+	{
+		_barrier->setVisible(false);
+	}
 
 	this->addChild(this->info);
 	MapManager::mapInfo = this->info;

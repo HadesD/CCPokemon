@@ -48,16 +48,22 @@ bool PlayLayer::init()
 	map->setInfo(TMXTiledMap::create(RD_MAPS + "/pallet_town.tmx"));
 	map->build();
 	this->addChild(map, 0);
-	auto playerStart = map->getInfo()->getObjectGroup("DETAILS")->getObject("FLY_SPACE");
+	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
-	trainer->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
 	trainer->build();
 
-	map->addCharToMap(trainer, ZORDER_TRAINER);
+	if (mapDetails)
+	{
+		auto playerStart = mapDetails->getObject("FLY_SPACE");
+		if (playerStart["x"].asBool())
+		{
+			trainer->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
+		}
+	}
 
-	//CCLOG("%s", trainer->getPositionX());
+	map->addCharToMap(trainer, ZORDER_TRAINER);
 
     return true;
 }
