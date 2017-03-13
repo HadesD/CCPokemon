@@ -39,7 +39,7 @@ void MapManager::build()
 
 	//Hide Barrier Space
 	CCTMXLayer *_barrier;
-	_barrier = this->info->layerNamed("BARRIER");
+	_barrier = this->info->getLayer("BARRIER");
 	if (_barrier)
 	{
 		_barrier->setVisible(false);
