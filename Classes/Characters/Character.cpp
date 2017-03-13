@@ -37,6 +37,16 @@ void Character::build()
 
 	scheduleUpdate();
 
+	if (COCOS2D_DEBUG == 1)
+	{
+		auto rect = DrawNode::create();
+		Size sprtSize = this->sprite->getContentSize();
+		rect->drawRect(Vec2(-sprtSize.width / 2, -sprtSize.height / 2),
+			Vec2(sprtSize.width/2, sprtSize.height/2),
+			Color4F::RED);
+		this->addChild(rect, 99);
+	}
+
 	this->addChild(this->sprite);
 }
 
