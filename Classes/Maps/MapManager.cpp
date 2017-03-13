@@ -35,6 +35,24 @@ void MapManager::build()
 		this->name = moreInfo.at("mapName").asString();
 	}
 
+	//Draw Barrier Space
+	auto barriersObj = this->info->getObjectGroup("BARRIERS");
+	for (auto obj : barriersObj->getObjects())
+	{
+		auto val = obj.asValueMap();
+
+		if (COCOS2D_DEBUG == 1)
+		{
+			auto rect = DrawNode::create();
+
+			rect->drawRect(Vec2(val.at("x").asFloat(), val.at("y").asFloat()),
+				Vec2(val.at("x").asFloat() + val.at("width").asFloat(), val.at("y").asFloat() + val.at("height").asFloat()),
+				Color4F::RED);
+			this->addChild(rect, 99);
+		}
+	}
+
+
 	this->addChild(this->info);
 	MapManager::mapInfo = this->info;
 }
