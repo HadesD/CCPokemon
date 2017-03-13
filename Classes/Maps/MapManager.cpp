@@ -5,7 +5,7 @@ TMXTiledMap *MapManager::mapInfo = nullptr;
 MapManager::MapManager()
 {
 	this->id = 0;
-	this->name = "Undefined";
+	//this->name = "";
 	//this->file
 	//this->info
 }
@@ -22,11 +22,17 @@ void MapManager::build()
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
 	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
 
-	//Music
-	std:string musicName = this->info->getObjectGroup("DETAILS")->getObject("MORE_INFO").at("soundFile").asString();
+	auto moreInfo = this->info->getObjectGroup("DETAILS")->getObject("MORE_INFO");
+
+	std:string musicName = moreInfo.at("soundFile").asString();
 	if (musicName != "")
 	{
 		playSound((char *)(RD_S_MUSICS +"/"+ musicName).c_str(), "background", true);
+	}
+
+	if (this->name == "")
+	{
+		this->name = moreInfo.at("mapName").asString();
 	}
 
 	this->addChild(this->info);
