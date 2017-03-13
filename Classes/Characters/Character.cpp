@@ -93,6 +93,16 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
+	Rect *rect = new Rect(xx, yy, sprtSize.width / 2, sprtSize.height / 2);
+	
+	auto tileGid = mapInfo->layerNamed("BARRIER")->getBoundingBox();
+
+	CCLOG("Size: %f", tileGid.getMinX());
+
+	//if (rect->intersectsRect(tileGid)) {
+	//	return;
+	//}
+
 	this->setPosition(Vec2(xx, yy));
 }
 
