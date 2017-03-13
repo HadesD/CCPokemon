@@ -71,11 +71,13 @@ void Character::setMovePos(float delta)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto mapInfo = MapManager::getMapInfo();
 
-	if (xx <= 8 || yy <= 12)
+	Size sprtSize = this->sprite->getContentSize();
+
+	if (xx - sprtSize.width/2 <= 0 || yy - sprtSize.height/2 <= 0)
 	{
 		return;
 	}
-	if (xx >= ((mapInfo->getMapSize().width * mapInfo->getTileSize().width) - 8) || yy >= ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - 12))
+	if (xx + sprtSize.width/2 >= (mapInfo->getMapSize().width * mapInfo->getTileSize().width) || yy + sprtSize.height/2 >= (mapInfo->getMapSize().height * mapInfo->getTileSize().height))
 	{
 		return;
 	}
