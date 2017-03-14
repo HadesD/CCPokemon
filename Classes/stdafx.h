@@ -11,9 +11,12 @@ extern std::string RD_MAPS;
 
 extern std::string RD_SOUNDS;
 extern std::string RD_S_MUSICS;
+extern std::string RD_S_EFFECTS;
+extern std::string RD_S_THEMES;
+
 
 extern std::string RD_CHARACTERS;
 extern std::string RD_C_POKEMONS;
 extern std::string RD_C_TRAINERS;
 
-extern void playSound(char* filePath, std::string type, bool isLoop);
+extern void playSound(std::string filePath, std::string type, bool isLoop);

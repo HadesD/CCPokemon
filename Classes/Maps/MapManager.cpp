@@ -28,7 +28,7 @@ void MapManager::build()
 		std:string musicName = moreInfo.at("soundFile").asString();
 		if (musicName != "")
 		{
-			playSound((char *)(RD_S_MUSICS + "/" + musicName).c_str(), "background", true);
+			playSound(musicName, "theme", true);
 		}
 
 		if (this->name == "")

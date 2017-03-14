@@ -26,7 +26,7 @@
   <object id="8" name="MORE_INFO" x="32" y="496">
    <properties>
     <property name="mapName" value="Pallet Town"/>
-    <property name="soundFile" value="PalletTownTheme.mp3"/>
+    <property name="soundFile" value="PalletTown.mp3"/>
    </properties>
   </object>
  </objectgroup>
