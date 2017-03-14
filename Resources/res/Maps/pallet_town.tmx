@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" nextobjectid="12">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="15800" columns="158">
   <image source="Tilesets/tileset.png" width="2528" height="1600"/>
  </tileset>
  <tileset firstgid="15801" name="CollisionTile" tilewidth="16" tileheight="16" tilecount="400" columns="20">
   <image source="Tilesets/collisionTiles.png" width="320" height="320"/>
  </tileset>
- <layer name="BACKGROUND" width="100" height="100">
+ <layer name="BACKGROUND" width="50" height="40">
   <data encoding="base64" compression="zlib">
-   eJztwzEJAAAMA7Cee+vfbGE6Ekgvqaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq+gduotC+
+   eJztwwENAAAMw6D6dzGnF3JIWDVVVVVVVVVVff4AxT3qDQ==
   </data>
  </layer>
- <layer name="THING" width="100" height="100">
+ <layer name="THING" width="50" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt09tNA0EUBcEbD95YsEmLRzA4LtukwHyiDYBtyVXS+R/dUc/MfL/MXNc4xt/7v55mzmuXtbfTse96Rvv739bua4+1H//x7/b3f99mPtY+1762o1/3fPb318ex9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHiz5a9NGijxZ9tOijRR8t+mjRR4s+WvTRoo8WfbToo0UfLfpo0UeLPlr00aKPFn206KNFHy36aNFHy/7+v3H6zeE=
+   eJzt0cENg0AQBMGJBy4WbKdlIBgcl8EpeGO4zzVSlzT/XXWSHFPyqd3ZMieP2rP2mkdf0+9bt5+1q/a78R/vlqy1rba30df0sweLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WP7kLo1i
   </data>
  </layer>
- <layer name="BARRIER" width="100" height="100">
+ <layer name="BARRIER" width="50" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0bENACEQA0Eao/Dr7tMXASHaYEZyA97Za81vvDX7Pt7So0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPlvP/DzdSAO4=
+   eJztz0ENACAQwDCMIfzc8UXCIG0yAZu91ly9anyk+Gjx0eKjxUeLjxYfLT5afLT4aPHR4qPFR4uPFh8tPlp8tPho8dHyy8cBVbWZwQ==
   </data>
  </layer>
  <objectgroup name="DETAILS">
-  <object id="5" name="FLY_SPACE" x="768" y="496" width="14.75" height="16"/>
+  <object id="5" name="FLY_SPACE" x="264" y="513" width="14.75" height="16"/>
   <object id="8" name="MORE_INFO" x="32" y="496">
    <properties>
     <property name="mapName" value="Pallet Town"/>

@@ -4,13 +4,13 @@
 Character::Character()
 {
 	this->id = 0;
-	this->name = "Object";
-	this->sprite = nullptr;
+	//this->name;
+	//this->sprite;
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
-	this->speed = 11.5f;
+	this->speed = 2.5f;
 
 }
 
@@ -46,6 +46,7 @@ void Character::build()
 			Color4F::RED);
 		this->addChild(rect, 99);
 	}
+	this->sprite->setScale(0.85);
 
 	this->addChild(this->sprite);
 }
@@ -156,5 +157,13 @@ void Character::setDirection(DIRECTION direction)
 DIRECTION Character::getDirection()
 {
 	return this->direction;
+}
+void Character::setName(std::string name)
+{
+	this->name = name;
+}
+std::string Character::getName()
+{
+	return this->name;
 }
 #pragma endregion

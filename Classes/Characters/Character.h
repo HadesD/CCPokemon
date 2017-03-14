@@ -33,6 +33,9 @@ public:
 	void setIsMoving(bool isMoving);
 	bool getIsMoving();
 
+	void setName(std::string name);
+	std::string getName();
+
 #pragma endregion
 
 private:

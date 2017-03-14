@@ -24,6 +24,10 @@ void Trainer::build()
 	listener->onKeyPressed = CC_CALLBACK_2(Trainer::onKeyPressed, this);
 	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
+
+	LabelTTF* closeLabel = LabelTTF::create(this->getName(), "Marker Felt", 11);
+	closeLabel->setPositionY(this->getSprite()->getContentSize().height/2);
+	this->addChild(closeLabel, 99);
 }
 
 void Trainer::update(float delta)

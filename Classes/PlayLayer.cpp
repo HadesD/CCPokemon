@@ -51,7 +51,8 @@ bool PlayLayer::init()
 	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
-	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
+	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
+	trainer->setName("Dark.Hades");
 	trainer->build();
 
 	if (mapDetails)
