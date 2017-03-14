@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="55" height="40" tilewidth="16" tileheight="16" nextobjectid="12">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="15800" columns="158">
   <image source="Tilesets/tileset.png" width="2528" height="1600"/>
  </tileset>
  <tileset firstgid="15801" name="CollisionTile" tilewidth="16" tileheight="16" tilecount="400" columns="20">
   <image source="Tilesets/collisionTiles.png" width="320" height="320"/>
  </tileset>
- <layer name="BACKGROUND" width="50" height="40">
+ <layer name="BACKGROUND" width="55" height="40">
   <data encoding="base64" compression="zlib">
-   eJztwwENAAAMw6D6dzGnF3JIWDVVVVVVVVVVff4AxT3qDQ==
+   eJztwwENAAAMw6D6dzGnV3AHkLBqqqqqqqqqqqr6POhcZ+Q=
   </data>
  </layer>
- <layer name="THING" width="50" height="40">
+ <layer name="THING" width="55" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0cENg0AQBMGJBy4WbKdlIBgcl8EpeGO4zzVSlzT/XXWSHFPyqd3ZMieP2rP2mkdf0+9bt5+1q/a78R/vlqy1rba30df0sweLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WP7kLo1i
+   eJzt0eENgkAQBeFXD1wtqG0JFIN1CbbgFnHJZch8yfu/m0mSY0o+tbtZ5uRRe9Ze8+hr+vrWP2ftqv1u9tu7JWttq+1t9DV92Y3Jbkx2Y7Ibk92Y7MZkNya7MdmNyW5MdmOyG5PdmOzGZDcmuzHZjcluTH8fr41i
   </data>
  </layer>
- <layer name="BARRIER" width="50" height="40">
+ <layer name="BARRIER" width="55" height="40">
   <data encoding="base64" compression="zlib">
-   eJztz0ENACAQwDCMIfzc8UXCIG0yAZu91ly9anyk+Gjx0eKjxUeLjxYfLT5afLT4aPHR4qPFR4uPFh8tPlp8tPho8dHyy8cBVbWZwQ==
+   eJztz0ENACAMwMAZQ/jc8cXCkV5SAd0zs08/2d5IvZl6M/Vm6s3Um6k3U2+m3ky9mXoz9WbqzdSbqTdTb6beTL2ZejP9/HYBpL+ZwQ==
   </data>
  </layer>
  <objectgroup name="DETAILS">
