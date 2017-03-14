@@ -93,21 +93,12 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
-	
-	int x = Point(xx, yy).x / mapInfo->getTileSize().width;
-	int y = ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height;
 
-	int tileGid = mapInfo->getLayer("BARRIER")->tileGIDAt(ccp(x, y));
-
-	if (tileGid) {
-		Value properties = mapInfo->getPropertiesForGID(tileGid);
-		if (! properties.isNull())
+	TMXLayer *barriers = mapInfo->getLayer("BARRIER");
+	if (barriers) {
+		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
 		{
-			ValueMap dict = properties.asValueMap();
-			Value collision = dict["BARRIER"];
-			if (! collision.isNull() && collision.asString() == "True") {
-				return;
-			}
+			return;
 		}
 	}
 
