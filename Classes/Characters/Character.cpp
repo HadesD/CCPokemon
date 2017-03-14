@@ -97,9 +97,19 @@ void Character::setMovePos(float delta)
 	int x = Point(xx, yy).x / mapInfo->getTileSize().width;
 	int y = ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height;
 
-	Point tileCoord = Point(x, y);
+	int tileGid = mapInfo->getLayer("BARRIER")->tileGIDAt(ccp(x, y));
 
-	//mapInfo->getLayer("BARRIER")->setVisible(true);
+	if (tileGid) {
+		Value properties = mapInfo->getPropertiesForGID(tileGid);
+		if (! properties.isNull())
+		{
+			ValueMap dict = properties.asValueMap();
+			Value collision = dict["BARRIER"];
+			if (! collision.isNull() && collision.asString() == "True") {
+				return;
+			}
+		}
+	}
 
 	this->setPosition(Vec2(xx, yy));
 }
