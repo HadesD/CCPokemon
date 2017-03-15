@@ -38,6 +38,9 @@ public:
 
 	virtual void setMovePos(float delta);
 
+	void setCanMove(bool canMove);
+	bool getCanMove();
+
 #pragma endregion
 
 private:

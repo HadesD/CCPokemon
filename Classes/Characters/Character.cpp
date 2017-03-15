@@ -110,7 +110,10 @@ void Character::setMovePos(float delta)
 */
 void Character::moveAnimate(float delta)
 {
-
+	if (this->canMove == false)
+	{
+		this->oldAnimePos = 0;
+	}
 	this->sprite->setTextureRect(Rect(32.f*this->oldAnimePos, 32.f*this->direction, 32.f, 32.f));
 
 	if (this->isMoving)
@@ -164,5 +167,13 @@ void Character::setName(std::string name)
 std::string Character::getName()
 {
 	return this->name;
+}
+void Character::setCanMove(bool canMove)
+{
+	this->canMove = canMove;
+}
+bool Character::getCanMove()
+{
+	return this->canMove;
 }
 #pragma endregion

@@ -79,13 +79,26 @@ void Trainer::setMovePos(float delta)
 		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
 		{
 			playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
+
+			srand(time(NULL));
+			int a = rand() % 50 + 1;
+
+			if (a > 30)
+			{
+				this->setCanMove(false);
+			}
 		}
 	}
 }
 
 void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
+	CCLOG("Pushed Key: %d", (int)keyCode);
 
+	if (this->getCanMove() == false)
+	{
+		return;
+	}
 	switch (keyCode)
 	{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
@@ -105,14 +118,13 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 			this->setIsMoving(true);
 			break;
 	}
-	CCLOG("Pushed Key: %d", (int)keyCode);
 }
 
 void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
-	this->setIsMoving(false);
-
 	CCLOG("Released Key: %d", (int)keyCode);
+
+	this->setIsMoving(false);
 }
 
 void Trainer::cameraFollow()
