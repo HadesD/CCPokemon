@@ -32,7 +32,6 @@ public:
 
 	virtual void build();
 
-	static TMXTiledMap* getMapInfo();
 	void addCharToMap(Character* character, int zOrder);
 
 #pragma region GETs/SETs

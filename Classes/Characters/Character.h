@@ -36,6 +36,8 @@ public:
 	void setName(std::string name);
 	std::string getName();
 
+	virtual void setMovePos(float delta);
+
 #pragma endregion
 
 private:
@@ -51,7 +53,6 @@ private:
 	int oldAnimePos;
 #pragma endregion
 
-	void moveAnimate(float delta); 
-	void setMovePos(float delta);
+	void moveAnimate(float delta);
 };
 #endif

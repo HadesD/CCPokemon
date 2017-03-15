@@ -43,7 +43,7 @@ bool PlayLayer::init()
 	//Main Game
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/PALLETTOWN_CITY.tmx"));
+	map->setInfo(TMXTiledMap::create(RD_MAPS + "/ROUTE_1.tmx"));
 	map->build();
 	this->addChild(map, 0);
 	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");

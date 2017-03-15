@@ -37,12 +37,19 @@ void MapManager::build()
 		}
 	}
 
-	//Hide Barrier Space
+	//Hide Barrier Color
 	CCTMXLayer *_barrier;
 	_barrier = this->info->getLayer("BARRIER");
 	if (_barrier)
 	{
 		_barrier->setVisible(false);
+	}
+	//Hide Fighting _Grass Space
+	CCTMXLayer *_grass;
+	_grass = this->info->getLayer("GRASS");
+	if (_grass)
+	{
+		_grass->setVisible(false);
 	}
 
 	this->addChild(this->info);

@@ -17,7 +17,13 @@ public:
 
 	virtual void build();
 
-	void update(float delta);
+	virtual void update(float delta);
+
+#pragma region GETs/SETs
+
+	virtual void setMovePos(float delta);
+
+#pragma endregion
 
 protected:
 
