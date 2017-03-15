@@ -68,7 +68,6 @@ void Character::setMovePos(float delta)
 			yy += this->speed;
 			break;
 		case DIRECTION::DOWN:
-		default:
 			yy -= this->speed;
 			break;
 		case DIRECTION::LEFT:

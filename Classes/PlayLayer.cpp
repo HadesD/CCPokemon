@@ -27,8 +27,6 @@ bool PlayLayer::init()
     {
         return false;
     }
-
-	this->setName("GamePlay");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
