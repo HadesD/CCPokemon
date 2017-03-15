@@ -11,6 +11,7 @@
 #include "../stdafx.h"
 #include "cocos2d.h"
 #include "../Characters/Trainers/Trainer.h"
+#include "../PlayLayer.h"
 USING_NS_CC;
 
 #ifndef ZORDER_ABOVE

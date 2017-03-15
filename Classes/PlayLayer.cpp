@@ -27,7 +27,7 @@ bool PlayLayer::init()
     {
         return false;
     }
-    
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -43,7 +43,7 @@ bool PlayLayer::init()
 	//Main Game
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/pallet_town.tmx"));
+	map->setInfo(TMXTiledMap::create(RD_MAPS + "/PALLETTOWN_CITY.tmx"));
 	map->build();
 	this->addChild(map, 0);
 	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");

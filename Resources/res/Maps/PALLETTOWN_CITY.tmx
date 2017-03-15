@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" nextobjectid="6">
+ <tileset firstgid="1" name="PALLETTOWN_CITY" tilewidth="16" tileheight="16" tilecount="480" columns="24">
+  <image source="Tilesets/MapPNG/PALLETTOWN_CITY.png" width="384" height="320"/>
+ </tileset>
+ <tileset firstgid="481" name="collisionTiles" tilewidth="16" tileheight="16" tilecount="400" columns="20">
+  <image source="Tilesets/collisionTiles.png" width="320" height="320"/>
+ </tileset>
+ <layer name="BACKGROUND" width="24" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwNwwOQEAgAAMCLl23btm3btm3XZdu2bdu26z/zPzxyO7MbLCAgILghDGkoQxtoGMMazvBGMKKRjGwUoxrN6MYwprGMbRzjGs/4JjChiUxsEpOazOSmMKWpTG0a05rO9GYwo5nMbBazms3s5jCnucxtHvOaz/wWsKCFLGwRi1rM4pawpKUsbRnLWs7yVrCilaxsFatazerWsKa1rG0d61rP+jawoY1sbBOb2szmtrClrWxtG9vazvZ2sKOd7GwXu9rN7vawp73sbR/72s/+DnCggxzsEIc6zCCHO8KRjnK0YxzrOMc7wYlOcrJTnOo0pzvDmc5ytnOc6zznu8CFLnKxS1zqMpe7wpWucrVrXOs617vBjW5ys1vc6ja3u8Od7nK3e9zrPvd7wIMe8rBHPOoxj3vCk57ytGc86znPe8GLXvKyV7zqNa97w5ve8rZ3vOs97/vAhz7ysX/4p0986jOf+8KXvvK1b3zrO9/7l3/7wY9+8rP/+K//+b9f/Oo3v/vDn/4yIBgGN4QhDWVoAw1jWMMZ3ghGNJKRjWJUoxndGMY0lrGNY1zjGd8EJjSRiU1iUpOZ3BSmNJWpTWNa05neDGY0k5nNYlazmd0c5jSXuc1jXvOZ3wIWtJCFLWJRi1ncEpa0lKUtY1nLWd4KVrSSla1iVatZ3RrWtJa1rWNd61nfBja0kY1tYlOb2dwWtrSVrW1jW9vZ3g52tJOd7WJXu9ndHva0l73tY1/72d8BDnSQgx3iUIcZ5HBHONJRjnaMYx3neCc40UlOdopTneZ0ZzjTWc52jnOd53wXuNBFLnaJS13mcle40lWudo1rXed6N7jRTW52i1vd5nZ3uNNd7naPe93nfg940EMe9ohHPeZxT3jSU572jGc953kveNFLXvaKV73mdW9401ve9o53ved9H/jQRz72N4WD4tI=
+  </data>
+ </layer>
+ <layer name="BARRIER" width="24" height="20">
+  <data encoding="base64" compression="zlib">
+   eJx7yMjA8JAEDAOk6KGH+dQG+Mwnxn5Caoar+cTEDzlq0MXR1WDTS4yagUg/pOolJpzpaT658TtY3E+K+dj4hMynRnoaiumTVPOp6QZam4/NLFLMx2UOAC/7zpU=
+  </data>
+ </layer>
+ <objectgroup name="DETAILS">
+  <object id="2" name="FLY_SPACE" x="104" y="136"/>
+  <object id="5" name="MORE_INFO" x="16" y="128">
+   <properties>
+    <property name="mapName" value="Pallet Town"/>
+    <property name="soundFile" value="PalletTown.mp3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

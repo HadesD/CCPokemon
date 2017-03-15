@@ -46,7 +46,7 @@ void Character::build()
 			Color4F::RED);
 		this->addChild(rect, 99);
 	}
-	this->sprite->setScale(0.85);
+	this->sprite->setScale(0.75);
 
 	this->addChild(this->sprite);
 }

@@ -19,7 +19,7 @@ void MapManager::build()
 	auto mapSize = Vec2((this->info->getMapSize().width*this->info->getTileSize().width), (this->info->getMapSize().height*this->info->getTileSize().height));
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
 	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
-
+	CCLOG("Size X-Y: %f-%f", mapPos.x, mapPos.y);
 	auto mapDetails = this->info->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{

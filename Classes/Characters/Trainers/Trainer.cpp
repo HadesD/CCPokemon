@@ -25,9 +25,21 @@ void Trainer::build()
 	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
-	LabelTTF* closeLabel = LabelTTF::create(this->getName(), "Marker Felt", 11);
-	closeLabel->setPositionY(this->getSprite()->getContentSize().height/2);
-	this->addChild(closeLabel, 99);
+	LabelTTF* nameLabel = LabelTTF::create(this->getName(), "Marker Felt", 11);
+	nameLabel->setColor(ccc3(255, 255, 255));
+
+	float padding = 4.f;
+
+	CCLayerColor* nameBGLayer = CCLayerColor::create(ccc4(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
+
+	nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
+
+	nameBGLayer->addChild(nameLabel);
+
+	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 2);
+
+
+	this->addChild(nameBGLayer, 99);
 }
 
 void Trainer::update(float delta)
@@ -71,7 +83,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 
 void Trainer::cameraFollow()
 {
-	auto layer = (Layer *)this->getParent();
+	auto layer = (PlayLayer *)this->getParent()->getParent();
 	auto *tileMap = (TMXTiledMap*)this->getParent();
 
 	Size winSize = Director::getInstance()->getWinSize();
