@@ -48,9 +48,12 @@ void Trainer::setMovePos(float delta)
 	Character::setMovePos(delta);
 
 	auto *mapManager = (MapManager*)this->getParent();
-	auto *tileMap = (TMXTiledMap*)this->getParent();
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
+	float xx, yy;
 
+	xx = this->getPositionX();
+	yy = this->getPositionY();
 
 	//Move to next map
 	if (mapManager)
@@ -70,6 +73,13 @@ void Trainer::setMovePos(float delta)
 		//delete(mapManager);
 		//delete(this);
 		//mapManager->addCharToMap(this, ZORDER_TRAINER);
+	}
+	TMXLayer *barriers = mapInfo->getLayer("GRASS");
+	if (barriers) {
+		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
+		{
+			playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
+		}
 	}
 }
 
