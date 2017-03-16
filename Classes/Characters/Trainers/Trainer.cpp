@@ -56,6 +56,11 @@ void Trainer::onTheGrass(float dt)
 	auto *mapManager = (MapManager*)this->getParent();
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
+	if (!mapInfo)
+	{
+		return;
+	}
+
 	float xx, yy;
 
 	xx = this->getPositionX();
@@ -81,6 +86,7 @@ void Trainer::onTheGrass(float dt)
 			mapInfo->removeAllChildren();
 			mapManager->removeAllChildren();
 			layer->removeAllChildren();
+			//CC_SAFE_DELETE(mapManager);
 			//delete mapManager;
 			auto map = new MapManager;
 			if (a % 2 == 0)
@@ -104,7 +110,6 @@ void Trainer::onTheGrass(float dt)
 			}
 			map->addCharToMap(this, ZORDER_TRAINER);
 			this->release();
-			this->setCanMove(true);
 		}
 	}
 }
