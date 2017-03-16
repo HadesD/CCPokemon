@@ -21,6 +21,11 @@ Character::~Character()
 
 void Character::update(float delta)
 {
+	auto *mapManager = (TMXTiledMap*)this->getParent();
+	if (!mapManager)
+	{
+		return;
+	}
 	if (this->isMoving)
 	{
 		this->setMovePos(delta);
@@ -53,10 +58,19 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
+	auto *mapManager = (MapManager*)this->getParent();
+
+	if (!mapManager)
+	{
+		return;
+	}
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
+
 	if (this->canMove == false)
 	{
 		return;
 	}
+
 	float xx, yy;
 
 	xx = this->getPositionX();
@@ -79,8 +93,6 @@ void Character::setMovePos(float delta)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-
-	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
 	Size sprtSize = this->sprite->getContentSize();
 

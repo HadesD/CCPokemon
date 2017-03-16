@@ -56,24 +56,13 @@ void Trainer::setMovePos(float delta)
 	yy = this->getPositionY();
 
 	//Move to next map
-	if (mapManager)
-	{
-		//CCLOG("HasMap");
+	auto *layer = (PlayLayer *)mapManager->getParent();
+	mapManager->removeChild(this);
+	mapManager->setInfo(TMXTiledMap::create("PALLETTOWN_CITY.tmx"));
+	layer->removeChild(mapManager);
+	layer->addChild(mapManager);
 
-		//auto map = new MapManager;
-		//mapManager->setInfo(TMXTiledMap::create(RD_MAPS + "/ROUTE_1.tmx"));
-		//map->build();
-		//mapManager->getParent()->addChild(mapManager, 0);
-		//auto trainer = new Trainer;
-		//trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
-		//trainer->setName("Dark.Hades");
-		//trainer->build();
-		//auto trainer = (Trainer*)this;
-		//map->addCharToMap(trainer, ZORDER_TRAINER);
-		//delete(mapManager);
-		//delete(this);
-		//mapManager->addCharToMap(this, ZORDER_TRAINER);
-	}
+	//Fight in Grass
 	TMXLayer *barriers = mapInfo->getLayer("GRASS");
 	if (barriers) {
 		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
@@ -130,7 +119,17 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 void Trainer::cameraFollow()
 {
 	auto *mapManager = (MapManager*)this->getParent();
+
+	if (!mapManager)
+	{
+		return;
+	}
 	auto *tileMap = (TMXTiledMap*)this->getParent();
+
+	if (!tileMap)
+	{
+		return;
+	}
 
 	Size winSize = Director::getInstance()->getWinSize();
 

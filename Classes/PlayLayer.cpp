@@ -45,7 +45,7 @@ bool PlayLayer::init()
 	auto map = new MapManager;
 	map->setInfo(TMXTiledMap::create(RD_MAPS + "/ROUTE_1.tmx"));
 	map->build();
-	this->addChild(map, 0);
+	this->addChild(map);
 	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
