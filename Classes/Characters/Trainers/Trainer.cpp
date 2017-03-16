@@ -55,18 +55,6 @@ void Trainer::setMovePos(float delta)
 	xx = this->getPositionX();
 	yy = this->getPositionY();
 
-	//Move to next map
-	auto *layer = (PlayLayer *)mapManager->getParent();
-	this->retain();
-	mapManager->removeChild(this);
-	this->release();
-	mapManager->retain();
-	layer->removeChild(mapManager);
-	//delete(mapManager);
-	mapManager->setMapInfo("PALLETTOWN_CITY.tmx");
-	//mapManager->build();
-	mapManager->release();
-
 	//Fight in Grass
 	TMXLayer *barriers = mapInfo->getLayer("GRASS");
 	if (barriers) {
@@ -81,6 +69,29 @@ void Trainer::setMovePos(float delta)
 			{
 				this->setCanMove(false);
 			}
+
+			//Move to next map
+			auto *layer = (PlayLayer *)mapManager->getParent();
+			this->retain();
+			mapManager->removeAllChildren();
+			layer->removeAllChildren();
+			//delete mapManager;
+			auto map = new MapManager;
+			map->setMapInfo("PALLETTOWN_CITY.tmx");
+			layer->addChild(map);
+			auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
+
+			if (mapDetails)
+			{
+				auto playerStart = mapDetails->getObject("FLY_SPACE");
+				if (playerStart["x"].asBool())
+				{
+					this->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
+				}
+			}
+			this->build();
+			map->addCharToMap(this, ZORDER_TRAINER);
+			this->release();
 		}
 	}
 }

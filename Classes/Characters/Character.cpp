@@ -21,11 +21,6 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	auto *mapManager = (MapManager*)this->getParent();
-	if (!mapManager)
-	{
-		return;
-	}
 	if (this->isMoving)
 	{
 		this->setMovePos(delta);

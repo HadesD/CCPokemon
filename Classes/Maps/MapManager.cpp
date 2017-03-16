@@ -58,6 +58,8 @@ void MapManager::build()
 void MapManager::setMapInfo(std::string mapInfo)
 {
 	this->mapInfo = TMXTiledMap::create(RD_MAPS + "/" + mapInfo);
+
+	this->build();
 }
 
 TMXTiledMap *MapManager::getMapInfo()
