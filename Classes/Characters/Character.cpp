@@ -53,6 +53,16 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
+	if (this->canMove == false)
+	{
+		return;
+	}
+
+	if (this->isMoving == false)
+	{
+		return;
+	}
+
 	auto *mapManager = (MapManager*)this->getParent();
 
 	if (!mapManager)
@@ -60,11 +70,6 @@ void Character::setMovePos(float delta)
 		return;
 	}
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
-
-	if (this->canMove == false)
-	{
-		return;
-	}
 
 	float xx, yy;
 
@@ -102,7 +107,7 @@ void Character::setMovePos(float delta)
 
 	TMXLayer *barriers = mapInfo->getLayer("BARRIER");
 	if (barriers) {
-		if (barriers->getTileAt(Vec2(Vec2(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Vec2(xx, yy).y) / mapInfo->getTileSize().height)))
+		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
 			//playSound("barrier.wav", "effect", false);
 			return;

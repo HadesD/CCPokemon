@@ -45,7 +45,7 @@ void Trainer::update(float delta)
 {
 	Character::update(delta);
 
-	this->cameraFollow();
+	//this->cameraFollow();
 }
 
 void Trainer::setMovePos(float delta)
@@ -76,15 +76,15 @@ void Trainer::onGate(float dt)
 		return;
 	}
 
+	Rect charRect = Rect(xx - this->getContentSize().width / 2, yy - this->getContentSize().height / 2, this->getContentSize().width, this->getContentSize().height);
 	for (auto gate : gates->getObjects())
 	{
 		auto g = gate.asValueMap();
-		Rect charRect = Rect(xx, yy, this->getContentSize().width/2, this->getContentSize().height/2);
-		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
+		Rect gRect = Rect(g.at("x").asFloat() - g.at("width").asFloat() / 2, g.at("y").asFloat() - g.at("height").asFloat() / 2, g.at("width").asFloat() + 2, g.at("height").asFloat() + 2);
 
-		CCLOG("Player %f", xx);
-		CCLOG("Gate Found!!!! %f", g.at("x").asFloat());
-		if (gRect.intersectsRect(charRect))
+		//CCLOG("Player %f", xx);
+		//CCLOG("Gate Found!!!! %f", g.at("x").asFloat());
+		if (charRect.intersectsRect(gRect))
 		{
 			CCLOG("Gate Found!!!!");
 		}
@@ -139,7 +139,7 @@ void Trainer::onGrass(float dt)
 
 	TMXLayer *grass = mapInfo->getLayer("GRASS");
 	if (grass) {
-		if (grass->getTileAt(Vec2(Vec2(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Vec2(xx, yy).y) / mapInfo->getTileSize().height)))
+		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
 			playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
 
