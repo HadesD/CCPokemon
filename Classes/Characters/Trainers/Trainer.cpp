@@ -83,11 +83,10 @@ void Trainer::onTheGrass(float dt)
 			//Move to next map
 			auto *layer = (PlayLayer *)mapManager->getParent();
 			this->retain();
+			mapInfo->removeChild(this, false);
 			mapInfo->removeAllChildren();
 			mapManager->removeAllChildren();
 			layer->removeAllChildren();
-			//CC_SAFE_DELETE(mapManager);
-			//delete mapManager;
 			auto map = new MapManager;
 			if (a % 2 == 0)
 			{
