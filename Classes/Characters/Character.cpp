@@ -105,11 +105,11 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
-	TMXLayer *barriers = mapInfo->getLayer("BARRIER");
+	auto barriers = mapInfo->getLayer("BARRIER");
 	if (barriers) {
 		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			//playSound("barrier.wav", "effect", false);
+			playSound("barrier.wav", "effect", false);
 			return;
 		}
 	}
