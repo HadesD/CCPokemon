@@ -21,7 +21,7 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	auto *mapManager = (TMXTiledMap*)this->getParent();
+	auto *mapManager = (MapManager*)this->getParent();
 	if (!mapManager)
 	{
 		return;

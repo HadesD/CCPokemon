@@ -4,23 +4,22 @@ MapManager::MapManager()
 {
 	this->id = 0;
 	//this->name = "";
-	//this->file
-	//this->info
+	//this->mapInfo
 }
 
 MapManager::~MapManager()
 {
-	delete(this->info);
+	delete(this->mapInfo);
 }
 
 void MapManager::build()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	auto mapSize = Vec2((this->info->getMapSize().width*this->info->getTileSize().width), (this->info->getMapSize().height*this->info->getTileSize().height));
+	auto mapSize = Vec2((this->mapInfo->getMapSize().width*this->mapInfo->getTileSize().width), (this->mapInfo->getMapSize().height*this->mapInfo->getTileSize().height));
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
-	this->info->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
+	this->mapInfo->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
 	CCLOG("Size X-Y: %f-%f", mapPos.x, mapPos.y);
-	auto mapDetails = this->info->getObjectGroup("DETAILS");
+	auto mapDetails = this->mapInfo->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{
 		auto moreInfo = mapDetails->getObject("MORE_INFO");
@@ -39,36 +38,36 @@ void MapManager::build()
 
 	//Hide Barrier Color
 	CCTMXLayer *_barrier;
-	_barrier = this->info->getLayer("BARRIER");
+	_barrier = this->mapInfo->getLayer("BARRIER");
 	if (_barrier)
 	{
 		_barrier->setVisible(false);
 	}
 	//Hide Fighting _Grass Space
 	CCTMXLayer *_grass;
-	_grass = this->info->getLayer("GRASS");
+	_grass = this->mapInfo->getLayer("GRASS");
 	if (_grass)
 	{
 		_grass->setVisible(false);
 	}
 
-	this->addChild(this->info);
+	this->addChild(this->mapInfo);
 }
 #pragma region GETs/SETs
 
-void MapManager::setInfo(TMXTiledMap *info)
+void MapManager::setMapInfo(std::string mapInfo)
 {
-	this->info = info;
+	this->mapInfo = TMXTiledMap::create(RD_MAPS + "/" + mapInfo);
 }
 
-TMXTiledMap *MapManager::getInfo()
+TMXTiledMap *MapManager::getMapInfo()
 {
-	return this->info;
+	return this->mapInfo;
 }
 #pragma endregion
 
 void MapManager::addCharToMap(Character* character, int zOrder)
 {
-	this->info->addChild(character, zOrder, "character");
+	this->mapInfo->addChild(character, zOrder, "character");
 
 }

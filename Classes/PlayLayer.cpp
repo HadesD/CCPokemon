@@ -43,10 +43,10 @@ bool PlayLayer::init()
 	//Main Game
 
 	auto map = new MapManager;
-	map->setInfo(TMXTiledMap::create(RD_MAPS + "/ROUTE_1.tmx"));
+	map->setMapInfo("ROUTE_1.tmx");
 	map->build();
 	this->addChild(map);
-	auto mapDetails = map->getInfo()->getObjectGroup("DETAILS");
+	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));

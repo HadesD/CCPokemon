@@ -57,10 +57,15 @@ void Trainer::setMovePos(float delta)
 
 	//Move to next map
 	auto *layer = (PlayLayer *)mapManager->getParent();
+	this->retain();
 	mapManager->removeChild(this);
-	mapManager->setInfo(TMXTiledMap::create("PALLETTOWN_CITY.tmx"));
+	this->release();
+	mapManager->retain();
 	layer->removeChild(mapManager);
-	layer->addChild(mapManager);
+	//delete(mapManager);
+	mapManager->setMapInfo("PALLETTOWN_CITY.tmx");
+	//mapManager->build();
+	mapManager->release();
 
 	//Fight in Grass
 	TMXLayer *barriers = mapInfo->getLayer("GRASS");

@@ -35,18 +35,14 @@ public:
 	void addCharToMap(Character* character, int zOrder);
 
 #pragma region GETs/SETs
-	void setInfo(TMXTiledMap *info);
-	TMXTiledMap *getInfo();
+	void setMapInfo(std::string fileName);
+	TMXTiledMap *getMapInfo();
 #pragma endregion
 
 private:
 	int id;
 	std::string name;
-	std::string file;
-	TMXTiledMap *info;
-	//Scene *scene;
-
-	static TMXTiledMap *mapInfo;
+	TMXTiledMap *mapInfo;
 };
 
 #endif
