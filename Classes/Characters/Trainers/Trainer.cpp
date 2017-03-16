@@ -35,7 +35,10 @@ void Trainer::build()
 	this->addChild(nameBGLayer, 99);
 
 	//Check if Stand On The Grass
-	schedule(schedule_selector(Trainer::onTheGrass), 0.01f);
+	schedule(schedule_selector(Trainer::onGate), 0.01f);
+
+	//Check if Stand On The Grass
+	schedule(schedule_selector(Trainer::onGrass), 0.01f);
 }
 
 void Trainer::update(float delta)
@@ -51,8 +54,76 @@ void Trainer::setMovePos(float delta)
 
 }
 
-void Trainer::onTheGrass(float dt)
+void Trainer::onGate(float dt)
 {
+	auto *mapManager = (MapManager*)this->getParent();
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
+
+	if (!mapInfo)
+	{
+		return;
+	}
+
+	float xx, yy;
+
+	xx = this->getPositionX();
+	yy = this->getPositionY();
+
+	auto gates = mapInfo->getObjectGroup("GATES");
+
+	if (!gates)
+	{
+		return;
+	}
+
+	for (auto gate : gates->getObjects())
+	{
+		auto g = gate.asValueMap();
+		Rect charRect = Rect(xx, yy, this->getContentSize().width/2, this->getContentSize().height/2);
+		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
+
+		CCLOG("Player %f", xx);
+		CCLOG("Gate Found!!!! %f", g.at("x").asFloat());
+		if (gRect.intersectsRect(charRect))
+		{
+			CCLOG("Gate Found!!!!");
+		}
+	}
+
+	return;
+
+	//Move to next map
+	auto *layer = (PlayLayer *)mapManager->getParent();
+	this->retain();
+	mapInfo->removeChild(this, false);
+	mapInfo->removeAllChildren();
+	mapManager->removeAllChildren();
+	layer->removeAllChildren();
+	auto map = new MapManager;
+	map->setMapInfo("PALLETTOWN_CITY.tmx");
+	layer->addChild(map);
+	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
+
+	if (mapDetails)
+	{
+		auto playerStart = mapDetails->getObject("FLY_SPACE");
+		if (playerStart["x"].asBool())
+		{
+			this->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
+		}
+	}
+	this->setIsMoving(false);
+	map->addCharToMap(this, ZORDER_TRAINER);
+	this->release();
+}
+
+void Trainer::onGrass(float dt)
+{
+	if (this->getIsMoving() == false)
+	{
+		return;
+	}
+
 	auto *mapManager = (MapManager*)this->getParent();
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
@@ -79,36 +150,6 @@ void Trainer::onTheGrass(float dt)
 			{
 				//this->setCanMove(false);
 			}
-
-			//Move to next map
-			auto *layer = (PlayLayer *)mapManager->getParent();
-			this->retain();
-			mapInfo->removeChild(this, false);
-			mapInfo->removeAllChildren();
-			mapManager->removeAllChildren();
-			layer->removeAllChildren();
-			auto map = new MapManager;
-			if (a % 2 == 0)
-			{
-				map->setMapInfo("PALLETTOWN_CITY.tmx");
-			}
-			else
-			{
-				map->setMapInfo("ROUTE_1.tmx");
-			}
-			layer->addChild(map);
-			auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
-
-			if (mapDetails)
-			{
-				auto playerStart = mapDetails->getObject("FLY_SPACE");
-				if (playerStart["x"].asBool())
-				{
-					this->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
-				}
-			}
-			map->addCharToMap(this, ZORDER_TRAINER);
-			this->release();
 		}
 	}
 }

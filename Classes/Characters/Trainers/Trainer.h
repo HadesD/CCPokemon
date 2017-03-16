@@ -29,7 +29,9 @@ protected:
 
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 
-	void onTheGrass(float dt);
+	void onGate(float dt);
+
+	void onGrass(float dt);
 
 };
 

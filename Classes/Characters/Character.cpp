@@ -21,7 +21,6 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	CCLOG("IsMoving: %i", this->getIsMoving());
 	if (this->isMoving)
 	{
 		this->setMovePos(delta);
