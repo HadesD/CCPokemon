@@ -40,7 +40,7 @@ void Trainer::update(float delta)
 {
 	Character::update(delta);
 
-	this->cameraFollow();
+	//this->cameraFollow();
 }
 
 void Trainer::setMovePos(float delta)

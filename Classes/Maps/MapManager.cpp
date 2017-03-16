@@ -17,18 +17,16 @@ void MapManager::build()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto mapSize = Vec2((this->mapInfo->getMapSize().width*this->mapInfo->getTileSize().width), (this->mapInfo->getMapSize().height*this->mapInfo->getTileSize().height));
 	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
-	this->mapInfo->setPosition(MIN(0, mapPos.x), MIN(0, mapPos.y));
+	this->mapInfo->setPosition(MAX(mapPos.x, -mapPos.x), MAX(0, -mapPos.y));
+
 	CCLOG("Size X-Y: %f-%f", mapPos.x, mapPos.y);
+
 	auto mapDetails = this->mapInfo->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{
 		auto moreInfo = mapDetails->getObject("MORE_INFO");
 
-		std:string musicName = moreInfo.at("soundFile").asString();
-		if (musicName != "")
-		{
-			playSound(musicName, "theme", true);
-		}
+		playSound(moreInfo.at("soundFile").asString(), "theme", true);
 
 		if (this->name == "")
 		{
