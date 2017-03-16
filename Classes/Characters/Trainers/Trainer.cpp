@@ -34,19 +34,25 @@ void Trainer::build()
 	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 2);
 	this->addChild(nameBGLayer, 99);
 
+	//Check if Stand On The Grass
+	schedule(schedule_selector(Trainer::onTheGrass), 0.01f);
 }
 
 void Trainer::update(float delta)
 {
 	Character::update(delta);
 
-	//this->cameraFollow();
+	this->cameraFollow();
 }
 
 void Trainer::setMovePos(float delta)
 {
 	Character::setMovePos(delta);
 
+}
+
+void Trainer::onTheGrass(float dt)
+{
 	auto *mapManager = (MapManager*)this->getParent();
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
@@ -55,10 +61,9 @@ void Trainer::setMovePos(float delta)
 	xx = this->getPositionX();
 	yy = this->getPositionY();
 
-	//Fight in Grass
-	TMXLayer *barriers = mapInfo->getLayer("GRASS");
-	if (barriers) {
-		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
+	TMXLayer *grass = mapInfo->getLayer("GRASS");
+	if (grass) {
+		if (grass->getTileAt(Vec2(Vec2(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Vec2(xx, yy).y) / mapInfo->getTileSize().height)))
 		{
 			playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
 
@@ -67,17 +72,25 @@ void Trainer::setMovePos(float delta)
 
 			if (a > 30)
 			{
-				this->setCanMove(false);
+				//this->setCanMove(false);
 			}
 
 			//Move to next map
 			auto *layer = (PlayLayer *)mapManager->getParent();
 			this->retain();
+			mapInfo->removeAllChildren();
 			mapManager->removeAllChildren();
 			layer->removeAllChildren();
 			//delete mapManager;
 			auto map = new MapManager;
-			map->setMapInfo("PALLETTOWN_CITY.tmx");
+			if (a % 2 == 0)
+			{
+				map->setMapInfo("PALLETTOWN_CITY.tmx");
+			}
+			else
+			{
+				map->setMapInfo("ROUTE_1.tmx");
+			}
 			layer->addChild(map);
 			auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
@@ -89,16 +102,16 @@ void Trainer::setMovePos(float delta)
 					this->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
 				}
 			}
-			this->build();
 			map->addCharToMap(this, ZORDER_TRAINER);
 			this->release();
+			this->setCanMove(true);
 		}
 	}
 }
 
 void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-	CCLOG("Pushed Key: %d", (int)keyCode);
+	CCLOG("Pressed Key: %d", (int)keyCode);
 
 	if (this->getCanMove() == false)
 	{
@@ -147,7 +160,7 @@ void Trainer::cameraFollow()
 		return;
 	}
 
-	Size winSize = Director::getInstance()->getWinSize();
+	Size winSize = Director::getInstance()->getVisibleSize();
 
 	Vec2 position = this->getPosition();
 
@@ -157,8 +170,12 @@ void Trainer::cameraFollow()
 	y = MIN(y, (tileMap->getMapSize().height * tileMap->getTileSize().height) - winSize.height / 2);
 	Vec2 actualPosition = Vec2(x, y);
 
+	//CCLOG("Trainer: %f:%f", position.x, position.y);
+
 	Vec2 centerOfView = Vec2(winSize.width / 2, winSize.height / 2);
 	Vec2 viewPoint = centerOfView - actualPosition;
 	auto *layer = (PlayLayer *)mapManager->getParent();
-	layer->setPosition(viewPoint);
+	//CCLOG("MapPos: %f:%f", mapManager->getPosition().x, mapManager->getPosition().x);
+	//CCLOG("ViewPos: %f:%f", viewPoint.x, viewPoint.y);
+	tileMap->setPosition(viewPoint);
 }

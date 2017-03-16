@@ -25,6 +25,11 @@
    </properties>
   </object>
  </objectgroup>
+ <layer name="GRASS" width="24" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAqGLnjEiIlpbR81AABTzwVT
+  </data>
+ </layer>
  <objectgroup name="GATES">
   <object id="6" x="192" y="4.44089e-16" width="31.3333" height="31.6667">
    <properties>

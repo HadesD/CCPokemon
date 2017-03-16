@@ -21,6 +21,7 @@ Character::~Character()
 
 void Character::update(float delta)
 {
+	CCLOG("IsMoving: %i", this->getIsMoving());
 	if (this->isMoving)
 	{
 		this->setMovePos(delta);
@@ -102,7 +103,7 @@ void Character::setMovePos(float delta)
 
 	TMXLayer *barriers = mapInfo->getLayer("BARRIER");
 	if (barriers) {
-		if (barriers->getTileAt(Point(Point(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Point(xx, yy).y) / mapInfo->getTileSize().height)))
+		if (barriers->getTileAt(Vec2(Vec2(xx, yy).x / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - Vec2(xx, yy).y) / mapInfo->getTileSize().height)))
 		{
 			//playSound("barrier.wav", "effect", false);
 			return;

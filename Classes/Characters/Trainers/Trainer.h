@@ -11,10 +11,6 @@ public:
 	Trainer();
 	~Trainer();
 
-	virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
-
-	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
-
 	virtual void build();
 
 	virtual void update(float delta);
@@ -28,6 +24,13 @@ public:
 protected:
 
 	void cameraFollow();
+
+	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+
+	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+
+	void onTheGrass(float dt);
+
 };
 
 #endif

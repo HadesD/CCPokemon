@@ -43,15 +43,14 @@ bool PlayLayer::init()
 	//Main Game
 
 	auto map = new MapManager;
-	map->setMapInfo("PALLETTOWN_CITY.tmx");
-	//map->setMapInfo("ROUTE_1.tmx");
+	//map->setMapInfo("PALLETTOWN_CITY.tmx");
+	map->setMapInfo("ROUTE_1.tmx");
 	this->addChild(map);
 	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
 	trainer->setName("Dark.Hades");
-	trainer->build();
 
 	if (mapDetails)
 	{
@@ -62,6 +61,7 @@ bool PlayLayer::init()
 		}
 	}
 
+	trainer->build();
 	map->addCharToMap(trainer, ZORDER_TRAINER);
 
     return true;
