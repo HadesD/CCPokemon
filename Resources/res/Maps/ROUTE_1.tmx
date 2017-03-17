@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="40" tilewidth="16" tileheight="16" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="40" tilewidth="16" tileheight="16" nextobjectid="9">
  <tileset firstgid="1" name="ROUTE_1" tilewidth="16" tileheight="16" tilecount="960" columns="24">
   <image source="Tilesets/MapPNG/ROUTE_1.png" width="384" height="640"/>
  </tileset>
@@ -35,4 +35,13 @@
    eJxjYBgFIwEcYcaOiZUfBYMbjMbfyACj8Tw8AXI8klpGj6aHUUApGE0/gxsQih9SyobR+B0FowACAD+tL2w=
   </data>
  </layer>
+ <objectgroup name="GATES">
+  <object id="8" x="193" y="617" width="29" height="23">
+   <properties>
+    <property name="mapFile" value="PALLETTOWN_CITY.tmx"/>
+    <property name="toX" type="float" value="192"/>
+    <property name="toY" type="float" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

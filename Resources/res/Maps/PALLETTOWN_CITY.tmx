@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="50" tilewidth="16" tileheight="16" nextobjectid="21">
  <tileset firstgid="1" name="PALLETTOWN_CITY" tilewidth="16" tileheight="16" tilecount="480" columns="24">
   <image source="Tilesets/MapPNG/PALLETTOWN_CITY.png" width="384" height="320"/>
  </tileset>
  <tileset firstgid="481" name="collisionTiles" tilewidth="16" tileheight="16" tilecount="400" columns="20">
   <image source="Tilesets/collisionTiles.png" width="320" height="320"/>
  </tileset>
- <layer name="BACKGROUND" width="24" height="20">
+ <layer name="BACKGROUND" width="24" height="50">
   <data encoding="base64" compression="zlib">
-   eJwNwwOQEAgAAMCLl23btm3btm3XZdu2bdu26z/zPzxyO7MbLCAgILghDGkoQxtoGMMazvBGMKKRjGwUoxrN6MYwprGMbRzjGs/4JjChiUxsEpOazOSmMKWpTG0a05rO9GYwo5nMbBazms3s5jCnucxtHvOaz/wWsKCFLGwRi1rM4pawpKUsbRnLWs7yVrCilaxsFatazerWsKa1rG0d61rP+jawoY1sbBOb2szmtrClrWxtG9vazvZ2sKOd7GwXu9rN7vawp73sbR/72s/+DnCggxzsEIc6zCCHO8KRjnK0YxzrOMc7wYlOcrJTnOo0pzvDmc5ytnOc6zznu8CFLnKxS1zqMpe7wpWucrVrXOs617vBjW5ys1vc6ja3u8Od7nK3e9zrPvd7wIMe8rBHPOoxj3vCk57ytGc86znPe8GLXvKyV7zqNa97w5ve8rZ3vOs97/vAhz7ysX/4p0986jOf+8KXvvK1b3zrO9/7l3/7wY9+8rP/+K//+b9f/Oo3v/vDn/4yIBgGN4QhDWVoAw1jWMMZ3ghGNJKRjWJUoxndGMY0lrGNY1zjGd8EJjSRiU1iUpOZ3BSmNJWpTWNa05neDGY0k5nNYlazmd0c5jSXuc1jXvOZ3wIWtJCFLWJRi1ncEpa0lKUtY1nLWd4KVrSSla1iVatZ3RrWtJa1rWNd61nfBja0kY1tYlOb2dwWtrSVrW1jW9vZ3g52tJOd7WJXu9ndHva0l73tY1/72d8BDnSQgx3iUIcZ5HBHONJRjnaMYx3neCc40UlOdopTneZ0ZzjTWc52jnOd53wXuNBFLnaJS13mcle40lWudo1rXed6N7jRTW52i1vd5nZ3uNNd7naPe93nfg940EMe9ohHPeZxT3jSU572jGc953kveNFLXvaKV73mdW9401ve9o53ved9H/jQRz72N4WD4tI=
+   eJztw9O2XQkAAMFzY9u2bdu2bdu2bdu2bdseJmMbSf1C3nevrrBQKBSO8EQgIpGITBSiEo3oxCAmsYhNHOISj/gkICGJSEwSkpKM5KQgJalITRrSko70ZCAjmchMFrKSjezkICe5yE0e8pKP/BSgIIUoTBGKUozilKAkpShNGcpSjvJUoCKVqEwVqlKN6tSgJrWoTR3qUo/6NKAhjWhME5rSjOa0oCWtaE0b2tKO9nSgI53oTBe60o3u9KAnvehNH/rSj/4MYCCDGMwQhjKM4YxgJKMYzRjGMo7xTGAik5jMFKYyjenMYCazmM0c5jKP+SxgIYtYzBKWsozlrGAlq1jNGtayjvVsYCOb2MwWtrKN7exgJ7vYzR72so/9HOAghzjMEY5yjOOc4CSnOM0ZznKO81zgIpe4zBWuco3r3OAmt7jNHe5yj/s84CGPeMwTnvKM57zgJa94zRs+4VM+43O+4Eve8o6v+Jpv+Jbv+J4f+JGf+Jlf+JXf+J0/+JO/+Jt/+Jf/+J/3hMJMOMITgYhEIjJRiEo0ohODmMQiNnGISzzik4CEJCIxSUhKMpKTgpSkIjVpSEs60pOBjGQiM1nISjayk4Oc5CI3echLPvJTgIIUojBFKEoxilOCkpSiNGUoSznKU4GKVKIyVahKNapTg5rUojZ1qEs96tOAhjSiMU1oSjOa04KWtKI1bWhLO9rTgY50ojNd6Eo3utODnvSiN33oSz/6M4CBDGIwQxjKMIYzgpGMYjRjGMs4xjOBiUxiMlOYyjSmM4OZzGI2c5jLPOazgIUsYjFLWMoylrOClaxiNWtYyzrWs4GNbGIzW9jKNrazg53sYjd72Ms+9nOAgxziMEc4yjGOc4KTnOI0ZzjLOc5zgYtc4jJXuMo1rnODm9ziNne4yz3u84CHPOIxT3jKM57zgpe84jVvwkJBQUFBQUFBQUFBQR/RB9WL4tI=
   </data>
  </layer>
- <layer name="BARRIER" width="24" height="20">
+ <layer name="BARRIER" width="24" height="50">
   <data encoding="base64" compression="zlib">
-   eJx7yMjA8JAEDAOk6KGH+dQG+Mwnxn5Caoar+cTEDzlq0MXR1WDTS4yagUg/pOolJpzpaT658TtY3E+K+dj4hMynRnoaiumTVPOp6QZam4/NLFLMx2UOAC/7zpU=
+   eJztkkkKACEMBPX/r/Qnc5qLBO2W6CxUgQclKUOSVktpxrlxck74sxn5lf9nMX/1K/NZienf+5goV4l5Yn/cXKXPJ/2r831L/Y4/us/8Gfv0xf10/Zk17PZHLsev9AwAAAAAAMZcxGfOlQ==
   </data>
  </layer>
- <objectgroup name="DETAILS" visible="0">
+ <objectgroup name="DETAILS">
   <object id="2" name="FLY_SPACE" x="104" y="136"/>
   <object id="5" name="MORE_INFO" x="16" y="128">
    <properties>
@@ -25,17 +25,17 @@
    </properties>
   </object>
  </objectgroup>
- <layer name="GRASS" width="24" height="20">
+ <layer name="GRASS" width="24" height="50">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAqGLnjEiIlpbR81AABTzwVT
+   eJztzbEJAAAIwDD9/0sv8QBnBSGBzo0AgL8qZ9s/AADgVgM9EwVT
   </data>
  </layer>
  <objectgroup name="GATES">
-  <object id="6" x="192" y="8" width="31.3333" height="31.6667">
+  <object id="6" x="192" y="0" width="31.3333" height="31.6667">
    <properties>
     <property name="mapFile" value="ROUTE_1.tmx"/>
-    <property name="x" type="float" value="0"/>
-    <property name="y" type="float" value="0"/>
+    <property name="toX" type="float" value="193"/>
+    <property name="toY" type="float" value="616"/>
    </properties>
   </object>
   <object id="10" x="116.333" y="304.333" width="55.6667" height="15"/>

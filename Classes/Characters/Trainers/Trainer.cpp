@@ -73,18 +73,18 @@ void Trainer::onGate(float dt)
 
 	bool foundGate = false;
 	ValueMap g;
-	Rect charRect = Rect(xx - this->getContentSize().width / 2, yy - this->getContentSize().height / 2, this->getContentSize().width, this->getContentSize().height);
+	Size sprtSize = Size(4.f, 4.f);
+	Rect charRect = Rect(xx, yy, xx + sprtSize.width, yy + sprtSize.height);
 	for (auto gate : gates->getObjects())
 	{
 		g = gate.asValueMap();
-		Rect gRect = Rect(g.at("x").asFloat() - g.at("width").asFloat() / 2, g.at("y").asFloat() - g.at("height").asFloat() / 2, g.at("width").asFloat() + 2, g.at("height").asFloat() + 2);
+		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat() + g.at("y").asFloat());
 
-		//CCLOG("Player %f", xx);
-		//CCLOG("Gate Found!!!! %f", g.at("x").asFloat());
-		if (charRect.intersectsRect(gRect))
+		if (gRect.intersectsRect(charRect))
 		{
 			foundGate = true;
-			CCLOG("Gate Found!!!!");
+			CCLOG("Player x-y-W-H: %f-%f-%f-%f", xx, yy, sprtSize.width, sprtSize.height);
+			CCLOG("Gate x-y-W-H: %f-%f-%f-%f", g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
 			break;
 		}
 	}
@@ -93,8 +93,11 @@ void Trainer::onGate(float dt)
 	{
 		return;
 	}
-	auto toMap = g.at("mapFile").asString();
-
+	auto toMap = g["mapFile"];
+	if (toMap.asString() == "")
+	{
+		return;
+	}
 	//Move to next map
 	auto *layer = (PlayLayer *)mapManager->getParent();
 	this->retain();
@@ -103,18 +106,28 @@ void Trainer::onGate(float dt)
 	mapManager->removeAllChildren();
 	layer->removeChild(mapManager);
 	auto map = new MapManager;
-	map->setMapInfo(toMap);
+	map->setMapInfo(toMap.asString());
 	layer->addChild(map);
-	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
-
-	if (mapDetails)
+	auto toPos = Vec2(0, 0);
+	auto toX = g["toX"];
+	auto toY = g["toY"];
+	if (toX.asFloat())
 	{
-		auto playerStart = mapDetails->getObject("FLY_SPACE");
-		if (playerStart["x"].asBool())
+		toPos = Vec2(toX.asFloat() + map->getMapInfo()->getTileSize().width/2, map->getMapInfo()->getMapSize().height * map->getMapInfo()->getTileSize().height - toY.asFloat());
+	}
+	else
+	{
+		auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
+		if (mapDetails)
 		{
-			this->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
+			auto playerStart = mapDetails->getObject("FLY_SPACE");
+			if (playerStart["x"].asBool())
+			{
+				toPos = Vec2(playerStart["x"].asFloat() + map->getMapInfo()->getTileSize().width / 2, playerStart["y"].asFloat() + map->getMapInfo()->getTileSize().height / 2);
+			}
 		}
 	}
+	this->setPosition(toPos);
 	this->setIsMoving(false);
 	map->addCharToMap(this, ZORDER_TRAINER);
 	this->release();
