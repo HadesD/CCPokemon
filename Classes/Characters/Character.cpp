@@ -85,7 +85,7 @@ void Character::setMovePos(float delta)
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	Size sprtSize = this->sprite->getContentSize();
+	Size sprtSize = Size(4.f, 16.f);//this->sprite->getContentSize();
 
 	if (xx - sprtSize.width/2 <= 0 || yy - sprtSize.height/2 <= 0)
 	{
@@ -106,6 +106,19 @@ void Character::setMovePos(float delta)
 	}
 
 	this->setPosition(Vec2(xx, yy));
+
+	/*auto jumpSpace = mapInfo->getLayer("JUMPPASS");
+	if (jumpSpace) {
+		if (jumpSpace->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
+		{
+			if (this->direction != DIRECTION::DOWN)
+			{
+				return;
+			}
+			this->setPositionY(yy - mapInfo->getTileSize().height);
+		}
+	}*/
+
 }
 
 void Character::moveAnimate(float delta)

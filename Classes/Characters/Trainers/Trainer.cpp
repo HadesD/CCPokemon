@@ -33,6 +33,7 @@ void Trainer::build()
 	schedule(schedule_selector(Trainer::onGate), 0.01f);
 
 	schedule(schedule_selector(Trainer::onGrass), 0.01f);
+
 }
 
 void Trainer::update(float delta)
@@ -70,21 +71,29 @@ void Trainer::onGate(float dt)
 		return;
 	}
 
+	bool foundGate = false;
+	ValueMap g;
 	Rect charRect = Rect(xx - this->getContentSize().width / 2, yy - this->getContentSize().height / 2, this->getContentSize().width, this->getContentSize().height);
 	for (auto gate : gates->getObjects())
 	{
-		auto g = gate.asValueMap();
+		g = gate.asValueMap();
 		Rect gRect = Rect(g.at("x").asFloat() - g.at("width").asFloat() / 2, g.at("y").asFloat() - g.at("height").asFloat() / 2, g.at("width").asFloat() + 2, g.at("height").asFloat() + 2);
 
 		//CCLOG("Player %f", xx);
 		//CCLOG("Gate Found!!!! %f", g.at("x").asFloat());
 		if (charRect.intersectsRect(gRect))
 		{
+			foundGate = true;
 			CCLOG("Gate Found!!!!");
+			break;
 		}
 	}
 
-	return;
+	if (foundGate == false)
+	{
+		return;
+	}
+	auto toMap = g.at("mapFile").asString();
 
 	//Move to next map
 	auto *layer = (PlayLayer *)mapManager->getParent();
@@ -92,9 +101,9 @@ void Trainer::onGate(float dt)
 	mapInfo->removeChild(this, false);
 	mapInfo->removeAllChildren();
 	mapManager->removeAllChildren();
-	layer->removeAllChildren();
+	layer->removeChild(mapManager);
 	auto map = new MapManager;
-	map->setMapInfo("PALLETTOWN_CITY.tmx");
+	map->setMapInfo(toMap);
 	layer->addChild(map);
 	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
@@ -131,16 +140,16 @@ void Trainer::onGrass(float dt)
 	xx = this->getPositionX();
 	yy = this->getPositionY();
 
-	TMXLayer *grass = mapInfo->getLayer("GRASS");
+	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
 		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
+			//playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
 
 			srand(time(NULL));
-			int a = rand() % 50 + 1;
+			int rate =  50;
 
-			if (a > 30)
+			if ((rand() % rate + 1) > (rate / 2 + rate / 3))
 			{
 				//this->setCanMove(false);
 			}
@@ -152,12 +161,10 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Pressed Key: %d", (int)keyCode);
 
-	if (this->getCanMove() == false)
+	if (this->getCanMove())
 	{
-		return;
-	}
-	switch (keyCode)
-	{
+		switch (keyCode)
+		{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 		case EventKeyboard::KeyCode::KEY_W:
 			this->setDirection(DIRECTION::UP);
@@ -182,6 +189,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 			this->setIsMoving(true);
 			this->lastKeyCode = keyCode;
 			break;
+		}
 	}
 }
 
@@ -203,10 +211,17 @@ void Trainer::cameraFollow()
 		return;
 	}
 
-	auto *layer = (PlayLayer *)mapManager->getParent();
-	auto children = layer->getChildren();
+	auto *tileMap = (TMXTiledMap*)this->getParent();
+
+	auto *layer = (PlayLayer*)mapManager->getParent();
+
+	if (!layer)
+	{
+		return;
+	}
+
 	Camera *cam;
-	for (auto child:children)
+	for (auto child : layer->getChildren())
 	{
 		auto tmp = (Camera*)child;
 		if (tmp)
@@ -216,5 +231,25 @@ void Trainer::cameraFollow()
 		}
 	}
 
-	cam->setPosition(this->getPosition());
+	if (!cam)
+	{
+		return;
+	}
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
+	float x, y;
+
+	x = MAX(visibleSize.width / 2, this->getPositionX());
+	y = MAX(visibleSize.height / 2, this->getPositionY());
+
+	x = MIN(x, (tileMap->getMapSize().width * tileMap->getTileSize().width) - visibleSize.width / 2);
+	y = MIN(y, (tileMap->getMapSize().height * tileMap->getTileSize().height) - visibleSize.height / 2);
+
+	Vec2 actualPosition = Vec2(x, y);
+	Vec2 centerOfView = Vec2(visibleSize.width / 2, visibleSize.height / 2);
+	Vec2 viewPoint = centerOfView - actualPosition;
+
+	//cam->setPosition(this->getPosition());
+	cam->setPosition(actualPosition);
 }

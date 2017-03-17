@@ -30,13 +30,10 @@ protected:
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
 
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
-
 	//Check if At the Gate
 	void onGate(float dt);
-
 	//Check if Stand On The Grass
 	void onGrass(float dt);
-
 };
 
 #endif

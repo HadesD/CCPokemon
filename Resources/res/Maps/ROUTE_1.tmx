@@ -27,7 +27,12 @@
  </layer>
  <layer name="BARRIER" width="24" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlEsKACAIRIXuf6hu1jaCRG0sDQfc2RvxU29EXRCrJG80ccpHS8q3+t/mo+byqv7i83z0fUTpj1W3+dp7seZ73a93Plq/8WefnbfHHqDqz85H9zEbv/YnNp/zO/kXfulPdr52ToiZF59oAJ9wMMg=
+   eJzt08EJACAMQ1HB/YfqZp71lNaAQn8gN/sUoTHHCKFnlJlMb313VL96Pz4+/vv9dfnqP3U97w4+vtNX29V3B9/nV+7/6f34+f2tzuPvXfuyAhQ=
+  </data>
+ </layer>
+ <layer name="JUMPPASS" width="24" height="40">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIwEcYcaOiZUfBYMbjMbfyACj8Tw8AXI8klpGj6aHUUApGE0/gxsQih9SyobR+B0FowACAD+tL2w=
   </data>
  </layer>
 </map>
