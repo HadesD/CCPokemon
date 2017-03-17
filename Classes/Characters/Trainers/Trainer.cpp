@@ -78,9 +78,9 @@ void Trainer::onGate(float dt)
 	for (auto gate : gates->getObjects())
 	{
 		g = gate.asValueMap();
-		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat() + g.at("y").asFloat());
+		Rect gRect = Rect(g.at("x").asFloat(), mapInfo->getMapSize().height * mapInfo->getTileSize().height - g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat() + mapInfo->getMapSize().height * mapInfo->getTileSize().height - g.at("y").asFloat());
 
-		if (gRect.intersectsRect(charRect))
+		if (charRect.intersectsRect(gRect))
 		{
 			foundGate = true;
 			CCLOG("Player x-y-W-H: %f-%f-%f-%f", xx, yy, sprtSize.width, sprtSize.height);
