@@ -42,7 +42,7 @@ void MapManager::build()
 		_grass->setVisible(false);
 	}
 
-	auto gates = mapInfo->getObjectGroup("DETAILS");
+	auto gates = mapInfo->getObjectGroup("GATE");
 
 	if (gates)
 	{
@@ -56,9 +56,10 @@ void MapManager::build()
 				auto rect = DrawNode::create();
 				rect->drawRect(
 					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
-					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
+					Vec2(g.at("x").asFloat()+g.at("width").asFloat(), g.at("y").asFloat()+g.at("width").asFloat()),
 					Color4F::BLUE);
 				mapInfo->addChild(rect, 10);
+				CCLOG("W-H: %f-%f",g.at("x").asFloat(),g.at("y").asFloat());
 			}
 		}
 	}
