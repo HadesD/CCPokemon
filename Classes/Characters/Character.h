@@ -20,6 +20,10 @@ public:
 
 	virtual void update(float delta);
 
+	/*
+	 * Important Function
+	 * Must be called at the last of all Attr set
+	 */
 	virtual void build();
 
 #pragma region GETs/SETs

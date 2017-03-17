@@ -14,13 +14,6 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	auto mapSize = Vec2((this->mapInfo->getMapSize().width*this->mapInfo->getTileSize().width), (this->mapInfo->getMapSize().height*this->mapInfo->getTileSize().height));
-	auto mapPos = Vec2((mapSize.x - visibleSize.width) / 2, (mapSize.y - visibleSize.height) / 2);
-	this->mapInfo->setPosition(MAX(mapPos.x, -mapPos.x), MAX(0, -mapPos.y));
-
-	CCLOG("Size X-Y: %f-%f", mapPos.x, mapPos.y);
-
 	auto mapDetails = this->mapInfo->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{
@@ -63,7 +56,7 @@ void MapManager::build()
 				auto rect = DrawNode::create();
 				rect->drawRect(
 					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
-					Vec2(g.at("width").asFloat(), g.at("height").asFloat()),
+					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
 					Color4F::BLUE);
 				mapInfo->addChild(rect, 10);
 			}

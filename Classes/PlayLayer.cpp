@@ -42,6 +42,11 @@ bool PlayLayer::init()
     
 	//Main Game
 
+	this->setCameraMask((unsigned short)CameraFlag::USER1, true);
+	auto camera = Camera::createOrthographic(visibleSize.width, visibleSize.height, 1, 1000);
+	camera->setCameraFlag(CameraFlag::USER1);
+	this->addChild(camera);
+
 	auto map = new MapManager;
 	map->setMapInfo("PALLETTOWN_CITY.tmx");
 	//map->setMapInfo("ROUTE_1.tmx");

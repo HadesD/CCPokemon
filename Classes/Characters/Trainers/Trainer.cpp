@@ -198,29 +198,19 @@ void Trainer::cameraFollow()
 	{
 		return;
 	}
-	auto *tileMap = (TMXTiledMap*)this->getParent();
 
-	if (!tileMap)
+	auto *layer = (PlayLayer *)mapManager->getParent();
+	auto children = layer->getChildren();
+	Camera *cam;
+	for (auto child:children)
 	{
-		return;
+		auto tmp = (Camera*)child;
+		if (tmp)
+		{
+			cam = (Camera*)tmp->getDefaultCamera();
+			break;
+		}
 	}
 
-	Size winSize = Director::getInstance()->getVisibleSize();
-
-	Vec2 position = this->getPosition();
-
-	int x = MAX(position.x, winSize.width / 2);
-	int y = MAX(position.y, winSize.height / 2);
-	x = MIN(x, (tileMap->getMapSize().width * tileMap->getTileSize().width) - winSize.width / 2);
-	y = MIN(y, (tileMap->getMapSize().height * tileMap->getTileSize().height) - winSize.height / 2);
-	Vec2 actualPosition = Vec2(x, y);
-
-	//CCLOG("Trainer: %f:%f", position.x, position.y);
-
-	Vec2 centerOfView = Vec2(winSize.width / 2, winSize.height / 2);
-	Vec2 viewPoint = centerOfView - actualPosition;
-	auto *layer = (PlayLayer *)mapManager->getParent();
-	//CCLOG("MapPos: %f:%f", mapManager->getPosition().x, mapManager->getPosition().x);
-	//CCLOG("ViewPos: %f:%f", viewPoint.x, viewPoint.y);
-	tileMap->setPosition(viewPoint);
+	cam->setPosition(this->getPosition());
 }

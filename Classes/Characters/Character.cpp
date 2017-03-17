@@ -27,10 +27,6 @@ void Character::update(float delta)
 	}
 }
 
-/*
- * Important Function
- * Must be called at the last of all Attr set
- */
 void Character::build()
 {
 	schedule(schedule_selector(Character::moveAnimate), 0.11f);
@@ -117,9 +113,6 @@ void Character::setMovePos(float delta)
 	this->setPosition(Vec2(xx, yy));
 }
 
-/*
-* Set Character new Movement Animate
-*/
 void Character::moveAnimate(float delta)
 {
 	if (this->canMove == false)
