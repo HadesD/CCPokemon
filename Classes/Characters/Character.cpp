@@ -4,8 +4,6 @@
 Character::Character()
 {
 	this->id = 0;
-	//this->name;
-	//this->sprite;
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
@@ -21,10 +19,7 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	if (this->isMoving)
-	{
-		this->setMovePos(delta);
-	}
+	this->setMovePos(delta);
 }
 
 void Character::build()

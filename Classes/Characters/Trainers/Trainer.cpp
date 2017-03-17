@@ -10,10 +10,6 @@ Trainer::~Trainer()
 {
 }
 
-/*
- * Important Function
- * Must be called at the last of all Attr set
- */
 void Trainer::build()
 {
 	Character::build();
@@ -24,7 +20,7 @@ void Trainer::build()
 	listener->onKeyReleased = CC_CALLBACK_2(Trainer::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
-	//Trainer 's Name
+	//Trainer 's Name 's Label
 	LabelTTF* nameLabel = LabelTTF::create(this->getName(), "Marker Felt", 11);
 	nameLabel->setColor(ccc3(255, 255, 255));
 	float padding = 4.f;
@@ -34,10 +30,8 @@ void Trainer::build()
 	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 2);
 	this->addChild(nameBGLayer, 99);
 
-	//Check if Stand On The Grass
 	schedule(schedule_selector(Trainer::onGate), 0.01f);
 
-	//Check if Stand On The Grass
 	schedule(schedule_selector(Trainer::onGrass), 0.01f);
 }
 
@@ -165,20 +159,28 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	switch (keyCode)
 	{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+		case EventKeyboard::KeyCode::KEY_W:
 			this->setDirection(DIRECTION::UP);
 			this->setIsMoving(true);
+			this->lastKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+		case EventKeyboard::KeyCode::KEY_S:
 			this->setDirection(DIRECTION::DOWN);
 			this->setIsMoving(true);
+			this->lastKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		case EventKeyboard::KeyCode::KEY_D:
 			this->setDirection(DIRECTION::RIGHT);
 			this->setIsMoving(true);
+			this->lastKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		case EventKeyboard::KeyCode::KEY_A:
 			this->setDirection(DIRECTION::LEFT);
 			this->setIsMoving(true);
+			this->lastKeyCode = keyCode;
 			break;
 	}
 }
@@ -186,8 +188,10 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Released Key: %d", (int)keyCode);
-
-	this->setIsMoving(false);
+	if (this->lastKeyCode == keyCode)
+	{
+		this->setIsMoving(false);
+	}
 }
 
 void Trainer::cameraFollow()
