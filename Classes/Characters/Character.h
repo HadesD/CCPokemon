@@ -11,6 +11,17 @@ enum DIRECTION
 	LEFT = 1,
 	RIGHT = 3,
 };
+enum CHARTYPE
+{
+	NPC,
+	PLAYER,
+	MAIN,
+};
+enum COLLISION
+{
+	BARRIER,
+
+};
 
 class Character : public Node
 {
@@ -45,6 +56,12 @@ public:
 	void setCanMove(bool canMove);
 	bool getCanMove();
 
+	void setCharType(CHARTYPE charType);
+	CHARTYPE getCharType();
+
+	void setCollision(COLLISION collision);
+	COLLISION getCollision();
+
 #pragma endregion
 
 private:
@@ -58,8 +75,11 @@ private:
 	float speed;
 	DIRECTION direction;
 	int oldAnimePos;
+	CHARTYPE charType;
+	COLLISION collision;
 #pragma endregion
 
 	void moveAnimate(float delta);
+
 };
 #endif

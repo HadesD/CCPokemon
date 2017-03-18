@@ -7,9 +7,9 @@ Character::Character()
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
-	this->direction = DIRECTION::DOWN;
+	this->direction = DOWN;
 	this->speed = 2.5f;
-
+	this->charType = PLAYER;
 }
 
 Character::~Character()
@@ -69,16 +69,16 @@ void Character::setMovePos(float delta)
 
 	switch (this->direction)
 	{
-		case DIRECTION::UP:
+		case UP:
 			yy += this->speed;
 			break;
-		case DIRECTION::DOWN:
+		case DOWN:
 			yy -= this->speed;
 			break;
-		case DIRECTION::LEFT:
+		case LEFT:
 			xx -= this->speed;
 			break;
-		case DIRECTION::RIGHT:
+		case RIGHT:
 			xx += this->speed;
 			break;
 	}
@@ -100,7 +100,7 @@ void Character::setMovePos(float delta)
 	if (barriers) {
 		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			playSound("barrier.wav", SOUNDTYPE::EFFECT, false);
+			this->collision = BARRIER;
 			return;
 		}
 	}
@@ -188,5 +188,21 @@ void Character::setCanMove(bool canMove)
 bool Character::getCanMove()
 {
 	return this->canMove;
+}
+void Character::setCharType(CHARTYPE charType)
+{
+	this->charType = charType;
+}
+CHARTYPE Character::getCharType()
+{
+	return this->charType;
+}
+void Character::setCollision(COLLISION collision)
+{
+	this->collision = collision;
+}
+COLLISION Character::getCollision()
+{
+	return this->collision;
 }
 #pragma endregion
