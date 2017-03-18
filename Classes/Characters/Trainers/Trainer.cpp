@@ -157,7 +157,7 @@ void Trainer::onGrass(float dt)
 	if (grass) {
 		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			//playSound("Footsteps - Grass Sound Effect.mp3", "effect", false);
+			playSound("Footsteps - Grass Sound Effect.mp3", SOUNDTYPE::EFFECT, false);
 
 			srand(time(NULL));
 			int rate =  50;

@@ -100,7 +100,7 @@ void Character::setMovePos(float delta)
 	if (barriers) {
 		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			playSound("barrier.wav", "effect", false);
+			playSound("barrier.wav", SOUNDTYPE::EFFECT, false);
 			return;
 		}
 	}

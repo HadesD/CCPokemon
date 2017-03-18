@@ -1,3 +1,6 @@
+#ifndef __STDAFX_H_CCPOKEMON__
+#define __STDAFX_H_CCPOKEMON__
+
 #include <iostream>
 #include <SimpleAudioEngine.h>
 
@@ -19,4 +22,12 @@ extern std::string RD_CHARACTERS;
 extern std::string RD_C_POKEMONS;
 extern std::string RD_C_TRAINERS;
 
-extern void playSound(std::string filePath, std::string type, bool isLoop);
+enum SOUNDTYPE
+{
+	BACKGROUND,
+	EFFECT,
+};
+
+extern void playSound(std::string filePath, SOUNDTYPE type, bool isLoop);
+
+#endif

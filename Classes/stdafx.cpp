@@ -13,15 +13,15 @@ std::string RD_CHARACTERS = RES_DIR + "/Characters";
 std::string RD_C_POKEMONS = RD_CHARACTERS + "/Pokemons";
 std::string RD_C_TRAINERS = RD_CHARACTERS + "/Trainers";
 
-void playSound(std::string filePath, std::string type, bool isLoop)
+void playSound(std::string filePath, SOUNDTYPE type, bool isLoop)
 {
 	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
 
-	if (type == "theme")
+	if (type == SOUNDTYPE::BACKGROUND)
 	{
 		audio->playBackgroundMusic((const char*)(RD_S_THEMES + "/" + filePath).c_str(), isLoop);
 	}
-	else if (type == "effect")
+	else if (type == SOUNDTYPE::EFFECT)
 	{
 		audio->playEffect((const char*)(RD_S_EFFECTS + "/" + filePath).c_str(), isLoop);
 	}
