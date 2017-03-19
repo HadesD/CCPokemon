@@ -28,14 +28,14 @@ void MapManager::build()
 	}
 
 	//Hide Barrier Color
-	CCTMXLayer *_barrier;
+	TMXLayer *_barrier;
 	_barrier = this->mapInfo->getLayer("BARRIER");
 	if (_barrier)
 	{
 		_barrier->setVisible(false);
 	}
 	//Hide Fighting _Grass Space
-	CCTMXLayer *_grass;
+	TMXLayer *_grass;
 	_grass = this->mapInfo->getLayer("GRASS");
 	if (_grass)
 	{

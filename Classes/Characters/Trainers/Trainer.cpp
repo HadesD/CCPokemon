@@ -5,7 +5,6 @@ Trainer::Trainer()
 {
 }
 
-
 Trainer::~Trainer()
 {
 }
@@ -23,10 +22,10 @@ void Trainer::build()
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
 	//Trainer 's Name 's Label
-	LabelTTF* nameLabel = LabelTTF::create(this->getName(), "Marker Felt", 11);
-	nameLabel->setColor(ccc3(255, 255, 255));
+	Label* nameLabel = Label::create(this->getName(), "Marker Felt", 11);
+	nameLabel->setColor(Color3B(255, 255, 255));
 	float padding = 4.f;
-	CCLayerColor* nameBGLayer = CCLayerColor::create(ccc4(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
+	LayerColor* nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
 	nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
 	nameBGLayer->addChild(nameLabel);
 	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 2);
@@ -87,7 +86,7 @@ void Trainer::onGate(float dt)
 
 	bool foundGate = false;
 	ValueMap g;
-	Size sprtSize = Size(4.f, 4.f);
+	Size sprtSize = this->getSprite()->getContentSize();
 	Rect charRect = Rect(xx, yy, xx + sprtSize.width, yy + sprtSize.height);
 	for (auto gate : gates->getObjects())
 	{
@@ -97,7 +96,6 @@ void Trainer::onGate(float dt)
 		if (charRect.intersectsRect(gRect))
 		{
 			foundGate = true;
-			CCLOG("Player x-y-W-H: %f-%f-%f-%f", xx, yy, sprtSize.width, sprtSize.height);
 			CCLOG("Gate x-y-W-H: %f-%f-%f-%f", g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
 			break;
 		}
@@ -178,25 +176,25 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		case EventKeyboard::KeyCode::KEY_W:
 			this->setDirection(UP);
 			this->setIsMoving(true);
-			this->lastKeyCode = keyCode;
+			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
 			this->setDirection(DOWN);
 			this->setIsMoving(true);
-			this->lastKeyCode = keyCode;
+			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
 			this->setDirection(RIGHT);
 			this->setIsMoving(true);
-			this->lastKeyCode = keyCode;
+			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
 			this->setDirection(LEFT);
 			this->setIsMoving(true);
-			this->lastKeyCode = keyCode;
+			this->lastMoveKeyCode = keyCode;
 			break;
 		}
 	}
@@ -205,7 +203,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Released Key: %d", (int)keyCode);
-	if (this->lastKeyCode == keyCode)
+	if (this->lastMoveKeyCode == keyCode)
 	{
 		this->setIsMoving(false);
 	}
@@ -247,18 +245,26 @@ void Trainer::cameraFollow()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	float x, y;
+	Vec2 position = this->getPosition();
 
-	x = MAX(visibleSize.width / 2, this->getPositionX());
-	y = MAX(visibleSize.height / 2, this->getPositionY());
+	Size mapSize = Size(tileMap->getMapSize().width * tileMap->getTileSize().width, tileMap->getMapSize().height * tileMap->getTileSize().height);
 
-	x = MIN(x, (tileMap->getMapSize().width * tileMap->getTileSize().width) - visibleSize.width / 2);
-	y = MIN(y, (tileMap->getMapSize().height * tileMap->getTileSize().height) - visibleSize.height / 2);
-
+	int x = MAX(position.x, visibleSize.width / 2);
+	int y = MAX(position.y, visibleSize.height / 2);
+	x = MIN(x, mapSize.width - visibleSize.width / 2);
+	y = MIN(y, mapSize.height - visibleSize.height / 2);
 	Vec2 actualPosition = Vec2(x, y);
-	Vec2 centerOfView = Vec2(visibleSize.width / 2, visibleSize.height / 2);
-	Vec2 viewPoint = centerOfView - actualPosition;
 
-	//cam->setPosition(this->getPosition());
-	cam->setPosition(actualPosition);
+	Vec2 centerOfView = Vec2(mapSize.width / 2, mapSize.height / 2);
+	if (visibleSize.width > mapSize.width)
+	{
+		x = MAX(x, centerOfView.x);
+	}
+	if (visibleSize.height > mapSize.height)
+	{
+		y = MAX(y, centerOfView.y);
+	}
+	Vec2 viewPoint = Vec2(x, y);
+
+	cam->setPosition(viewPoint);
 }

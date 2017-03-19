@@ -23,7 +23,7 @@ public:
 
 protected:
 
-	EventKeyboard::KeyCode lastKeyCode; 
+	EventKeyboard::KeyCode lastMoveKeyCode;
 
 	void cameraFollow();
 
