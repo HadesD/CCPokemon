@@ -34,6 +34,8 @@ protected:
 	void onGate(float dt);
 	//Check if Stand On The Grass
 	void onGrass(float dt);
+	//On Collision with Barrier
+	void onCollisionBarrier(float dt);
 };
 
 #endif

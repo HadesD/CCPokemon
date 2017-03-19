@@ -34,7 +34,9 @@ void Trainer::build()
 
 	schedule(schedule_selector(Trainer::onGate), 0.01f);
 
-	schedule(schedule_selector(Trainer::onGrass), 0.01f);
+	schedule(schedule_selector(Trainer::onGrass), 0.7f);
+
+	schedule(schedule_selector(Trainer::onCollisionBarrier), 0.7f);
 
 }
 
@@ -48,13 +50,17 @@ void Trainer::update(float delta)
 void Trainer::setMovePos(float delta)
 {
 
-	if (this->getCollision() == BARRIER)
-	{
-		playSound("barrier.wav", EFFECT, true);
-	}
-
 	Character::setMovePos(delta);
 
+}
+
+void Trainer::onCollisionBarrier(float dt)
+{
+	if (this->getCollision() != BARRIER)
+	{
+		return;
+	}
+	playSound("emerald_0017.mp3", SOUNDTYPE::EFFECT, false);
 }
 
 void Trainer::onGate(float dt)
@@ -143,38 +149,20 @@ void Trainer::onGate(float dt)
 
 void Trainer::onGrass(float dt)
 {
-	if (this->getIsMoving() == false)
+
+	if (this->getCollision() != GRASS)
 	{
 		return;
 	}
 
-	auto *mapManager = (MapManager*)this->getParent();
-	auto *mapInfo = (TMXTiledMap*)this->getParent();
+	playSound("Footsteps - Grass Sound Effect.mp3", EFFECT, false);
 
-	if (!mapInfo)
+	srand(time(NULL));
+	int rate = 50;
+
+	if ((rand() % rate + 1) > (rate / 2 + rate / 3))
 	{
-		return;
-	}
-
-	float xx, yy;
-
-	xx = this->getPositionX();
-	yy = this->getPositionY();
-
-	auto grass = mapInfo->getLayer("GRASS");
-	if (grass) {
-		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
-		{
-			playSound("Footsteps - Grass Sound Effect.mp3", EFFECT, false);
-
-			srand(time(NULL));
-			int rate =  50;
-
-			if ((rand() % rate + 1) > (rate / 2 + rate / 3))
-			{
-				//this->setCanMove(false);
-			}
-		}
+		//this->setCanMove(false);
 	}
 }
 

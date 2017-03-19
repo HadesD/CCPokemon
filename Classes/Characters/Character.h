@@ -19,8 +19,9 @@ enum CHARTYPE
 };
 enum COLLISION
 {
+	NONE,
 	BARRIER,
-
+	GRASS,
 };
 
 class Character : public Node

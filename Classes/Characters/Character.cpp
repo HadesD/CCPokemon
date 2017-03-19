@@ -44,6 +44,8 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
+	this->collision = NONE;
+
 	if (this->canMove == false)
 	{
 		return;
@@ -100,12 +102,23 @@ void Character::setMovePos(float delta)
 	if (barriers) {
 		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
-			this->collision = BARRIER;
-			return;
+			this->collision = COLLISION::BARRIER;
+			if (this->charType == MAIN)
+			{
+				return;
+			}
 		}
 	}
 
 	this->setPosition(Vec2(xx, yy));
+
+	auto grass = mapInfo->getLayer("GRASS");
+	if (grass) {
+		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
+		{
+			this->collision = COLLISION::GRASS;
+		}
+	}
 
 	/*auto jumpSpace = mapInfo->getLayer("JUMPPASS");
 	if (jumpSpace) {
