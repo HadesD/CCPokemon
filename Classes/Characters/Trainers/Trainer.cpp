@@ -11,8 +11,6 @@ Trainer::~Trainer()
 
 void Trainer::build()
 {
-	Character::build();
-
 	this->setCharType(CHARTYPE::MAIN);
 
 	//Listen to Keyboard Event
@@ -28,8 +26,10 @@ void Trainer::build()
 	LayerColor* nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
 	nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
 	nameBGLayer->addChild(nameLabel);
-	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 2);
-	this->addChild(nameBGLayer, 99);
+	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 3);
+	this->addChild(nameBGLayer);
+
+	this->getSprite()->setContentSize(Size(this->getSprite()->getContentSize().width / 3, this->getSprite()->getContentSize().height / 2));
 
 	schedule(schedule_selector(Trainer::onGate), 0.01f);
 
@@ -37,6 +37,7 @@ void Trainer::build()
 
 	schedule(schedule_selector(Trainer::onCollisionBarrier), 0.7f);
 
+	Character::build();
 }
 
 void Trainer::update(float delta)

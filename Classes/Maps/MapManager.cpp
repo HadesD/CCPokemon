@@ -3,8 +3,6 @@
 MapManager::MapManager()
 {
 	this->id = 0;
-	//this->name = "";
-	//this->mapInfo
 }
 
 MapManager::~MapManager()
@@ -80,5 +78,5 @@ TMXTiledMap *MapManager::getMapInfo()
 
 void MapManager::addCharToMap(Character* character, int zOrder)
 {
-	this->mapInfo->addChild(character, zOrder, "character");
+	this->mapInfo->addChild(character, zOrder);
 }
