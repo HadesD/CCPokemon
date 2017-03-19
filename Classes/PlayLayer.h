@@ -20,7 +20,7 @@ public:
     PlayLayer();
     ~PlayLayer();
     virtual bool init();
-    void back(Object* pSender);
+    void back(Ref* pSender);
 
     CREATE_FUNC(PlayLayer);
 };

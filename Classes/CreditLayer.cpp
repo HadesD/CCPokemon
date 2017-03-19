@@ -48,7 +48,7 @@ bool CreditLayer::init()
 }
 
 
-void CreditLayer::back(Object* pSender)
+void CreditLayer::back(Ref* pSender)
 {
     SceneManager::goMenu();
 }

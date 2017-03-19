@@ -18,8 +18,8 @@ class MenuLayer : public cocos2d::Layer
 public:
     virtual bool init();
     
-    void onNewGame(Object* pSender);
-    void onCredits(Object* pSender);
+	void onNewGame(Ref* pSender);
+	void onCredits(Ref* pSender);
     
     
     CREATE_FUNC(MenuLayer);

@@ -72,7 +72,7 @@ bool PlayLayer::init()
     return true;
 }
 
-void PlayLayer::back(Object* pSender)
+void PlayLayer::back(Ref* pSender)
 {
     SceneManager::goMenu();
 }

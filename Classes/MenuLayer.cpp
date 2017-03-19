@@ -100,12 +100,12 @@ bool MenuLayer::init()
     return true;
 }
 
-void MenuLayer::onNewGame(Object* pSender)
+void MenuLayer::onNewGame(Ref* pSender)
 {
     SceneManager::goPlay();
 }
 
-void MenuLayer::onCredits(Object* pSender)
+void MenuLayer::onCredits(Ref* pSender)
 {
     SceneManager::goCredit();
 }
