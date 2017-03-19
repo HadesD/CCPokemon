@@ -87,12 +87,11 @@ void Trainer::onGate(float dt)
 
 	bool foundGate = false;
 	ValueMap g;
-	Size sprtSize = this->getSprite()->getContentSize();
-	Rect charRect = Rect(xx, yy, xx + sprtSize.width, yy + sprtSize.height);
+	auto charRect = this->getSprite()->getBoundingBox();
 	for (auto gate : gates->getObjects())
 	{
 		g = gate.asValueMap();
-		Rect gRect = Rect(g.at("x").asFloat(), mapInfo->getMapSize().height * mapInfo->getTileSize().height - g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat() + mapInfo->getMapSize().height * mapInfo->getTileSize().height - g.at("y").asFloat());
+		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat()+ g.at("y").asFloat());
 
 		if (charRect.intersectsRect(gRect))
 		{

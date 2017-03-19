@@ -48,8 +48,8 @@ bool PlayLayer::init()
 	this->addChild(camera);
 
 	auto map = new MapManager;
-	map->setMapInfo("PALLETTOWN_CITY.tmx");
-	//map->setMapInfo("ROUTE_1.tmx");
+	//map->setMapInfo("PALLETTOWN_CITY.tmx");
+	map->setMapInfo("ROUTE_1.tmx");
 	this->addChild(map);
 	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
