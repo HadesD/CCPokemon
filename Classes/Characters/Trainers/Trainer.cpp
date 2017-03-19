@@ -20,10 +20,10 @@ void Trainer::build()
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
 	//Trainer 's Name 's Label
-	Label* nameLabel = Label::create(this->getName(), "Marker Felt", 11);
+	auto nameLabel = Label::createWithSystemFont(this->getName(), "Arial", 11);
 	nameLabel->setColor(Color3B(255, 255, 255));
 	float padding = 4.f;
-	LayerColor* nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
+	auto nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
 	nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
 	nameBGLayer->addChild(nameLabel);
 	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 3);
@@ -91,7 +91,8 @@ void Trainer::onGate(float dt)
 	for (auto gate : gates->getObjects())
 	{
 		g = gate.asValueMap();
-		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat() + g.at("x").asFloat(), g.at("height").asFloat()+ g.at("y").asFloat());
+		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
+		//CCLOG("Gate x-y-W-H: %f-%f-%f-%f", g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
 
 		if (charRect.intersectsRect(gRect))
 		{

@@ -17,10 +17,12 @@ extern std::string RD_S_MUSICS;
 extern std::string RD_S_EFFECTS;
 extern std::string RD_S_THEMES;
 
-
 extern std::string RD_CHARACTERS;
 extern std::string RD_C_POKEMONS;
 extern std::string RD_C_TRAINERS;
+
+extern std::string RD_UI;
+extern std::string RD_UI_FONTS;
 
 enum SOUNDTYPE
 {
