@@ -13,7 +13,7 @@ void Trainer::build()
 {
 	Character::build();
 
-	this->setCharType(MAIN);
+	this->setCharType(CHARTYPE::MAIN);
 
 	//Listen to Keyboard Event
 	auto listener = EventListenerKeyboard::create();
@@ -55,7 +55,7 @@ void Trainer::setMovePos(float delta)
 
 void Trainer::onCollisionBarrier(float dt)
 {
-	if (this->getCollision() != BARRIER)
+	if (this->getCollision() != COLLISION::BARRIER)
 	{
 		return;
 	}
@@ -148,12 +148,12 @@ void Trainer::onGate(float dt)
 void Trainer::onGrass(float dt)
 {
 
-	if (this->getCollision() != GRASS)
+	if (this->getCollision() != COLLISION::GRASS)
 	{
 		return;
 	}
 
-	playSound("Footsteps - Grass Sound Effect.mp3", EFFECT, false);
+	playSound("Footsteps - Grass Sound Effect.mp3", SOUNDTYPE::EFFECT, false);
 
 	srand(time(NULL));
 	int rate = 50;
@@ -174,25 +174,25 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 		case EventKeyboard::KeyCode::KEY_W:
-			this->setDirection(UP);
+			this->setDirection(DIRECTION::UP);
 			this->setIsMoving(true);
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
-			this->setDirection(DOWN);
+			this->setDirection(DIRECTION::DOWN);
 			this->setIsMoving(true);
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
-			this->setDirection(RIGHT);
+			this->setDirection(DIRECTION::RIGHT);
 			this->setIsMoving(true);
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
-			this->setDirection(LEFT);
+			this->setDirection(DIRECTION::LEFT);
 			this->setIsMoving(true);
 			this->lastMoveKeyCode = keyCode;
 			break;

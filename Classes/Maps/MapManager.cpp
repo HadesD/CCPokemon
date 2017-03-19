@@ -19,7 +19,7 @@ void MapManager::build()
 	{
 		auto moreInfo = mapDetails->getObject("MORE_INFO");
 
-		playSound(moreInfo.at("soundFile").asString(), BACKGROUND, true);
+		playSound(moreInfo.at("soundFile").asString(), SOUNDTYPE::BACKGROUND, true);
 
 		if (this->name == "")
 		{

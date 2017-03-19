@@ -7,7 +7,7 @@ Character::Character()
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
-	this->direction = DOWN;
+	this->direction = DIRECTION::DOWN;
 	this->speed = 2.5f;
 	this->charType = PLAYER;
 }
@@ -44,7 +44,7 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
-	this->collision = NONE;
+	this->collision = COLLISION::NONE;
 
 	if (this->canMove == false)
 	{
@@ -71,18 +71,18 @@ void Character::setMovePos(float delta)
 
 	switch (this->direction)
 	{
-		case UP:
-			yy += this->speed;
-			break;
-		case DOWN:
-			yy -= this->speed;
-			break;
-		case LEFT:
-			xx -= this->speed;
-			break;
-		case RIGHT:
-			xx += this->speed;
-			break;
+		case DIRECTION::UP:
+				yy += this->speed;
+				break;
+		case DIRECTION::DOWN:
+				yy -= this->speed;
+				break;
+		case DIRECTION::LEFT:
+				xx -= this->speed;
+				break;
+		case DIRECTION::RIGHT:
+				xx += this->speed;
+				break;
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
