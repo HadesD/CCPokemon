@@ -87,12 +87,11 @@ void Trainer::onGate(float dt)
 
 	bool foundGate = false;
 	ValueMap g;
-	auto charRect = this->getSprite()->getBoundingBox();
+	auto charRect = this->getBoundingBox();
 	for (auto gate : gates->getObjects())
 	{
 		g = gate.asValueMap();
 		Rect gRect = Rect(g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
-		//CCLOG("Gate x-y-W-H: %f-%f-%f-%f", g.at("x").asFloat(), g.at("y").asFloat(), g.at("width").asFloat(), g.at("height").asFloat());
 
 		if (charRect.intersectsRect(gRect))
 		{

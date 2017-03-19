@@ -40,7 +40,7 @@
    <properties>
     <property name="mapFile" value="PALLETTOWN_CITY.tmx"/>
     <property name="toX" type="float" value="192"/>
-    <property name="toY" type="float" value="8"/>
+    <property name="toY" type="float" value="40"/>
    </properties>
   </object>
  </objectgroup>

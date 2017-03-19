@@ -35,7 +35,7 @@
    <properties>
     <property name="mapFile" value="ROUTE_1.tmx"/>
     <property name="toX" type="float" value="193"/>
-    <property name="toY" type="float" value="616"/>
+    <property name="toY" type="float" value="600"/>
    </properties>
   </object>
   <object id="10" x="116.333" y="304.333" width="55.6667" height="15"/>
