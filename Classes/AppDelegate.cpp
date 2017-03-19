@@ -27,11 +27,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("Pokemon", Rect(0, 0, 600, 400));
+        glview = GLViewImpl::createWithRect("Pokemon", Rect(0, 0, 900, 680));
         director->setOpenGLView(glview);
     }
 
-	director->getOpenGLView()->setDesignResolutionSize(600, 400, ResolutionPolicy::SHOW_ALL);
+	director->getOpenGLView()->setDesignResolutionSize(900, 680, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -47,8 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     //director->runWithScene(scene);
 
-	//SceneManager::goMenu();
-	SceneManager::goPlay();
+	SceneManager::goMenu();
+	//SceneManager::goPlay();
 
     return true;
 }
