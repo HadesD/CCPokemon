@@ -47,8 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     //director->runWithScene(scene);
 
-	SceneManager::goMenu();
-	//SceneManager::goPlay();
+	//SceneManager::goMenu();
+	SceneManager::goPlay();
 
     return true;
 }

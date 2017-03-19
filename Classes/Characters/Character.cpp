@@ -72,17 +72,17 @@ void Character::setMovePos(float delta)
 	switch (this->direction)
 	{
 		case DIRECTION::UP:
-				yy += this->speed;
-				break;
+			yy += this->speed;
+			break;
 		case DIRECTION::DOWN:
-				yy -= this->speed;
-				break;
+			yy -= this->speed;
+			break;
 		case DIRECTION::LEFT:
-				xx -= this->speed;
-				break;
+			xx -= this->speed;
+			break;
 		case DIRECTION::RIGHT:
-				xx += this->speed;
-				break;
+			xx += this->speed;
+			break;
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();

@@ -35,7 +35,7 @@ void Trainer::build()
 
 	schedule(schedule_selector(Trainer::onGrass), 0.7f);
 
-	schedule(schedule_selector(Trainer::onCollisionBarrier), 0.5f);
+	schedule(schedule_selector(Trainer::onCollisionBarrier), 1.1f);
 
 	Character::build();
 }
