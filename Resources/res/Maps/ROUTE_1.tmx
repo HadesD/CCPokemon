@@ -36,7 +36,7 @@
   </data>
  </layer>
  <objectgroup name="GATES">
-  <object id="8" x="193" y="617" width="29" height="23">
+  <object id="8" x="193" y="624" width="29" height="16">
    <properties>
     <property name="mapFile" value="PALLETTOWN_CITY.tmx"/>
     <property name="toX" type="float" value="192"/>

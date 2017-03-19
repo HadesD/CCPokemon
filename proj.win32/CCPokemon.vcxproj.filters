@@ -19,6 +19,9 @@
     <Filter Include="src\Maps">
       <UniqueIdentifier>{68fa68c1-b99d-40cb-9227-7cfd1d2314dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pokemons">
+      <UniqueIdentifier>{0b369f51-aea5-43ea-8d58-fcfff0c363b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="..\Classes\Maps\MapManager.cpp">
       <Filter>src\Maps</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Pokemons\Pokemon.cpp">
+      <Filter>src\Pokemons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -88,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Maps\MapManager.h">
       <Filter>src\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Pokemons\Pokemon.h">
+      <Filter>src\Pokemons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
