@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __TRAINER_H_INCLUDED__
 #define __TRAINER_H_INCLUDED__
 #include "../Character.h"

@@ -34,7 +34,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->getOpenGLView()->setDesignResolutionSize(900, 680, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
-    director->setDisplayStats(true);
+	director->setDisplayStats(COCOS2D_DEBUG);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);

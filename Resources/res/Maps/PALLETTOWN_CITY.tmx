@@ -31,7 +31,7 @@
   </data>
  </layer>
  <objectgroup name="GATES">
-  <object id="6" x="192" y="0" width="31.3333" height="31.6667">
+  <object id="6" x="192" y="0" width="31.3333" height="16.3334">
    <properties>
     <property name="mapFile" value="ROUTE_1.tmx"/>
     <property name="toX" type="float" value="193"/>

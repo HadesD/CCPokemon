@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="40" tilewidth="16" tileheight="16" nextobjectid="9">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="40" tilewidth="16" tileheight="16" nextobjectid="10">
  <tileset firstgid="1" name="ROUTE_1" tilewidth="16" tileheight="16" tilecount="960" columns="24">
   <image source="Tilesets/MapPNG/ROUTE_1.png" width="384" height="640"/>
  </tileset>
@@ -41,6 +41,13 @@
     <property name="mapFile" value="PALLETTOWN_CITY.tmx"/>
     <property name="toX" type="float" value="192"/>
     <property name="toY" type="float" value="40"/>
+   </properties>
+  </object>
+  <object id="9" x="160" y="0" width="62" height="16">
+   <properties>
+    <property name="mapFile" value="VERTANIA_CITY.tmx"/>
+    <property name="toX" type="float" value="385"/>
+    <property name="toY" type="float" value="615"/>
    </properties>
   </object>
  </objectgroup>
