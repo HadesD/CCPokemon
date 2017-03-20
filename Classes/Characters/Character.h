@@ -22,6 +22,7 @@ enum COLLISION
 	NONE,
 	BARRIER,
 	GRASS,
+	JUMPPASS,
 };
 
 class Character : public Node

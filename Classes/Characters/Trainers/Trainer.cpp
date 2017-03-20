@@ -243,12 +243,12 @@ void Trainer::cameraFollow()
 		return;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Size visibleSize = Director::getInstance()->getWinSize();
 
 	Vec2 position = this->getPosition();
 
 	Size mapSize = Size(tileMap->getMapSize().width * tileMap->getTileSize().width, tileMap->getMapSize().height * tileMap->getTileSize().height);
-
+	//mapSize = mapSize * 2;
 	int x = MAX(position.x, visibleSize.width / 2);
 	int y = MAX(position.y, visibleSize.height / 2);
 	x = MIN(x, mapSize.width - visibleSize.width / 2);

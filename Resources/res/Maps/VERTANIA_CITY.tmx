@@ -18,7 +18,7 @@
  </layer>
  <layer name="BARRIER" width="48" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlM0OgCAMg7353L65JxJDUOd+ug5psovi+q2Ax75th1ON5NUbUZXZZ8x/Rn6tPJkyZOGPnlXSD8GvnYGFXysWfqmnlIsh/69c12cs+fc9NMrK34PBUpb8PcWQP5Jf+20EC8qvrX37TuIhZYhWZf67O/S0lom/+fb+d+tGZ7B/7303UFr8uUL9ayW+mfxfGTL5n/pU5NecK8veMfB7afHX47fOjPL0zDVqP1D8UfojP9NsFe4OMz/af/Evfkmd8ARHbw==
+   eJzt1EsOgCAMBFB3ntubuyIxBLCM/QzYSdgo0Ff8XOdxXEqjFa29PcbK9h3Pf0c/Gk1TRL74rXuV7OfhR3tg8aNh8UtrSl0M5z/rel5jOf96DyRR59/rh9GP2lj8lkHcyFoLi1e9MvdtnaSG1GCdlf29b2g0l8lf6tb1e/Na72B9X/vb8Er6Y+P1r5XUjfTPGiL9o31W9CPv1Zdnx+DXSvrTH+2X1rGIl98qf/Qz9abt9+4v2u9dP/3pl4wb0PQytw==
   </data>
  </layer>
  <objectgroup name="DETAILS">
@@ -39,4 +39,9 @@
    </properties>
   </object>
  </objectgroup>
+ <layer name="JUMPPASS" width="48" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt18EJACAMBMH80riFW0FAA/noDNzvGtgIAACmrbwfAADAy04bqPp0Okt/AfCDDYNnFS4=
+  </data>
+ </layer>
 </map>

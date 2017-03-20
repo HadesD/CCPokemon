@@ -16,6 +16,8 @@ std::string RD_C_TRAINERS = RD_CHARACTERS + "/Trainers";
 std::string RD_UI = RES_DIR + "/UI";
 std::string RD_UI_FONTS = RD_UI + "/Fonts";
 
+std::string RD_PARTICLES = RES_DIR + "/Particles";
+
 void playSound(std::string filePath, SOUNDTYPE type, bool isLoop)
 {
 	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();

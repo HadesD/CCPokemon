@@ -24,6 +24,8 @@ extern std::string RD_C_TRAINERS;
 extern std::string RD_UI;
 extern std::string RD_UI_FONTS;
 
+extern std::string RD_PARTICLES;
+
 enum SOUNDTYPE
 {
 	BACKGROUND,

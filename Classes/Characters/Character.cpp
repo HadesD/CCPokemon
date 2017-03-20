@@ -103,7 +103,7 @@ void Character::setMovePos(float delta)
 		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
 		{
 			this->collision = COLLISION::BARRIER;
-			if (this->charType == MAIN)
+			if (this->charType == CHARTYPE::MAIN)
 			{
 				return;
 			}

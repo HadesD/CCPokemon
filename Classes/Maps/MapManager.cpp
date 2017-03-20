@@ -12,6 +12,7 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
+	//this->mapInfo->setScale(2.f);
 	auto mapDetails = this->mapInfo->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{
@@ -42,19 +43,25 @@ void MapManager::build()
 
 	if (gates)
 	{
-		if (COCOS2D_DEBUG)
+		for (auto gate : gates->getObjects())
 		{
-			for (auto gate : gates->getObjects())
+			auto g = gate.asValueMap();
+			if (COCOS2D_DEBUG)
 			{
-				auto g = gate.asValueMap();
 				auto rect = DrawNode::create();
 				rect->drawRect(
 					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
 					Vec2(g.at("x").asFloat()+g.at("width").asFloat(), g.at("y").asFloat()+g.at("width").asFloat()),
 					Color4F::BLUE);
-				mapInfo->addChild(rect, 10);
+				//mapInfo->addChild(rect, 10);
 			}
+			auto *particle = CCParticleSystemQuad::create(RD_PARTICLES + "/Gate_Particle.plist");
+			particle->resetSystem();
+			particle->setPosition(g.at("x").asFloat() + g.at("width").asFloat() / 2, g.at("y").asFloat());
+			particle->setPosVar(Vec2(g.at("width").asFloat()/2, g.at("height").asFloat()));
+			this->mapInfo->addChild(particle);
 		}
+
 	}
 
 	this->addChild(this->mapInfo);
