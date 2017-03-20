@@ -123,7 +123,7 @@ void Trainer::onGate(float dt)
 	auto toPos = Vec2(0, 0);
 	auto toX = g["toX"];
 	auto toY = g["toY"];
-	if (toX.asFloat())
+	if (toX.asBool() && toY.asBool())
 	{
 		toPos = Vec2(toX.asFloat() + map->getMapInfo()->getTileSize().width/2, map->getMapInfo()->getMapSize().height * map->getMapInfo()->getTileSize().height - toY.asFloat());
 	}

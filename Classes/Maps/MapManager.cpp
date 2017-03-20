@@ -53,7 +53,7 @@ void MapManager::build()
 					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
 					Vec2(g.at("x").asFloat()+g.at("width").asFloat(), g.at("y").asFloat()+g.at("width").asFloat()),
 					Color4F::BLUE);
-				//mapInfo->addChild(rect, 10);
+				mapInfo->addChild(rect, 10);
 			}
 			auto *particle = CCParticleSystemQuad::create(RD_PARTICLES + "/Gate_Particle.plist");
 			particle->resetSystem();
