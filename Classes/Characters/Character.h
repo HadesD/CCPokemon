@@ -66,7 +66,7 @@ public:
 
 #pragma endregion
 
-private:
+protected:
 
 #pragma region CharAttrs
 	int id;

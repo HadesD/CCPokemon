@@ -20,16 +20,16 @@ void Trainer::build()
 	_eventDispatcher->addEventListenerWithFixedPriority(listener, 1);
 
 	//Trainer 's Name 's Label
-	auto nameLabel = Label::createWithSystemFont(this->getName(), "Arial", 11);
+	auto nameLabel = Label::createWithSystemFont(this->name, "Arial", 11);
 	nameLabel->setColor(Color3B(255, 255, 255));
 	float padding = 4.f;
 	auto nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
 	nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
 	nameBGLayer->addChild(nameLabel);
-	nameBGLayer->setPosition(-this->getSprite()->getContentSize().width, this->getSprite()->getContentSize().height / 3);
+	nameBGLayer->setPosition(-this->sprite->getContentSize().width, this->sprite->getContentSize().height / 3);
 	this->addChild(nameBGLayer);
 
-	this->getSprite()->setContentSize(Size(this->getSprite()->getContentSize().width / 3, this->getSprite()->getContentSize().height / 2));
+	this->sprite->setContentSize(Size(this->sprite->getContentSize().width / 3, this->sprite->getContentSize().height / 2));
 
 	schedule(schedule_selector(Trainer::onGate), 0.01f);
 
@@ -56,7 +56,7 @@ void Trainer::setMovePos(float delta)
 
 void Trainer::onCollisionBarrier(float dt)
 {
-	if (this->getCollision() != COLLISION::BARRIER)
+	if (this->collision != COLLISION::BARRIER)
 	{
 		return;
 	}
@@ -148,7 +148,7 @@ void Trainer::onGate(float dt)
 void Trainer::onGrass(float dt)
 {
 
-	if (this->getCollision() != COLLISION::GRASS)
+	if (this->collision != COLLISION::GRASS)
 	{
 		return;
 	}
@@ -168,7 +168,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Pressed Key: %d", (int)keyCode);
 
-	if (this->getCanMove())
+	if (this->canMove)
 	{
 		switch (keyCode)
 		{
