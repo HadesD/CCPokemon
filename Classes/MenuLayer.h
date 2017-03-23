@@ -9,6 +9,7 @@
 #ifndef __MenuTutorial__MenuLayer__
 #define __MenuTutorial__MenuLayer__
 
+#include "stdafx.h"
 #include "cocos2d.h"
 
 USING_NS_CC;

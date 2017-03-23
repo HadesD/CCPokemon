@@ -94,8 +94,7 @@ bool MenuLayer::init()
 	}
     this->addChild(menu, 2);
 
-	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-	audio->playBackgroundMusic("res/Sounds/Musics/Opening.mp3", true);
+	playSound(RD_S_MUSICS + "/Opening.mp3", SOUNDTYPE::BACKGROUND, true);
 
     return true;
 }
