@@ -8,7 +8,7 @@ Character::Character()
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
-	this->speed = 2.5f;
+	this->speed = 112.f;//Px/s
 	this->charType = PLAYER;
 }
 
@@ -72,16 +72,16 @@ void Character::setMovePos(float delta)
 	switch (this->direction)
 	{
 		case DIRECTION::UP:
-			yy += this->speed;
+			yy += this->speed*delta;
 			break;
 		case DIRECTION::DOWN:
-			yy -= this->speed;
+			yy -= this->speed*delta;
 			break;
 		case DIRECTION::LEFT:
-			xx -= this->speed;
+			xx -= this->speed*delta;
 			break;
 		case DIRECTION::RIGHT:
-			xx += this->speed;
+			xx += this->speed*delta;
 			break;
 	}
 
@@ -136,12 +136,12 @@ void Character::setMovePos(float delta)
 
 void Character::moveAnimate(float delta)
 {
+
+	CCLOG("Delta: %f", delta);
 	if (this->canMove == false)
 	{
 		this->oldAnimePos = 0;
 	}
-	this->sprite->setTextureRect(Rect(32.f*this->oldAnimePos, 32.f*this->direction, 32.f, 32.f));
-
 	if (this->isMoving)
 	{
 		this->oldAnimePos++;
@@ -154,6 +154,7 @@ void Character::moveAnimate(float delta)
 	{
 		this->oldAnimePos = 0;
 	}
+	this->sprite->setTextureRect(Rect(32.f*this->oldAnimePos, 32.f*this->direction, 32.f, 32.f));
 }
 
 #pragma region GETs/SETs
