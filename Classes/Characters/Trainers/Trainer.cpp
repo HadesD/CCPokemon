@@ -196,7 +196,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				break;
 		}
 		if (isMoveKey) {
-			if (this->lastMoveKeyCode == EventKeyboard::KeyCode::KEY_NONE || this->isMoveActing == false) {
+			if (this->isMoveActing == false) {
 				this->isMoving = true;
 			}
 			this->isMoveActing = true;
@@ -212,7 +212,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		this->isMoving = false;
 		this->isMoveActing = false;
-		this->lastMoveKeyCode == EventKeyboard::KeyCode::KEY_NONE;
+		//this->lastMoveKeyCode = EventKeyboard::KeyCode::KEY_NONE;
 	}
 }
 
