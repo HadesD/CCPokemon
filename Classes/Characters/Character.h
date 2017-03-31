@@ -80,7 +80,7 @@ protected:
 	CHARTYPE charType;
 	COLLISION collision;
 #pragma endregion
-
+	CallFuncN *onEndRunMoveAction;
 	void moveAnimate(float delta);
 
 };

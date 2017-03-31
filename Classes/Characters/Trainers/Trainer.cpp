@@ -206,6 +206,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	if (this->lastMoveKeyCode == keyCode)
 	{
 		this->setIsMoving(false);
+		this->stopAction(onEndRunMoveAction);
 	}
 }
 
