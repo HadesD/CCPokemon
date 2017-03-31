@@ -7,7 +7,7 @@ Character::Character()
 	this->isMoving = false;
 	this->canMove = true;
 	this->oldAnimePos = 0;
-	this->direction = DIRECTION::DOWN;
+	this->direction = Character::DIRECTION::DOWN;
 	this->speed = 0.2;// s/Tile
 	this->charType = PLAYER;
 }
@@ -19,7 +19,9 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	this->setMovePos(delta);
+	if (this->isMoving) {
+		this->setMovePos(delta);
+	}
 }
 
 void Character::build()
@@ -44,7 +46,7 @@ void Character::build()
 
 void Character::setMovePos(float delta)
 {
-	this->collision = COLLISION::NONE;
+	this->collision = Character::COLLISION::NONE;
 
 	if (this->canMove == false)
 	{
@@ -54,8 +56,6 @@ void Character::setMovePos(float delta)
 	if (this->isMoving == false) {
 		return;
 	}
-
-	this->isMoving = false;
 
 	auto *mapManager = (MapManager*)this->getParent();
 
@@ -77,16 +77,16 @@ void Character::setMovePos(float delta)
 
 	switch (this->direction)
 	{
-		case DIRECTION::UP:
+		case Character::DIRECTION::UP:
 			yy += tileH;
 			break;
-		case DIRECTION::DOWN:
+		case Character::DIRECTION::DOWN:
 			yy -= tileH;
 			break;
-		case DIRECTION::LEFT:
+		case Character::DIRECTION::LEFT:
 			xx -= tileW;
 			break;
-		case DIRECTION::RIGHT:
+		case Character::DIRECTION::RIGHT:
 			xx += tileW;
 			break;
 	}
@@ -108,8 +108,8 @@ void Character::setMovePos(float delta)
 	if (barriers) {
 		if(barriers->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
-			this->collision = COLLISION::BARRIER;
-			if (this->charType == CHARTYPE::MAIN)
+			this->collision = Character::COLLISION::BARRIER;
+			if(this->charType == Character::CHARTYPE::MAIN)
 			{
 				return;
 			}
@@ -117,17 +117,19 @@ void Character::setMovePos(float delta)
 	}
 
 	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
-	onEndRunMoveAction = CallFuncN::create([&](Node* sender) {
+	auto endAction = CallFuncN::create([&](Node* sender) {
 		this->isMoving = true;
 	});
 
-	this->runAction(Sequence::create(moveTo, onEndRunMoveAction, nullptr));
+	onEndRunMoveAction = Sequence::create(moveTo, endAction, nullptr);
+
+	this->runAction(onEndRunMoveAction);
 
 	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
 		if(grass->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
-			this->collision = COLLISION::GRASS;
+			this->collision = Character::COLLISION::GRASS;
 		}
 	}
 
@@ -190,11 +192,11 @@ bool Character::getIsMoving()
 	return this->isMoving;
 }
 
-void Character::setDirection(DIRECTION direction)
+void Character::setDirection(Character::DIRECTION direction)
 {
 	this->direction = direction;
 }
-DIRECTION Character::getDirection()
+Character::DIRECTION Character::getDirection()
 {
 	return this->direction;
 }
@@ -214,19 +216,19 @@ bool Character::getCanMove()
 {
 	return this->canMove;
 }
-void Character::setCharType(CHARTYPE charType)
+void Character::setCharType(Character::CHARTYPE charType)
 {
 	this->charType = charType;
 }
-CHARTYPE Character::getCharType()
+Character::CHARTYPE Character::getCharType()
 {
 	return this->charType;
 }
-void Character::setCollision(COLLISION collision)
+void Character::setCollision(Character::COLLISION collision)
 {
 	this->collision = collision;
 }
-COLLISION Character::getCollision()
+Character::COLLISION Character::getCollision()
 {
 	return this->collision;
 }

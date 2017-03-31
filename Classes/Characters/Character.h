@@ -4,29 +4,29 @@
 
 USING_NS_CC;
 
-enum DIRECTION
-{
-	UP = 0,
-	DOWN = 2,
-	LEFT = 1,
-	RIGHT = 3,
-};
-enum CHARTYPE
-{
-	NPC,
-	PLAYER,
-	MAIN,
-};
-enum COLLISION
-{
-	NONE,
-	BARRIER,
-	GRASS,
-	JUMPPASS,
-};
-
 class Character : public Node
 {
+protected:
+	enum DIRECTION
+	{
+		UP = 0,
+		DOWN = 2,
+		LEFT = 1,
+		RIGHT = 3,
+	};
+	enum CHARTYPE
+	{
+		NPC,
+		PLAYER,
+		MAIN,
+	};
+	enum COLLISION
+	{
+		NONE,
+		BARRIER,
+		GRASS,
+		JUMPPASS,
+	};
 public:
 	Character();
 	~Character();
@@ -44,8 +44,8 @@ public:
 	void setSprite(Sprite *sprite);
 	Sprite* getSprite();
 
-	void setDirection(DIRECTION direction);
-	DIRECTION getDirection();
+	void setDirection(Character::DIRECTION direction);
+	Character::DIRECTION getDirection();
 
 	void setIsMoving(bool isMoving);
 	bool getIsMoving();
@@ -58,11 +58,11 @@ public:
 	void setCanMove(bool canMove);
 	bool getCanMove();
 
-	void setCharType(CHARTYPE charType);
-	CHARTYPE getCharType();
+	void setCharType(Character::CHARTYPE charType);
+	Character::CHARTYPE getCharType();
 
-	void setCollision(COLLISION collision);
-	COLLISION getCollision();
+	void setCollision(Character::COLLISION collision);
+	Character::COLLISION getCollision();
 
 #pragma endregion
 
@@ -75,12 +75,12 @@ protected:
 	bool isMoving;
 	bool canMove;
 	float speed;
-	DIRECTION direction;
+	Character::DIRECTION direction;
 	int oldAnimePos;
-	CHARTYPE charType;
-	COLLISION collision;
+	Character::CHARTYPE charType;
+	Character::COLLISION collision;
 #pragma endregion
-	CallFuncN *onEndRunMoveAction;
+	Action *onEndRunMoveAction;
 	void moveAnimate(float delta);
 
 };

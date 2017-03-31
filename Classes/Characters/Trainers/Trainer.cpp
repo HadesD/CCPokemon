@@ -11,7 +11,7 @@ Trainer::~Trainer()
 
 void Trainer::build()
 {
-	this->setCharType(CHARTYPE::MAIN);
+	this->setCharType(Trainer::CHARTYPE::MAIN);
 
 	//Listen to Keyboard Event
 	auto listener = EventListenerKeyboard::create();
@@ -56,7 +56,7 @@ void Trainer::setMovePos(float delta)
 
 void Trainer::onCollisionBarrier(float dt)
 {
-	if (this->collision != COLLISION::BARRIER)
+	if (this->collision != Trainer::COLLISION::BARRIER)
 	{
 		return;
 	}
@@ -140,7 +140,7 @@ void Trainer::onGate(float dt)
 		}
 	}
 	this->setPosition(toPos);
-	this->setIsMoving(false);
+	this->isMoving = false;
 	map->addCharToMap(this, ZORDER_TRAINER);
 	this->release();
 }
@@ -148,7 +148,7 @@ void Trainer::onGate(float dt)
 void Trainer::onGrass(float dt)
 {
 
-	if (this->collision != COLLISION::GRASS)
+	if(this->collision != Trainer::COLLISION::GRASS)
 	{
 		return;
 	}
@@ -174,26 +174,26 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 		case EventKeyboard::KeyCode::KEY_W:
-			this->setDirection(DIRECTION::UP);
-			this->setIsMoving(true);
+			this->direction = Trainer::DIRECTION::UP;
+			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
-			this->setDirection(DIRECTION::DOWN);
-			this->setIsMoving(true);
+			this->direction = Trainer::DIRECTION::DOWN;
+			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
-			this->setDirection(DIRECTION::RIGHT);
-			this->setIsMoving(true);
+			this->direction = Trainer::DIRECTION::RIGHT;
+			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
-			this->setDirection(DIRECTION::LEFT);
-			this->setIsMoving(true);
+			this->direction = Trainer::DIRECTION::LEFT;
+			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		}
@@ -205,8 +205,8 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	CCLOG("Released Key: %d", (int)keyCode);
 	if (this->lastMoveKeyCode == keyCode)
 	{
-		this->setIsMoving(false);
-		this->stopAction(onEndRunMoveAction);
+		this->isMoving = false;
+		//this->stopAction(onEndRunMoveAction);
 	}
 }
 
