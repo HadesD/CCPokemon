@@ -3,6 +3,7 @@
 
 Trainer::Trainer()
 {
+	this->lastMoveKeyCode = EventKeyboard::KeyCode::KEY_NONE;
 }
 
 Trainer::~Trainer()
@@ -45,6 +46,8 @@ void Trainer::update(float delta)
 	Character::update(delta);
 
 	this->cameraFollow();
+
+	CCLOG("Delta: %f", (int)this->lastMoveKeyCode);
 }
 
 void Trainer::setMovePos(float delta)
@@ -168,38 +171,36 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Pressed Key: %d", (int)keyCode);
 
-	if (this->canMove)
-	{
-		switch (keyCode)
-		{
-		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-		case EventKeyboard::KeyCode::KEY_W:
-			this->direction = Trainer::DIRECTION::UP;
-			this->isMoving = true;
+	if (this->canMove) {
+		bool isMoveKey = false;
+		switch (keyCode) {
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			case EventKeyboard::KeyCode::KEY_W:
+				this->direction = Trainer::DIRECTION::UP;
+				isMoveKey = true;
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			case EventKeyboard::KeyCode::KEY_S:
+				this->direction = Trainer::DIRECTION::DOWN;
+				isMoveKey = true;
+				break;
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			case EventKeyboard::KeyCode::KEY_D:
+				this->direction = Trainer::DIRECTION::RIGHT;
+				isMoveKey = true;
+				break;
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			case EventKeyboard::KeyCode::KEY_A:
+				this->direction = Trainer::DIRECTION::LEFT;
+				isMoveKey = true;
+				break;
+		}
+		if (isMoveKey) {
+			if (this->lastMoveKeyCode == EventKeyboard::KeyCode::KEY_NONE || this->isMoveActing == false) {
+				this->isMoving = true;
+			}
 			this->isMoveActing = true;
 			this->lastMoveKeyCode = keyCode;
-			break;
-		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		case EventKeyboard::KeyCode::KEY_S:
-			this->direction = Trainer::DIRECTION::DOWN;
-			this->isMoving = true;
-			this->isMoveActing = true;
-			this->lastMoveKeyCode = keyCode;
-			break;
-		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		case EventKeyboard::KeyCode::KEY_D:
-			this->direction = Trainer::DIRECTION::RIGHT;
-			this->isMoving = true;
-			this->isMoveActing = true;
-			this->lastMoveKeyCode = keyCode;
-			break;
-		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		case EventKeyboard::KeyCode::KEY_A:
-			this->direction = Trainer::DIRECTION::LEFT;
-			this->isMoving = true;
-			this->isMoveActing = true;
-			this->lastMoveKeyCode = keyCode;
-			break;
 		}
 	}
 }
@@ -211,6 +212,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		this->isMoving = false;
 		this->isMoveActing = false;
+		this->lastMoveKeyCode == EventKeyboard::KeyCode::KEY_NONE;
 	}
 }
 

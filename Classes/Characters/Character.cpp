@@ -151,7 +151,6 @@ void Character::setMovePos(float delta)
 void Character::moveAnimate(float delta)
 {
 
-	CCLOG("Delta: %f", delta);
 	if (this->canMove == false)
 	{
 		this->oldAnimePos = 0;
