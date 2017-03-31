@@ -72,15 +72,15 @@ protected:
 	int id;
 	std::string name;
 	Sprite *sprite;
-	bool isMoving;
 	bool canMove;
+	bool isMoving;
+	bool isMoveActing;
 	float speed;
 	Character::DIRECTION direction;
 	int oldAnimePos;
 	Character::CHARTYPE charType;
 	Character::COLLISION collision;
 #pragma endregion
-	Action *onEndRunMoveAction;
 	void moveAnimate(float delta);
 
 };

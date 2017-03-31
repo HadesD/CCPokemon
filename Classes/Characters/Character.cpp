@@ -4,12 +4,13 @@
 Character::Character()
 {
 	this->id = 0;
-	this->isMoving = false;
 	this->canMove = true;
+	this->isMoving = false;
+	this->isMoveActing = false;
 	this->oldAnimePos = 0;
 	this->direction = Character::DIRECTION::DOWN;
 	this->speed = 0.2;// s/Tile
-	this->charType = PLAYER;
+	this->charType = Character::CHARTYPE::PLAYER;
 }
 
 Character::~Character()
@@ -19,9 +20,7 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	if (this->isMoving) {
-		this->setMovePos(delta);
-	}
+	this->setMovePos(delta);
 }
 
 void Character::build()
@@ -56,6 +55,8 @@ void Character::setMovePos(float delta)
 	if (this->isMoving == false) {
 		return;
 	}
+
+	this->isMoving = false;
 
 	auto *mapManager = (MapManager*)this->getParent();
 
@@ -118,12 +119,12 @@ void Character::setMovePos(float delta)
 
 	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
 	auto endAction = CallFuncN::create([&](Node* sender) {
-		this->isMoving = true;
+		if (this->isMoveActing) {
+			this->isMoving = true;
+		}
 	});
 
-	onEndRunMoveAction = Sequence::create(moveTo, endAction, nullptr);
-
-	this->runAction(onEndRunMoveAction);
+	this->runAction(Sequence::create(moveTo, endAction, nullptr));
 
 	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
@@ -155,7 +156,7 @@ void Character::moveAnimate(float delta)
 	{
 		this->oldAnimePos = 0;
 	}
-	if (this->isMoving)
+	if(this->isMoveActing)
 	{
 		this->oldAnimePos++;
 		if (this->oldAnimePos == 3)

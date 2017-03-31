@@ -176,24 +176,28 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		case EventKeyboard::KeyCode::KEY_W:
 			this->direction = Trainer::DIRECTION::UP;
 			this->isMoving = true;
+			this->isMoveActing = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
 			this->direction = Trainer::DIRECTION::DOWN;
 			this->isMoving = true;
+			this->isMoveActing = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
 			this->direction = Trainer::DIRECTION::RIGHT;
 			this->isMoving = true;
+			this->isMoveActing = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
 			this->direction = Trainer::DIRECTION::LEFT;
 			this->isMoving = true;
+			this->isMoveActing = true;
 			this->lastMoveKeyCode = keyCode;
 			break;
 		}
@@ -206,7 +210,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	if (this->lastMoveKeyCode == keyCode)
 	{
 		this->isMoving = false;
-		//this->stopAction(onEndRunMoveAction);
+		this->isMoveActing = false;
 	}
 }
 
