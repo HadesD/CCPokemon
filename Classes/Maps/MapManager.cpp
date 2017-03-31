@@ -12,7 +12,6 @@ MapManager::~MapManager()
 
 void MapManager::build()
 {
-	//this->mapInfo->setScale(2.f);
 	auto mapDetails = this->mapInfo->getObjectGroup("DETAILS");
 	if (mapDetails)
 	{
@@ -63,6 +62,12 @@ void MapManager::build()
 		}
 
 	}
+
+	this->mapInfo->setScale(SCALE_TO);
+
+	this->mapInfo->setMapSize(this->mapInfo->getMapSize()*SCALE_TO);
+
+	this->mapInfo->setTileSize(this->mapInfo->getTileSize()*SCALE_TO);
 
 	this->addChild(this->mapInfo);
 }

@@ -8,7 +8,7 @@ Character::Character()
 	this->canMove = true;
 	this->oldAnimePos = 0;
 	this->direction = DIRECTION::DOWN;
-	this->speed = 112.f;//Px/s
+	this->speed = 0.3;// s/Tile
 	this->charType = PLAYER;
 }
 
@@ -51,10 +51,11 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
-	if (this->isMoving == false)
-	{
+	if(this->isMoving) {
 		return;
 	}
+
+	this->isMoving = true;
 
 	auto *mapManager = (MapManager*)this->getParent();
 
@@ -63,25 +64,30 @@ void Character::setMovePos(float delta)
 		return;
 	}
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
+	auto mapSize = mapInfo->getMapSize();
+	auto tileSize = mapInfo->getTileSize();
 
-	float xx, yy;
+	float xx, yy, tileW, tileH;
 
 	xx = this->getPositionX();
 	yy = this->getPositionY();
 
+	tileW = tileSize.width;
+	tileH = tileSize.height;
+
 	switch (this->direction)
 	{
 		case DIRECTION::UP:
-			yy += this->speed*delta;
+			yy += tileH;
 			break;
 		case DIRECTION::DOWN:
-			yy -= this->speed*delta;
+			yy -= tileH;
 			break;
 		case DIRECTION::LEFT:
-			xx -= this->speed*delta;
+			xx -= tileW;
 			break;
 		case DIRECTION::RIGHT:
-			xx += this->speed*delta;
+			xx += tileW;
 			break;
 	}
 
@@ -93,14 +99,14 @@ void Character::setMovePos(float delta)
 	{
 		return;
 	}
-	if (xx + sprtSize.width/2 >= (mapInfo->getMapSize().width * mapInfo->getTileSize().width) || yy + sprtSize.height/2 >= (mapInfo->getMapSize().height * mapInfo->getTileSize().height))
+	if(xx + sprtSize.width / 2 >= (mapSize.width * tileSize.width) || yy + sprtSize.height / 2 >= (mapSize.height * tileSize.height))
 	{
 		return;
 	}
 
 	auto barriers = mapInfo->getLayer("BARRIER");
 	if (barriers) {
-		if (barriers->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
+		if(barriers->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
 			this->collision = COLLISION::BARRIER;
 			if (this->charType == CHARTYPE::MAIN)
@@ -110,11 +116,15 @@ void Character::setMovePos(float delta)
 		}
 	}
 
-	this->setPosition(Vec2(xx, yy));
+	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
+
+	this->runAction(moveTo);
+
+	this->isMoving = false;
 
 	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
-		if (grass->getTileAt(Vec2(xx / mapInfo->getTileSize().width, ((mapInfo->getMapSize().height * mapInfo->getTileSize().height) - yy) / mapInfo->getTileSize().height)))
+		if(grass->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
 			this->collision = COLLISION::GRASS;
 		}
