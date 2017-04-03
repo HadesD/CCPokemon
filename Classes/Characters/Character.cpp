@@ -7,10 +7,11 @@ Character::Character()
 	this->canMove = true;
 	this->isMoving = false;
 	this->isMoveActing = false;
+	this->isMoveEnded = true;
 	this->oldAnimePos = 0;
-	this->direction = DIRECTION::DOWN;
+	this->direction = Character::DIRECTION::DOWN;
 	this->speed = 0.2;// s/Tile
-	this->charType = CHARTYPE::PLAYER;
+	this->charType = Character::CHARTYPE::PLAYER;
 }
 
 Character::~Character()
@@ -25,6 +26,8 @@ void Character::update(float delta)
 
 void Character::build()
 {
+	this->sprite->setScale(0.85);
+
 	schedule(schedule_selector(Character::moveAnimate), 0.11f);
 
 	scheduleUpdate();
@@ -33,12 +36,11 @@ void Character::build()
 	{
 		auto rect = DrawNode::create();
 		Size sprtSize = this->sprite->getContentSize();
-		rect->drawRect(Vec2(-sprtSize.width / 2, -sprtSize.height / 2),
-			Vec2(sprtSize.width/2, sprtSize.height/2),
+		rect->drawRect(Vec2(-sprtSize.width, -sprtSize.height),
+			Vec2(sprtSize.width, sprtSize.height),
 			Color4F::RED);
 		this->addChild(rect, 99);
 	}
-	this->sprite->setScale(0.75);
 
 	this->addChild(this->sprite);
 }
@@ -57,6 +59,11 @@ void Character::setMovePos(float delta)
 	}
 
 	this->isMoving = false;
+
+	if (this->isMoveEnded == false)
+	{
+		return;
+	}
 
 	auto *mapManager = (MapManager*)this->getParent();
 
@@ -92,7 +99,7 @@ void Character::setMovePos(float delta)
 			break;
 	}
 
-	Size sprtSize = Size(4.f, 16.f);//this->sprite->getContentSize();
+	Size sprtSize = this->sprite->getContentSize();
 
 	if (xx - sprtSize.width/2 <= 0 || yy - sprtSize.height/2 <= 0)
 	{
@@ -119,7 +126,9 @@ void Character::setMovePos(float delta)
 	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
 	auto moveEnd = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionEnd));
 
-	this->runAction(Sequence::create(moveStart, moveTo, moveEnd, nullptr));
+	this->moveAction = Sequence::create(moveStart, moveTo, moveEnd, nullptr);
+
+	this->runAction(this->moveAction);
 
 	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
@@ -145,13 +154,30 @@ void Character::setMovePos(float delta)
 
 void Character::moveActionStart()
 {
+	if (this->isMoveEnded == false)
+	{
+		this->moveAnimate(0.f);
+	}
+
+	this->isMoveEnded = false;
+
 	this->isMoveActing = true;
 }
 
 void Character::moveActionEnd()
 {
-	if (this->isMoveActing) {
-		this->isMoving = true;
+	this->isMoveEnded = true;
+
+	if (this->isMoveActing == true)
+	{
+		if (this->isMoving == false)
+		{
+			this->isMoving = true;
+		}
+	}
+	else
+	{
+		this->isMoving = false;
 	}
 }
 
@@ -197,6 +223,16 @@ void Character::setIsMoving(bool isMoving)
 bool Character::getIsMoving()
 {
 	return this->isMoving;
+}
+
+void Character::setIsMoveActing(bool isMoveActing)
+{
+	this->isMoveActing = isMoveActing;
+}
+
+bool Character::getIsMoveActing()
+{
+	return this->isMoveActing;
 }
 
 void Character::setDirection(Character::DIRECTION direction)

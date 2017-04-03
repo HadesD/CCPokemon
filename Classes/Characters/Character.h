@@ -7,20 +7,20 @@ USING_NS_CC;
 class Character : public Node
 {
 protected:
-	enum class DIRECTION
+	enum DIRECTION
 	{
 		UP = 0,
 		DOWN = 2,
 		LEFT = 1,
 		RIGHT = 3,
 	};
-	enum class CHARTYPE
+	enum CHARTYPE
 	{
 		NPC,
 		PLAYER,
 		MAIN,
 	};
-	enum class COLLISION
+	enum COLLISION
 	{
 		NONE,
 		BARRIER,
@@ -50,6 +50,9 @@ public:
 	void setIsMoving(bool isMoving);
 	bool getIsMoving();
 
+	void setIsMoveActing(bool isMoving);
+	bool getIsMoveActing();
+
 	void setName(std::string name);
 	std::string getName();
 
@@ -67,6 +70,8 @@ public:
 #pragma endregion
 
 protected:
+
+	Sequence *moveAction;
 	
 #pragma region CharAttrs
 	int id;
@@ -75,6 +80,7 @@ protected:
 	bool canMove;
 	bool isMoving;
 	bool isMoveActing;
+	bool isMoveEnded;
 	float speed;
 	Character::DIRECTION direction;
 	int oldAnimePos;

@@ -46,8 +46,6 @@ void Trainer::update(float delta)
 	Character::update(delta);
 
 	this->cameraFollow();
-
-	CCLOG("Delta: %f", (int)this->lastMoveKeyCode);
 }
 
 void Trainer::setMovePos(float delta)
@@ -143,7 +141,6 @@ void Trainer::onGate(float dt)
 		}
 	}
 	this->setPosition(toPos);
-	this->isMoving = false;
 	map->addCharToMap(this, ZORDER_TRAINER);
 	this->release();
 }
@@ -196,8 +193,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				break;
 		}
 		if (isMoveKey) {
-			this->moveActionStart();
-			this->moveActionEnd();
+			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 		}
 	}
@@ -208,6 +204,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	CCLOG("Released Key: %d", (int)keyCode);
 	if (this->lastMoveKeyCode == keyCode)
 	{
+		this->isMoving = false;
 		this->isMoveActing = false;
 	}
 }
