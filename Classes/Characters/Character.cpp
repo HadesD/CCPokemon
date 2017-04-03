@@ -60,6 +60,7 @@ void Character::setMovePos(float delta)
 	{
 		return;
 	}
+
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 	auto mapSize = mapInfo->getMapSize();
 	auto tileSize = mapInfo->getTileSize();
@@ -180,7 +181,6 @@ void Character::moveActionEnd()
 
 void Character::moveAnimate(float delta)
 {
-
 	if (this->canMove == false)
 	{
 		this->oldAnimePos = 0;
@@ -198,6 +198,40 @@ void Character::moveAnimate(float delta)
 		this->oldAnimePos = 0;
 	}
 	this->sprite->setTextureRect(Rect(32.f*this->oldAnimePos, 32.f*this->direction, 32.f, 32.f));
+}
+
+void Character::goTo(Vec2 pos)
+{
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
+	auto mapSize = mapInfo->getMapSize();
+	auto tileSize = mapInfo->getTileSize();
+
+	float tileW, tileH;
+
+	tileW = floor(tileSize.width);
+	tileH = floor(tileSize.height);
+
+	float x, y;
+
+	for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW)
+	{
+		if (ix >= pos.x)
+		{
+			pos.x = ix - tileW/2;
+			break;
+		}
+	}
+
+	for (int iy = 0; iy < mapSize.height*tileH; iy = iy + tileW)
+	{
+		if (iy >= pos.y)
+		{
+			pos.y = iy - tileH / 2;
+			break;
+		}
+	}
+
+	this->setPosition(pos);
 }
 
 #pragma region GETs/SETs

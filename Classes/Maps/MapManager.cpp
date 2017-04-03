@@ -88,8 +88,10 @@ TMXTiledMap *MapManager::getMapInfo()
 
 void MapManager::addCharToMap(Character* character, int zOrder)
 {
-	this->mapInfo->addChild(character, zOrder);
 	character->setIsMoving(false);
 	character->setIsMoveActing(false);
+
+	this->mapInfo->addChild(character, zOrder);
+
 	playSound("gotomap.wav", SOUNDTYPE::EFFECT, false);
 }

@@ -67,6 +67,8 @@ public:
 	void setCollision(Character::COLLISION collision);
 	Character::COLLISION getCollision();
 
+	void goTo(Vec2 pos);
+
 #pragma endregion
 
 protected:

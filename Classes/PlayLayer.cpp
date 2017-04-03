@@ -56,18 +56,19 @@ bool PlayLayer::init()
 	auto trainer = new Trainer;
 	trainer->setSprite(Sprite::create(RD_C_TRAINERS + "/trainer1.png", Rect(0, 32.f*trainer->getDirection(), 32.f, 32.f)));
 	trainer->setName("Dark.Hades");
-
+	auto toPos = Vec2(0, 0);
 	if (mapDetails)
 	{
 		auto playerStart = mapDetails->getObject("FLY_SPACE");
 		if (playerStart["x"].asBool())
 		{
-			trainer->setPosition(Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat()));
+			toPos = Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat());
 		}
 	}
 
 	trainer->build();
 	map->addCharToMap(trainer, ZORDER_TRAINER);
+	trainer->goTo(toPos);
 
     return true;
 }

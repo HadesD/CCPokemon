@@ -144,8 +144,8 @@ void Trainer::onGate(float dt)
 			}
 		}
 	}
-	this->setPosition(toPos);
 	map->addCharToMap(this, ZORDER_TRAINER);
+	this->goTo(toPos);
 	this->release();
 }
 
