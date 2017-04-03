@@ -54,20 +54,9 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
-	if (this->isMoving == false) {
-		return;
-	}
-
-	this->isMoving = false;
-
-	if (this->isMoveEnded == false)
-	{
-		return;
-	}
-
 	auto *mapManager = (MapManager*)this->getParent();
 
-	if (!mapManager)
+	if (mapManager == nullptr)
 	{
 		return;
 	}
@@ -111,14 +100,32 @@ void Character::setMovePos(float delta)
 	}
 
 	auto barriers = mapInfo->getLayer("BARRIER");
-	if (barriers) {
+	if (barriers)
+	{
 		if(barriers->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
 			this->collision = Character::COLLISION::BARRIER;
-			if(this->charType == Character::CHARTYPE::MAIN)
-			{
-				return;
-			}
+		}
+	}
+
+	if (this->isMoving == false) {
+		return;
+	}
+
+	this->isMoving = false;
+
+	this->isMoveActing = true;
+
+	if (this->isMoveEnded == false)
+	{
+		return;
+	}
+
+	if (this->collision == Character::COLLISION::BARRIER)
+	{
+		if (this->charType == Character::CHARTYPE::MAIN)
+		{
+			return;
 		}
 	}
 
@@ -129,14 +136,6 @@ void Character::setMovePos(float delta)
 	this->moveAction = Sequence::create(moveStart, moveTo, moveEnd, nullptr);
 
 	this->runAction(this->moveAction);
-
-	auto grass = mapInfo->getLayer("GRASS");
-	if (grass) {
-		if(grass->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
-		{
-			this->collision = Character::COLLISION::GRASS;
-		}
-	}
 
 	/*auto jumpSpace = mapInfo->getLayer("JUMPPASS");
 	if (jumpSpace) {
@@ -160,8 +159,6 @@ void Character::moveActionStart()
 	}
 
 	this->isMoveEnded = false;
-
-	this->isMoveActing = true;
 }
 
 void Character::moveActionEnd()

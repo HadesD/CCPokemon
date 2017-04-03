@@ -57,6 +57,10 @@ void Trainer::setMovePos(float delta)
 
 void Trainer::onCollisionBarrier(float dt)
 {
+	if (this->isMoveActing == false)
+	{
+		return;
+	}
 	if (this->collision != Trainer::COLLISION::BARRIER)
 	{
 		return;
@@ -69,7 +73,7 @@ void Trainer::onGate(float dt)
 	auto *mapManager = (MapManager*)this->getParent();
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
-	if (!mapInfo)
+	if (mapInfo == nullptr)
 	{
 		return;
 	}
@@ -147,8 +151,26 @@ void Trainer::onGate(float dt)
 
 void Trainer::onGrass(float dt)
 {
+	if (this->isMoveActing == false)
+	{
+		return;
+	}
 
-	if(this->collision != Trainer::COLLISION::GRASS)
+	auto *mapInfo = (TMXTiledMap*)this->getParent();
+
+	auto mapSize = mapInfo->getMapSize();
+	auto tileSize = mapInfo->getTileSize();
+
+	float xx, yy, tileW, tileH;
+
+	xx = this->getPositionX();
+	yy = this->getPositionY();
+
+	auto grass = mapInfo->getLayer("GRASS");
+	if (grass == nullptr) {
+		return;
+	}
+	if (grass->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)) == nullptr)
 	{
 		return;
 	}
@@ -214,7 +236,7 @@ void Trainer::cameraFollow()
 {
 	auto *mapManager = (MapManager*)this->getParent();
 
-	if (!mapManager)
+	if (mapManager == nullptr)
 	{
 		return;
 	}
@@ -239,7 +261,7 @@ void Trainer::cameraFollow()
 		}
 	}
 
-	if (!cam)
+	if (cam == nullptr)
 	{
 		return;
 	}
