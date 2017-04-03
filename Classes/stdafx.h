@@ -27,7 +27,7 @@ extern std::string RD_UI_FONTS;
 
 extern std::string RD_PARTICLES;
 
-enum SOUNDTYPE
+enum class SOUNDTYPE
 {
 	BACKGROUND,
 	EFFECT,

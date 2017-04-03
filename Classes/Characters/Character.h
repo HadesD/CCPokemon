@@ -7,20 +7,20 @@ USING_NS_CC;
 class Character : public Node
 {
 protected:
-	enum DIRECTION
+	enum class DIRECTION
 	{
 		UP = 0,
 		DOWN = 2,
 		LEFT = 1,
 		RIGHT = 3,
 	};
-	enum CHARTYPE
+	enum class CHARTYPE
 	{
 		NPC,
 		PLAYER,
 		MAIN,
 	};
-	enum COLLISION
+	enum class COLLISION
 	{
 		NONE,
 		BARRIER,
@@ -67,7 +67,7 @@ public:
 #pragma endregion
 
 protected:
-
+	
 #pragma region CharAttrs
 	int id;
 	std::string name;
@@ -81,7 +81,9 @@ protected:
 	Character::CHARTYPE charType;
 	Character::COLLISION collision;
 #pragma endregion
-	void moveAnimate(float delta);
 
+	virtual void moveActionStart();
+	virtual void moveActionEnd();
+	void moveAnimate(float delta);
 };
 #endif

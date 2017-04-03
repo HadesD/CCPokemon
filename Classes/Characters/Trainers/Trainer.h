@@ -35,6 +35,7 @@ protected:
 	void onGrass(float dt);
 	//On Collision with Barrier
 	void onCollisionBarrier(float dt);
+
 };
 
 #endif

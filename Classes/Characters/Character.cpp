@@ -8,9 +8,9 @@ Character::Character()
 	this->isMoving = false;
 	this->isMoveActing = false;
 	this->oldAnimePos = 0;
-	this->direction = Character::DIRECTION::DOWN;
+	this->direction = DIRECTION::DOWN;
 	this->speed = 0.2;// s/Tile
-	this->charType = Character::CHARTYPE::PLAYER;
+	this->charType = CHARTYPE::PLAYER;
 }
 
 Character::~Character()
@@ -92,8 +92,6 @@ void Character::setMovePos(float delta)
 			break;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-
 	Size sprtSize = Size(4.f, 16.f);//this->sprite->getContentSize();
 
 	if (xx - sprtSize.width/2 <= 0 || yy - sprtSize.height/2 <= 0)
@@ -117,14 +115,11 @@ void Character::setMovePos(float delta)
 		}
 	}
 
+	auto moveStart = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionStart));
 	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
-	auto endAction = CallFuncN::create([&](Node* sender) {
-		if (this->isMoveActing) {
-			this->isMoving = true;
-		}
-	});
+	auto moveEnd = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionEnd));
 
-	this->runAction(Sequence::create(moveTo, endAction, nullptr));
+	this->runAction(Sequence::create(moveStart, moveTo, moveEnd, nullptr));
 
 	auto grass = mapInfo->getLayer("GRASS");
 	if (grass) {
@@ -146,6 +141,18 @@ void Character::setMovePos(float delta)
 		}
 	}*/
 
+}
+
+void Character::moveActionStart()
+{
+	this->isMoveActing = true;
+}
+
+void Character::moveActionEnd()
+{
+	if (this->isMoveActing) {
+		this->isMoving = true;
+	}
 }
 
 void Character::moveAnimate(float delta)

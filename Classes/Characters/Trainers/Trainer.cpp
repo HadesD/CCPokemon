@@ -196,10 +196,8 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				break;
 		}
 		if (isMoveKey) {
-			if (this->isMoveActing == false) {
-				this->isMoving = true;
-			}
-			this->isMoveActing = true;
+			this->moveActionStart();
+			this->moveActionEnd();
 			this->lastMoveKeyCode = keyCode;
 		}
 	}
@@ -210,11 +208,10 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	CCLOG("Released Key: %d", (int)keyCode);
 	if (this->lastMoveKeyCode == keyCode)
 	{
-		this->isMoving = false;
 		this->isMoveActing = false;
-		//this->lastMoveKeyCode = EventKeyboard::KeyCode::KEY_NONE;
 	}
 }
+
 
 void Trainer::cameraFollow()
 {
