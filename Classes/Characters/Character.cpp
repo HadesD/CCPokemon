@@ -10,7 +10,7 @@ Character::Character()
 	this->isMoveEnded = true;
 	this->oldAnimePos = 0;
 	this->direction = Character::DIRECTION::DOWN;
-	this->speed = 0.2;// s/Tile
+	this->moveSpeed = 112.f;// px/s
 	this->charType = Character::CHARTYPE::PLAYER;
 }
 
@@ -26,7 +26,7 @@ void Character::update(float delta)
 
 void Character::build()
 {
-	this->sprite->setScale(0.85);
+	this->sprite->setScale(0.85f);
 
 	schedule(schedule_selector(Character::moveAnimate), 0.11f);
 
@@ -130,8 +130,10 @@ void Character::setMovePos(float delta)
 		}
 	}
 
+	float moveTime = tileSize.width / this->moveSpeed;
+	
 	auto moveStart = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionStart));
-	auto moveTo = MoveTo::create(this->speed, Vec2(xx, yy));
+	auto moveTo = MoveTo::create(moveTime, Vec2(xx, yy));
 	auto moveEnd = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionEnd));
 
 	this->moveAction = Sequence::create(moveStart, moveTo, moveEnd, nullptr);
@@ -210,8 +212,6 @@ void Character::goTo(Vec2 pos)
 
 	tileW = floor(tileSize.width);
 	tileH = floor(tileSize.height);
-
-	float x, y;
 
 	for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW)
 	{
