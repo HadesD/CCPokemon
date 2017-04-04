@@ -5,7 +5,7 @@
 #include <SimpleAudioEngine.h>
 
 #define COCOS2D_DEBUG 1
-#define SCALE_TO 1
+#define SCALE_TO 2
 
 using namespace std;
 

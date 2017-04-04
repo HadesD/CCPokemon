@@ -64,7 +64,8 @@ void Character::setMovePos(float delta)
 
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
-	if (mapInfo == nullptr) {
+	if (mapInfo == nullptr)
+	{
 		return;
 	}
 
@@ -106,7 +107,8 @@ void Character::setMovePos(float delta)
 		}
 	}
 
-	if (this->isMoving == false) {
+	if (this->isMoving == false)
+	{
 		return;
 	}
 
@@ -119,10 +121,12 @@ void Character::setMovePos(float delta)
 		return;
 	}
 
-	if (xx <= 0 || yy <= 0) {
+	if (xx <= 0 || yy <= 0)
+	{
 		return;
 	}
-	if (xx >= (mapSize.width * tileSize.width) || yy >= (mapSize.height * tileSize.height)) {
+	if (xx >= (mapSize.width * tileSize.width) || yy >= (mapSize.height * tileSize.height))
+	{
 		return;
 	}
 
@@ -136,7 +140,8 @@ void Character::setMovePos(float delta)
 
 	float speed = this->moveSpeed;
 
-	if (this->isRun) {
+	if (this->isRun)
+	{
 		speed *= 1.5f;
 	}
 
@@ -216,7 +221,8 @@ void Character::goTo(Vec2 pos)
 {
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
 
-	if (mapInfo) {
+	if (mapInfo)
+	{
 		auto mapSize = mapInfo->getMapSize();
 		auto tileSize = mapInfo->getTileSize();
 
@@ -225,15 +231,19 @@ void Character::goTo(Vec2 pos)
 		tileW = floor(tileSize.width);
 		tileH = floor(tileSize.height);
 
-		for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW) {
-			if (ix >= pos.x) {
+		for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW)
+		{
+			if (ix >= pos.x)
+			{
 				pos.x = ix - tileW / 2;
 				break;
 			}
 		}
 
-		for (int iy = 0; iy < mapSize.height*tileH; iy = iy + tileH) {
-			if (iy >= pos.y) {
+		for (int iy = 0; iy < mapSize.height*tileH; iy = iy + tileH)
+		{
+			if (iy >= pos.y)
+			{
 				pos.y = iy - tileH / 2;
 				break;
 			}

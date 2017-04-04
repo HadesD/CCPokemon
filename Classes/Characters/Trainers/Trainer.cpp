@@ -167,7 +167,8 @@ void Trainer::onGrass(float delta)
 	yy = this->getPositionY();
 
 	auto grass = mapInfo->getLayer("GRASS");
-	if (grass == nullptr) {
+	if (grass == nullptr)
+	{
 		return;
 	}
 	if (grass->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)) == nullptr)
@@ -190,9 +191,11 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	CCLOG("Pressed Key: %d", (int)keyCode);
 
-	if (this->canMove) {
+	if (this->canMove)
+	{
 		bool isMoveKey = false;
-		switch (keyCode) {
+		switch (keyCode)
+		{
 			//Movement Key
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
 			case EventKeyboard::KeyCode::KEY_W:
@@ -219,7 +222,8 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				this->isRun = true;
 				break;
 		}
-		if (isMoveKey) {
+		if (isMoveKey)
+		{
 			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
 		}
@@ -234,7 +238,8 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 		this->isMoving = false;
 		this->isMoveActing = false;
 	}
-	if (keyCode == EventKeyboard::KeyCode::KEY_2) {
+	if (keyCode == EventKeyboard::KeyCode::KEY_2)
+	{
 		this->isRun = false;
 	}
 }
