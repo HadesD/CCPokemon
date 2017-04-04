@@ -22,6 +22,9 @@
     <Filter Include="src\Pokemons">
       <UniqueIdentifier>{0b369f51-aea5-43ea-8d58-fcfff0c363b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{3c897341-d7bf-46d9-93a9-6d02b8da2585}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,6 +63,9 @@
     <ClCompile Include="..\Classes\Pokemons\Pokemon.cpp">
       <Filter>src\Pokemons</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UI\Joystick.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Pokemons\Pokemon.h">
       <Filter>src\Pokemons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Joystick.h">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -85,7 +85,7 @@ void Trainer::onGate(float delta)
 
 	auto gates = mapInfo->getObjectGroup("GATES");
 
-	if (!gates)
+	if (gates == nullptr)
 	{
 		return;
 	}
