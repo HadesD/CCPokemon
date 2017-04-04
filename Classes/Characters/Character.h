@@ -83,6 +83,7 @@ protected:
 	bool isMoving;
 	bool isMoveActing;
 	bool isMoveEnded;
+	bool isRun;
 	float moveSpeed;
 	Character::DIRECTION direction;
 	int oldAnimePos;

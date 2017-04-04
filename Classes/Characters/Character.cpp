@@ -8,6 +8,7 @@ Character::Character()
 	this->isMoving = false;
 	this->isMoveActing = false;
 	this->isMoveEnded = true;
+	this->isRun = false;
 	this->oldAnimePos = 0;
 	this->direction = Character::DIRECTION::DOWN;
 	this->moveSpeed = 112.f;// px/s
@@ -62,6 +63,11 @@ void Character::setMovePos(float delta)
 	}
 
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
+
+	if (mapInfo == nullptr) {
+		return;
+	}
+
 	auto mapSize = mapInfo->getMapSize();
 	auto tileSize = mapInfo->getTileSize();
 
@@ -130,7 +136,13 @@ void Character::setMovePos(float delta)
 		}
 	}
 
-	float moveTime = tileSize.width / this->moveSpeed;
+	float speed = this->moveSpeed;
+
+	if (this->isRun) {
+		speed *= 1.5f;
+	}
+
+	float moveTime = tileSize.width / speed;
 	
 	auto moveStart = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionStart));
 	auto moveTo = MoveTo::create(moveTime, Vec2(xx, yy));
@@ -205,29 +217,28 @@ void Character::moveAnimate(float delta)
 void Character::goTo(Vec2 pos)
 {
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
-	auto mapSize = mapInfo->getMapSize();
-	auto tileSize = mapInfo->getTileSize();
 
-	float tileW, tileH;
+	if (mapInfo) {
+		auto mapSize = mapInfo->getMapSize();
+		auto tileSize = mapInfo->getTileSize();
 
-	tileW = floor(tileSize.width);
-	tileH = floor(tileSize.height);
+		float tileW, tileH;
 
-	for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW)
-	{
-		if (ix >= pos.x)
-		{
-			pos.x = ix - tileW/2;
-			break;
+		tileW = floor(tileSize.width);
+		tileH = floor(tileSize.height);
+
+		for (int ix = 0; ix < mapSize.width*tileW; ix = ix + tileW) {
+			if (ix >= pos.x) {
+				pos.x = ix - tileW / 2;
+				break;
+			}
 		}
-	}
 
-	for (int iy = 0; iy < mapSize.height*tileH; iy = iy + tileW)
-	{
-		if (iy >= pos.y)
-		{
-			pos.y = iy - tileH / 2;
-			break;
+		for (int iy = 0; iy < mapSize.height*tileH; iy = iy + tileH) {
+			if (iy >= pos.y) {
+				pos.y = iy - tileH / 2;
+				break;
+			}
 		}
 	}
 

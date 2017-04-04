@@ -161,7 +161,7 @@ void Trainer::onGrass(float dt)
 	auto mapSize = mapInfo->getMapSize();
 	auto tileSize = mapInfo->getTileSize();
 
-	float xx, yy, tileW, tileH;
+	float xx, yy;
 
 	xx = this->getPositionX();
 	yy = this->getPositionY();
@@ -193,6 +193,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	if (this->canMove) {
 		bool isMoveKey = false;
 		switch (keyCode) {
+			//Movement Key
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
 			case EventKeyboard::KeyCode::KEY_W:
 				this->direction = Trainer::DIRECTION::UP;
@@ -213,6 +214,10 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				this->direction = Trainer::DIRECTION::LEFT;
 				isMoveKey = true;
 				break;
+			//Run Key
+			case EventKeyboard::KeyCode::KEY_2:
+				this->isRun = true;
+				break;
 		}
 		if (isMoveKey) {
 			this->isMoving = true;
@@ -228,6 +233,9 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		this->isMoving = false;
 		this->isMoveActing = false;
+	}
+	if (keyCode == EventKeyboard::KeyCode::KEY_2) {
+		this->isRun = false;
 	}
 }
 
