@@ -6,7 +6,7 @@ USING_NS_CC;
 
 class Character : public Node
 {
-protected:
+public:
 	enum DIRECTION
 	{
 		UP = 0,
@@ -14,13 +14,13 @@ protected:
 		LEFT = 1,
 		RIGHT = 3,
 	};
-	enum CHARTYPE
+	enum class CHARTYPE
 	{
 		NPC,
 		PLAYER,
 		MAIN,
 	};
-	enum COLLISION
+	enum class COLLISION
 	{
 		NONE,
 		BARRIER,

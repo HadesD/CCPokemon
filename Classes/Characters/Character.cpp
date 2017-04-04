@@ -97,15 +97,6 @@ void Character::setMovePos(float delta)
 
 	Size sprtSize = this->sprite->getContentSize();
 
-	if (xx - sprtSize.width/2 <= 0 || yy - sprtSize.height/2 <= 0)
-	{
-		return;
-	}
-	if(xx + sprtSize.width / 2 >= (mapSize.width * tileSize.width) || yy + sprtSize.height / 2 >= (mapSize.height * tileSize.height))
-	{
-		return;
-	}
-
 	auto barriers = mapInfo->getLayer("BARRIER");
 	if (barriers)
 	{
@@ -125,6 +116,13 @@ void Character::setMovePos(float delta)
 
 	if (this->isMoveEnded == false)
 	{
+		return;
+	}
+
+	if (xx <= 0 || yy <= 0) {
+		return;
+	}
+	if (xx >= (mapSize.width * tileSize.width) || yy >= (mapSize.height * tileSize.height)) {
 		return;
 	}
 

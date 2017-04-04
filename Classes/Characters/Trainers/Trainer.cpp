@@ -55,7 +55,7 @@ void Trainer::setMovePos(float delta)
 
 }
 
-void Trainer::onCollisionBarrier(float dt)
+void Trainer::onCollisionBarrier(float delta)
 {
 	if (this->isMoveActing == false)
 	{
@@ -68,7 +68,7 @@ void Trainer::onCollisionBarrier(float dt)
 	playSound("emerald_0017.mp3", SOUNDTYPE::EFFECT, false);
 }
 
-void Trainer::onGate(float dt)
+void Trainer::onGate(float delta)
 {
 	auto *mapManager = (MapManager*)this->getParent();
 	auto *mapInfo = (TMXTiledMap*)this->getParent();
@@ -149,7 +149,7 @@ void Trainer::onGate(float dt)
 	this->release();
 }
 
-void Trainer::onGrass(float dt)
+void Trainer::onGrass(float delta)
 {
 	if (this->isMoveActing == false)
 	{
