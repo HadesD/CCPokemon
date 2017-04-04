@@ -258,7 +258,7 @@ void Trainer::cameraFollow()
 
 	auto *layer = (PlayLayer*)mapManager->getParent();
 
-	if (!layer)
+	if (layer == nullptr)
 	{
 		return;
 	}
@@ -279,19 +279,25 @@ void Trainer::cameraFollow()
 		return;
 	}
 
-	Size visibleSize = Director::getInstance()->getWinSize();
+	auto visibleSize = Director::getInstance()->getWinSize();
 
-	Vec2 position = this->getPosition();
+	auto position = this->getPosition();
 
-	Size mapSize = Size(tileMap->getMapSize().width * tileMap->getTileSize().width, tileMap->getMapSize().height * tileMap->getTileSize().height);
-	//mapSize = mapSize * 2;
+	position = position * SCALE;
+
+	auto mapSize = Size(tileMap->getMapSize().width * tileMap->getTileSize().width, tileMap->getMapSize().height * tileMap->getTileSize().height);
+
+	mapSize = mapSize * SCALE;
+
 	int x = MAX(position.x, visibleSize.width / 2);
 	int y = MAX(position.y, visibleSize.height / 2);
 	x = MIN(x, mapSize.width - visibleSize.width / 2);
 	y = MIN(y, mapSize.height - visibleSize.height / 2);
-	Vec2 actualPosition = Vec2(x, y);
 
-	Vec2 centerOfView = Vec2(mapSize.width / 2, mapSize.height / 2);
+	auto actualPosition = Vec2(x, y);
+
+	auto centerOfView = Vec2(mapSize.width / 2, mapSize.height / 2);
+
 	if (visibleSize.width > mapSize.width)
 	{
 		x = MAX(x, centerOfView.x);
@@ -300,7 +306,7 @@ void Trainer::cameraFollow()
 	{
 		y = MAX(y, centerOfView.y);
 	}
-	Vec2 viewPoint = Vec2(x, y);
+	auto viewPoint = Vec2(x, y);
 
 	cam->setPosition(viewPoint);
 }

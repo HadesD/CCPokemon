@@ -63,12 +63,6 @@ void MapManager::build()
 
 	}
 
-	this->mapInfo->setScale(SCALE_TO);
-
-	this->mapInfo->setMapSize(this->mapInfo->getMapSize()*SCALE_TO);
-
-	this->mapInfo->setTileSize(this->mapInfo->getTileSize()*SCALE_TO);
-
 	this->addChild(this->mapInfo);
 }
 #pragma region GETs/SETs

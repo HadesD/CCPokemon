@@ -70,6 +70,10 @@ bool PlayLayer::init()
 	map->addCharToMap(trainer, ZORDER_TRAINER);
 	trainer->goTo(toPos);
 
+	this->setAnchorPoint(Vec2(0,0));
+
+	this->setScale(SCALE);
+
     return true;
 }
 

@@ -37,7 +37,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->setDisplayStats(COCOS2D_DEBUG);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.f / 60);
 
     FileUtils::getInstance()->addSearchPath("res");
 
