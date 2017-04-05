@@ -22,12 +22,19 @@ Character::~Character()
 
 void Character::update(float delta)
 {
+	if (this->isMoveActing == true) {
+		if (this->curAnimeType != Character::ANIMETYPE::RUN) {
+			this->curAnimeType = Character::ANIMETYPE::WALK;
+		}
+	} else {
+		this->curAnimeType = Character::ANIMETYPE::STAND;
+	}
+
 	this->setMovePos(delta);
 }
 
 void Character::build()
 {
-	this->sprite->setScale(0.85f);
 
 	schedule(schedule_selector(Character::updateSpriteAnimate), 0.11f);
 
@@ -132,7 +139,7 @@ void Character::setMovePos(float delta)
 
 	if (this->collision == Character::COLLISION::BARRIER)
 	{
-		if (this->charType == Character::CHARTYPE::MAIN)
+		if (this->charType == Character::CHARTYPE::MAIN_PLAYER)
 		{
 			return;
 		}
@@ -147,13 +154,29 @@ void Character::setMovePos(float delta)
 
 	float moveTime = tileSize.width / speed;
 	
-	auto moveStart = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionStart));
+	auto moveStart = CallFunc::create([&]() {
+		if (this->isMoveEnded == false) {
+			this->updateSpriteAnimate(0.f);
+		}
+
+		this->isMoveEnded = false;
+	});
 	auto moveTo = MoveTo::create(moveTime, Vec2(xx, yy));
-	auto moveEnd = CallFunc::create(this, CC_CALLFUNC_SELECTOR(Character::moveActionEnd));
+	auto moveEnd = CallFunc::create([&]() {
+		this->isMoveEnded = true;
 
-	this->moveAction = Sequence::create(moveStart, moveTo, moveEnd, nullptr);
+		if (this->isMoveActing == true) {
+			if (this->isMoving == false) {
+				this->isMoving = true;
+			}
+		} else {
+			this->isMoving = false;
+		}
+	});
 
-	this->runAction(this->moveAction);
+	auto moveAction = Sequence::create(moveStart, moveTo, moveEnd, nullptr);
+
+	this->runAction(moveAction);
 
 	/*auto jumpSpace = mapInfo->getLayer("JUMPPASS");
 	if (jumpSpace) {
@@ -169,62 +192,53 @@ void Character::setMovePos(float delta)
 
 }
 
-void Character::moveActionStart()
-{
-	if (this->isMoveEnded == false)
-	{
-		this->updateSpriteAnimate(0.f);
-	}
-
-	this->isMoveEnded = false;
-}
-
-void Character::moveActionEnd()
-{
-	this->isMoveEnded = true;
-
-	if (this->isMoveActing == true)
-	{
-		if (this->isMoving == false)
-		{
-			this->isMoving = true;
-		}
-	}
-	else
-	{
-		this->isMoving = false;
-	}
-}
-
 void Character::updateSpriteAnimate(float delta)
 {
 	float w, h, x, y;
 
-	w = 8.f;
-	h = 16.f;
+	w = 16.f;
+	h = 20.f;
 	x = 0.f;
 	y = 0.f;
 
-	switch (this->curAnimeType) {
+	switch (this->curAnimeType) 
+	{
 		case Character::ANIMETYPE::STAND:
-			w = 16.f;
-			h = 20.f;
-			x = 0.f;
-			y = 0.f;
+			x = w;
+			break;
+		case Character::ANIMETYPE::RUN:
+			x = w;
+			break;
+		case Character::ANIMETYPE::WALK:
+			if (this->oldAnimePos == 0) 
+			{
+				x = (w + 2) * 3;
+				this->oldAnimePos = 3;
+			}
+			else
+			{
+				x = 0.f;
+				this->oldAnimePos = 0;
+			}
 			break;
 	}
 
-	if (this->canMove == false) {
-		this->oldAnimePos = 0;
+	switch (this->direction) 
+	{
+		case Character::DIRECTION::UP:
+			y = (h + 2);
+			break;
+		case Character::DIRECTION::DOWN:
+			y = 0;
+			break;
+		case Character::DIRECTION::LEFT:
+			y = (h + 2) * 2;
+			break;
+		case Character::DIRECTION::RIGHT:
+			y = (h + 2) * 3;
+			break;
 	}
-	if (this->isMoveActing) {
-		this->oldAnimePos++;
-		if (this->oldAnimePos == 3) {
-			this->oldAnimePos = 0;
-		}
-	} else {
-		this->oldAnimePos = 0;
-	}
+
 	this->sprite->setTextureRect(Rect(x, y, w, h));
 }
 

@@ -12,7 +12,7 @@ Trainer::~Trainer()
 
 void Trainer::build()
 {
-	this->setCharType(Trainer::CHARTYPE::MAIN);
+	this->charType = Trainer::CHARTYPE::MAIN_PLAYER;
 
 	//Listen to Keyboard Event
 	auto listener = EventListenerKeyboard::create();

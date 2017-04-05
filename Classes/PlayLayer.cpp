@@ -54,7 +54,7 @@ bool PlayLayer::init()
 	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
-	trainer->setSprite(RD_C_TRAINERS + "/trainer1.png");
+	trainer->setSprite(RD_C_TRAINERS + "/male_frlg.png");
 	trainer->setName("Dark.Hades");
 	auto toPos = Vec2(0, 0);
 	if (mapDetails)

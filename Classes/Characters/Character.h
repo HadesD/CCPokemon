@@ -18,7 +18,7 @@ public:
 	{
 		NPC,
 		PLAYER,
-		MAIN,
+		MAIN_PLAYER,
 	};
 	enum class COLLISION
 	{
@@ -78,8 +78,6 @@ public:
 #pragma endregion
 
 protected:
-
-	Sequence *moveAction;
 	
 #pragma region CharAttrs
 	int id;
@@ -97,8 +95,6 @@ protected:
 	Character::COLLISION collision;
 #pragma endregion
 
-	virtual void moveActionStart();
-	virtual void moveActionEnd();
 	void updateSpriteAnimate(float delta);
 };
 #endif
