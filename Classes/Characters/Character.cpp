@@ -22,12 +22,16 @@ Character::~Character()
 
 void Character::update(float delta)
 {
-	if (this->isMoveActing == true) {
-		if (this->curAnimeType != Character::ANIMETYPE::RUN) {
+	if (this->curAnimeType != Character::ANIMETYPE::RUN)
+	{
+		if (this->isMoveActing == true)
+		{
 			this->curAnimeType = Character::ANIMETYPE::WALK;
 		}
-	} else {
-		this->curAnimeType = Character::ANIMETYPE::STAND;
+		else
+		{
+			this->curAnimeType = Character::ANIMETYPE::STAND;
+		}
 	}
 
 	this->setMovePos(delta);
@@ -36,7 +40,7 @@ void Character::update(float delta)
 void Character::build()
 {
 
-	schedule(schedule_selector(Character::updateSpriteAnimate), 0.11f);
+	schedule(schedule_selector(Character::updateSpriteAnimate), 0.13f);
 
 	scheduleUpdate();
 
@@ -48,6 +52,19 @@ void Character::build()
 			Vec2(sprtSize.width, sprtSize.height),
 			Color4F::RED);
 		this->addChild(rect, 99);
+	}
+	
+	if (this->charType == Character::CHARTYPE::MAIN_PLAYER || this->charType == Character::CHARTYPE::PLAYER)
+	{
+		//Trainer 's Name 's Label
+		auto nameLabel = Label::createWithSystemFont(this->name, "Arial", 11);
+		nameLabel->setColor(Color3B(255, 255, 255));
+		float padding = 4.f;
+		auto nameBGLayer = LayerColor::create(Color4B(0, 0, 0, 80), nameLabel->getContentSize().width + padding, nameLabel->getContentSize().height);
+		nameLabel->setPosition(nameBGLayer->getContentSize().width / 2, nameBGLayer->getContentSize().height / 2);
+		nameBGLayer->addChild(nameLabel);
+		nameBGLayer->setPosition(-nameBGLayer->getContentSize().width / 2, this->sprite->getContentSize().height / 2 + 2);
+		this->addChild(nameBGLayer);
 	}
 
 	this->addChild(this->sprite);
@@ -103,8 +120,6 @@ void Character::setMovePos(float delta)
 			break;
 	}
 
-	Size sprtSize = this->sprite->getContentSize();
-
 	auto barriers = mapInfo->getLayer("BARRIER");
 	if (barriers)
 	{
@@ -154,22 +169,29 @@ void Character::setMovePos(float delta)
 
 	float moveTime = tileSize.width / speed;
 	
-	auto moveStart = CallFunc::create([&]() {
-		if (this->isMoveEnded == false) {
+	auto moveStart = CallFunc::create([&]()
+	{
+		if (this->isMoveEnded == false)
+		{
 			this->updateSpriteAnimate(0.f);
 		}
 
 		this->isMoveEnded = false;
 	});
 	auto moveTo = MoveTo::create(moveTime, Vec2(xx, yy));
-	auto moveEnd = CallFunc::create([&]() {
+	auto moveEnd = CallFunc::create([&]()
+	{
 		this->isMoveEnded = true;
 
-		if (this->isMoveActing == true) {
-			if (this->isMoving == false) {
+		if (this->isMoveActing == true)
+		{
+			if (this->isMoving == false)
+			{
 				this->isMoving = true;
 			}
-		} else {
+		}
+		else
+		{
 			this->isMoving = false;
 		}
 	});
@@ -201,23 +223,32 @@ void Character::updateSpriteAnimate(float delta)
 	x = 0.f;
 	y = 0.f;
 
-	switch (this->curAnimeType) 
+	switch (this->curAnimeType)
 	{
 		case Character::ANIMETYPE::STAND:
 			x = w;
 			break;
 		case Character::ANIMETYPE::RUN:
-			x = w;
-			break;
-		case Character::ANIMETYPE::WALK:
-			if (this->oldAnimePos == 0) 
+			x = (w + 2) * 3;
+			if (this->isMoveActing == true)
 			{
-				x = (w + 2) * 3;
-				this->oldAnimePos = 3;
+				x += w * this->oldAnimePos;
+				this->oldAnimePos++;
+				if (this->oldAnimePos >= 3)
+				{
+					this->oldAnimePos = 0;
+				}
 			}
 			else
 			{
-				x = 0.f;
+				x += w;
+			}
+			break;
+		case Character::ANIMETYPE::WALK:
+			x = (w) * this->oldAnimePos;
+			this->oldAnimePos++;
+			if (this->oldAnimePos >= 3)
+			{
 				this->oldAnimePos = 0;
 			}
 			break;
