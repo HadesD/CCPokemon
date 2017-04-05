@@ -32,6 +32,7 @@ public:
 		STAND,
 		WALK,
 		RUN,
+		BIKE,
 	};
 public:
 	Character();

@@ -223,13 +223,15 @@ void Character::updateSpriteAnimate(float delta)
 	x = 0;
 	y = 0;
 
+	this->curAnimeType = Character::ANIMETYPE::BIKE;
+
 	switch (this->curAnimeType)
 	{
 		case Character::ANIMETYPE::STAND:
 			x = w + 1;
 			break;
 		case Character::ANIMETYPE::RUN:
-			x = (w+1) * 3 + 5;
+			x = (w + 1) * 3 + 5;
 			if (this->isMoveActing == true)
 			{
 				x += (w + 1) * this->oldAnimePos;
@@ -241,7 +243,7 @@ void Character::updateSpriteAnimate(float delta)
 			}
 			else
 			{
-				x += (w + 1);
+				x += w + 1;
 			}
 			break;
 		case Character::ANIMETYPE::WALK:
@@ -254,12 +256,33 @@ void Character::updateSpriteAnimate(float delta)
 				this->oldAnimePos = 0;
 			}
 			break;
+		case Character::ANIMETYPE::BIKE:
+			x = (w + 1) * 3 + 5;
+			x += (w + 1) * 3 + 5;
+
+			w = 20;
+			h = 22;
+
+			if (this->isMoveActing == true)
+			{
+				x += (w + 1) * this->oldAnimePos;
+				this->oldAnimePos++;
+				if (this->oldAnimePos >= 3)
+				{
+					this->oldAnimePos = 0;
+				}
+			}
+			else
+			{
+				x += w + 1;
+			}
+			break;
 	}
 
 	switch (this->direction) 
 	{
 		case Character::DIRECTION::UP:
-			y = (h + 1);
+			y = h + 1;
 			break;
 		case Character::DIRECTION::DOWN:
 			y = 0;
