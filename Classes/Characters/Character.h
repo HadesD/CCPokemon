@@ -7,12 +7,12 @@ USING_NS_CC;
 class Character : public Node
 {
 public:
-	enum DIRECTION
+	enum class DIRECTION
 	{
-		UP = 0,
-		DOWN = 2,
-		LEFT = 1,
-		RIGHT = 3,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
 	};
 	enum class CHARTYPE
 	{
@@ -26,6 +26,12 @@ public:
 		BARRIER,
 		GRASS,
 		JUMPPASS,
+	};
+	enum class ANIMETYPE
+	{
+		STAND,
+		WALK,
+		RUN,
 	};
 public:
 	Character();
@@ -41,7 +47,7 @@ public:
 
 #pragma region GETs/SETs
 
-	void setSprite(Sprite *sprite);
+	void setSprite(std::string sprite);
 	Sprite* getSprite();
 
 	void setDirection(Character::DIRECTION direction);
@@ -83,7 +89,7 @@ protected:
 	bool isMoving;
 	bool isMoveActing;
 	bool isMoveEnded;
-	bool isRun;
+	Character::ANIMETYPE curAnimeType;
 	float moveSpeed;
 	Character::DIRECTION direction;
 	int oldAnimePos;
@@ -93,6 +99,6 @@ protected:
 
 	virtual void moveActionStart();
 	virtual void moveActionEnd();
-	void moveAnimate(float delta);
+	void updateSpriteAnimate(float delta);
 };
 #endif

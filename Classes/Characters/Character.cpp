@@ -8,7 +8,7 @@ Character::Character()
 	this->isMoving = false;
 	this->isMoveActing = false;
 	this->isMoveEnded = true;
-	this->isRun = false;
+	this->curAnimeType = Character::ANIMETYPE::STAND;
 	this->oldAnimePos = 0;
 	this->direction = Character::DIRECTION::DOWN;
 	this->moveSpeed = 112.f;// px/s
@@ -29,7 +29,7 @@ void Character::build()
 {
 	this->sprite->setScale(0.85f);
 
-	schedule(schedule_selector(Character::moveAnimate), 0.11f);
+	schedule(schedule_selector(Character::updateSpriteAnimate), 0.11f);
 
 	scheduleUpdate();
 
@@ -140,7 +140,7 @@ void Character::setMovePos(float delta)
 
 	float speed = this->moveSpeed;
 
-	if (this->isRun)
+	if (this->curAnimeType == Character::ANIMETYPE::RUN)
 	{
 		speed *= 1.5f;
 	}
@@ -173,7 +173,7 @@ void Character::moveActionStart()
 {
 	if (this->isMoveEnded == false)
 	{
-		this->moveAnimate(0.f);
+		this->updateSpriteAnimate(0.f);
 	}
 
 	this->isMoveEnded = false;
@@ -196,25 +196,36 @@ void Character::moveActionEnd()
 	}
 }
 
-void Character::moveAnimate(float delta)
+void Character::updateSpriteAnimate(float delta)
 {
-	if (this->canMove == false)
-	{
+	float w, h, x, y;
+
+	w = 8.f;
+	h = 16.f;
+	x = 0.f;
+	y = 0.f;
+
+	switch (this->curAnimeType) {
+		case Character::ANIMETYPE::STAND:
+			w = 16.f;
+			h = 20.f;
+			x = 0.f;
+			y = 0.f;
+			break;
+	}
+
+	if (this->canMove == false) {
 		this->oldAnimePos = 0;
 	}
-	if(this->isMoveActing)
-	{
+	if (this->isMoveActing) {
 		this->oldAnimePos++;
-		if (this->oldAnimePos == 3)
-		{
+		if (this->oldAnimePos == 3) {
 			this->oldAnimePos = 0;
 		}
-	}
-	else
-	{
+	} else {
 		this->oldAnimePos = 0;
 	}
-	this->sprite->setTextureRect(Rect(32.f*this->oldAnimePos, 32.f*this->direction, 32.f, 32.f));
+	this->sprite->setTextureRect(Rect(x, y, w, h));
 }
 
 void Character::goTo(Vec2 pos)
@@ -255,9 +266,9 @@ void Character::goTo(Vec2 pos)
 
 #pragma region GETs/SETs
 
-void Character::setSprite(Sprite *sprite)
+void Character::setSprite(std::string sprite)
 {
-	this->sprite = sprite;
+	this->sprite = Sprite::create(sprite, Rect(0, 0, 16.f, 20.f));
 }
 
 Sprite* Character::getSprite()

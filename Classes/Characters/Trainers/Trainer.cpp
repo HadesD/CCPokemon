@@ -219,7 +219,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 				break;
 			//Run Key
 			case EventKeyboard::KeyCode::KEY_2:
-				this->isRun = true;
+				this->curAnimeType = Character::ANIMETYPE::RUN;
 				break;
 		}
 		if (isMoveKey)
@@ -240,7 +240,7 @@ void Trainer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_2)
 	{
-		this->isRun = false;
+		this->curAnimeType = Character::ANIMETYPE::STAND;
 	}
 }
 
