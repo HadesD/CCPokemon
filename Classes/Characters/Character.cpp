@@ -216,23 +216,23 @@ void Character::setMovePos(float delta)
 
 void Character::updateSpriteAnimate(float delta)
 {
-	float w, h, x, y;
+	int w, h, x, y;
 
-	w = 16.f;
-	h = 20.f;
-	x = 0.f;
-	y = 0.f;
+	w = 16;
+	h = 20;
+	x = 0;
+	y = 0;
 
 	switch (this->curAnimeType)
 	{
 		case Character::ANIMETYPE::STAND:
-			x = w;
+			x = w + 1;
 			break;
 		case Character::ANIMETYPE::RUN:
-			x = (w + 2) * 3;
+			x = (w+1) * 3 + 5;
 			if (this->isMoveActing == true)
 			{
-				x += w * this->oldAnimePos;
+				x += (w + 1) * this->oldAnimePos;
 				this->oldAnimePos++;
 				if (this->oldAnimePos >= 3)
 				{
@@ -241,12 +241,14 @@ void Character::updateSpriteAnimate(float delta)
 			}
 			else
 			{
-				x += w;
+				x += (w + 1);
 			}
 			break;
 		case Character::ANIMETYPE::WALK:
-			x = (w) * this->oldAnimePos;
+			x = (w + 1) * this->oldAnimePos;
+
 			this->oldAnimePos++;
+
 			if (this->oldAnimePos >= 3)
 			{
 				this->oldAnimePos = 0;
@@ -257,16 +259,16 @@ void Character::updateSpriteAnimate(float delta)
 	switch (this->direction) 
 	{
 		case Character::DIRECTION::UP:
-			y = (h + 2);
+			y = (h + 1);
 			break;
 		case Character::DIRECTION::DOWN:
 			y = 0;
 			break;
 		case Character::DIRECTION::LEFT:
-			y = (h + 2) * 2;
+			y = (h + 1) * 2;
 			break;
 		case Character::DIRECTION::RIGHT:
-			y = (h + 2) * 3;
+			y = (h + 1) * 3;
 			break;
 	}
 
