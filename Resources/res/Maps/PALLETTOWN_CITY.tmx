@@ -18,7 +18,7 @@
  </layer>
  <layer name="MAXZORDER" width="24" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpIJkIE4B4lQgTgPidCxqLIDYEoitgNgaiG3o5rqBBfuJUHOC5q4Y2kASiKWAWBqIZYBYFojlgFh+IB01CkbBKKA6AAAclgVn
+   eJxjYBgFpAILILYEYisgtgZiGzLVDEdgSyU1IxlIArEUEEsDsQwQywKxHBDLD6SjRsEoGAVUBwB48QOD
   </data>
  </layer>
  <objectgroup name="DETAILS">
