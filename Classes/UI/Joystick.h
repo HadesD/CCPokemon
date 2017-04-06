@@ -3,6 +3,7 @@
 #define __JOYSTICK_H_CCPOKEMON__
 #include "stdafx.h"
 #include "cocos2d.h"
+#include "../Characters/Trainers/Trainer.h"
 
 USING_NS_CC;
 

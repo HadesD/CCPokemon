@@ -14,16 +14,6 @@
 #include "../PlayLayer.h"
 USING_NS_CC;
 
-#ifndef ZORDER_ABOVE
-#define ZORDER_ABOVE 15
-#endif
-#ifndef ZORDER_CHARACTER
-#define ZORDER_CHARACTER 3
-#endif
-#ifndef ZORDER_TRAINER
-#define ZORDER_TRAINER 4
-#endif
-
 class MapManager : public Node
 {
 public:
@@ -32,7 +22,7 @@ public:
 
 	virtual void build();
 
-	void addCharToMap(Character* character, int zOrder);
+	void addCharToMap(Character* character);
 
 #pragma region GETs/SETs
 	void setMapInfo(std::string fileName);

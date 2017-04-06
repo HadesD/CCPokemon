@@ -39,28 +39,51 @@ void MapManager::build()
 	}
 
 	auto gates = mapInfo->getObjectGroup("GATES");
-
 	if (gates)
 	{
 		for (auto gate : gates->getObjects())
 		{
-			auto g = gate.asValueMap();
+			auto v = gate.asValueMap();
 			if (COCOS2D_DEBUG)
 			{
 				auto rect = DrawNode::create();
 				rect->drawRect(
-					Vec2(g.at("x").asFloat(), g.at("y").asFloat()),
-					Vec2(g.at("x").asFloat()+g.at("width").asFloat(), g.at("y").asFloat()+g.at("width").asFloat()),
+					Vec2(v.at("x").asFloat(), v.at("y").asFloat()),
+					Vec2(v.at("x").asFloat()+v.at("width").asFloat(), v.at("y").asFloat()+v.at("width").asFloat()),
 					Color4F::BLUE);
 				mapInfo->addChild(rect, 10);
 			}
 			auto *particle = CCParticleSystemQuad::create(RD_PARTICLES + "/Gate_Particle.plist");
 			particle->resetSystem();
-			particle->setPosition(g.at("x").asFloat() + g.at("width").asFloat() / 2, g.at("y").asFloat());
-			particle->setPosVar(Vec2(g.at("width").asFloat()/2, g.at("height").asFloat()));
+			particle->setPosition(v.at("x").asFloat() + v.at("width").asFloat() / 2, v.at("y").asFloat());
+			particle->setPosVar(Vec2(v.at("width").asFloat()/2, v.at("height").asFloat()));
 			this->mapInfo->addChild(particle);
 		}
+	}
 
+	auto _maxzorder = this->mapInfo->getLayer("MAXZORDER");
+	if (_maxzorder)
+	{
+		_maxzorder->setZOrder(999);
+	}
+
+	//Load NPCs
+	auto _npcs = mapInfo->getObjectGroup("NPCS");
+	if (_npcs)
+	{
+		for (auto _npc : _npcs->getObjects())
+		{
+			auto v = _npc.asValueMap();
+
+			auto newNPC = new Character;
+			newNPC->setSprite(v.at("sprite").asString());
+			newNPC->setCharType(Character::CHARTYPE::NPC);
+			newNPC->build();
+			this->addCharToMap(newNPC);
+			newNPC->goTo(Vec2(v.at("x").asFloat(), v.at("y").asFloat()));
+
+			CCLOG("Has NPC: %s", v.at("sprite").asString());
+		}
 	}
 
 	this->addChild(this->mapInfo);
@@ -80,10 +103,23 @@ TMXTiledMap *MapManager::getMapInfo()
 }
 #pragma endregion
 
-void MapManager::addCharToMap(Character* character, int zOrder)
+void MapManager::addCharToMap(Character* character)
 {
 	character->setIsMoving(false);
 	character->setIsMoveActing(false);
+
+	int zOrder = 100;
+
+	auto _maxzorder = this->mapInfo->getLayer("MAXZORDER");
+
+	if (_maxzorder)
+	{
+		if (zOrder >= _maxzorder->getZOrder())
+		{
+			zOrder = _maxzorder->getZOrder() - 1;
+		}
+	}
+
 
 	this->mapInfo->addChild(character, zOrder);
 

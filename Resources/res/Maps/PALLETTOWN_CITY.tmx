@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" nextobjectid="21">
- <tileset firstgid="1" name="PALLETTOWN_CITY" tilewidth="16" tileheight="16" tilecount="480" columns="24">
-  <image source="Tilesets/MapPNG/PALLETTOWN_CITY.png" width="384" height="320"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="20" tilewidth="16" tileheight="16" nextobjectid="24">
+ <tileset firstgid="1" name="PALLETTOWN_CITY" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="Tilesets/MapPNG/PALLETTOWN_CITY.png" width="500" height="500"/>
  </tileset>
- <tileset firstgid="481" name="collisionTiles" tilewidth="16" tileheight="16" tilecount="400" columns="20">
+ <tileset firstgid="962" name="collisionTiles" tilewidth="16" tileheight="16" tilecount="400" columns="20">
   <image source="Tilesets/collisionTiles.png" width="320" height="320"/>
  </tileset>
  <layer name="BACKGROUND" width="24" height="20">
   <data encoding="base64" compression="zlib">
-   eJwNwwOQEAgAAMCLl23btm3btm3XZdu2bdu26z/zPzxyO7MbLCAgILghDGkoQxtoGMMazvBGMKKRjGwUoxrN6MYwprGMbRzjGs/4JjChiUxsEpOazOSmMKWpTG0a05rO9GYwo5nMbBazms3s5jCnucxtHvOaz/wWsKCFLGwRi1rM4pawpKUsbRnLWs7yVrCilaxsFatazerWsKa1rG0d61rP+jawoY1sbBOb2szmtrClrWxtG9vazvZ2sKOd7GwXu9rN7vawp73sbR/72s/+DnCggxzsEIc6zCCHO8KRjnK0YxzrOMc7wYlOcrJTnOo0pzvDmc5ytnOc6zznu8CFLnKxS1zqMpe7wpWucrVrXOs617vBjW5ys1vc6ja3u8Od7nK3e9zrPvd7wIMe8rBHPOoxj3vCk57ytGc86znPe8GLXvKyV7zqNa97w5ve8rZ3vOs97/vAhz7ysX/4p0986jOf+8KXvvK1b3zrO9/7l3/7wY9+8rP/+K//+b9f/Oo3v/vDn/4yIBgGN4QhDWVoAw1jWMMZ3ghGNJKRjWJUoxndGMY0lrGNY1zjGd8EJjSRiU1iUpOZ3BSmNJWpTWNa05neDGY0k5nNYlazmd0c5jSXuc1jXvOZ3wIWtJCFLWJRi1ncEpa0lKUtY1nLWd4KVrSSla1iVatZ3RrWtJa1rWNd61nfBja0kY1tYlOb2dwWtrSVrW1jW9vZ3g52tJOd7WJXu9ndHva0l73tY1/72d8BDnSQgx3iUIcZ5HBHONJRjnaMYx3neCc40UlOdopTneZ0ZzjTWc52jnOd53wXuNBFLnaJS13mcle40lWudo1rXed6N7jRTW52i1vd5nZ3uNNd7naPe93nfg940EMe9ohHPeZxT3jSU572jGc953kveNFLXvaKV73mdW9401ve9o53ved9H/jQRz72N4WD4tI=
+   eJwV1QN7EAgAgOGptry8vMa8vDzUlpeX5+XOnbNx7pyNc+dsnDtn49w533vP872/4QsMCAgIIpgQilCUUMIoRnFKUJJSlKYM4ZSlHOWpQEUqUZkIIqlNFNHEEEsc8dShLvWoTwMa0ogEGtOEpjSjOS1oSSJJJJNCKh3pRBrpdKYLXelGd3rQkwx60Zs+9KUf/RlAJllkk0MueeRTQCEjGMkoRjOGsYxjPHdwJ3dxN/dwL/cxgYlMYjJTmMo0pjODmcxiNnOYyzzms4DHeJwneJKneJpnWMgiFrOEpSxjOStYySpWs4a1rGM9G9jIK7zKa7zOG7zJW2xiM1vYyja2s4Od7GI3e9jLPvZzgIMc4iM+5hM+5TM+5wsOc4SjHOM4JzjJKU5zhrOc4zwXuMglLvMDP/ITP/MLv/IbV7jKNa5zg5vc4jYBgSKIYEIoQlFCCaMYxSlBSUpRmjKEE0EVqlKN6tSgJrWIpDZRRBNDLHHEU4e61KM+DWhIIxJIpBWtaUNb2tGeDiSRTAqpdKQTaaTTmS50pRvd6UFPMshkIIMYzBCGMozhZJFNDrnkkU8BhYxgJKMYzRjGMo7xTOB+HuBBHuJhHuFRJjKJyUxhKtOYzgxmMovZzGEu85jPAhbyLM/xPC/wIi/xMotYzBKWsozlrGAlq1jNGtayjvVsYCObeJt3eJf3eJ8P+JDNbGEr29jODnayi93sYS/72M8BDnKIw3zJV3zNN3zLd3zPEY5yjOOc4CSnOM0ZznKO81zgIpe4zBV+5w/+5C/+5h/+5SrXuM4NbnKL2/w/jkCCCCaEIhQllDDCKUs5ylOBilSiMhFUoSrVqE4NalKLSGoTRTQxxBJHPAk0pglNaUZzWtCSRFrRmja0pR3t6UASyaSQSkc6kUY6GfSiN33oSz/6M4BMBjKIwQxhKMMYThbZ5JBLHvkUUMh/yu7XCw==
   </data>
  </layer>
  <layer name="BARRIER" width="24" height="20">
   <data encoding="base64" compression="zlib">
-   eJx7yMjA8JAEDAOk6KGH+dQG+Mwnxn5Caoar+cTEDzlq0MXR1WDTS4yagUg/pOolJpzpaT658TtY3E+K+dj4hMynRnoaiumTVPOp6QZam4/NLFLMx2UOAC/7zpU=
+   eJw7xMzAcIgEDAOk6KGH+dQGA2k+Mf4jpGa4mo/MJ6SXGDXDMf2QqpeY/EdIPzXNp7X7STEfG5+Q+dSI76GYfkg1n5puoLX52MwixXxc5gAAd3CldA==
+  </data>
+ </layer>
+ <layer name="MAXZORDER" width="24" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFpIJkIE4B4lQgTgPidCxqLIDYEoitgNgaiG3o5rqBBfuJUHOC5q4Y2kASiKWAWBqIZYBYFojlgFh+IB01CkbBKKA6AAAclgVn
   </data>
  </layer>
  <objectgroup name="DETAILS">
@@ -27,7 +32,7 @@
  </objectgroup>
  <layer name="GRASS" width="24" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAqGLnjEiIlpbR81AABTzwVT
+   eJxjYBgFo2AUjIJRMAqGLjjMjIlpbR81AADn3ASl
   </data>
  </layer>
  <objectgroup name="GATES">
@@ -45,6 +50,20 @@
    <properties>
     <property name="mapFile" value="ROUTE_1.tmx"/>
    </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="NPCS">
+  <object id="22" name="Nina" x="57" y="152">
+   <properties>
+    <property name="sprite" value="res/Characters/Trainers/female_frlg.png"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="23" name="SomeOne" x="71" y="248">
+   <properties>
+    <property name="sprite" value="res/Characters/Trainers/male_frlg.png"/>
+   </properties>
+   <ellipse/>
   </object>
  </objectgroup>
 </map>

@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "PlayLayer.h"
+#include "UI/Joystick.h"
 #include "Maps/MapManager.h"
 #include "Characters/Trainers/Trainer.h"
 
@@ -67,7 +68,7 @@ bool PlayLayer::init()
 	}
 
 	trainer->build();
-	map->addCharToMap(trainer, ZORDER_TRAINER);
+	map->addCharToMap(trainer);
 	trainer->goTo(toPos);
 
 	this->setAnchorPoint(Vec2(0,0));
