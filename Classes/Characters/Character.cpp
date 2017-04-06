@@ -67,6 +67,8 @@ void Character::build()
 		this->addChild(nameBGLayer);
 	}
 
+	this->sprite->setPosition(Vec2(0, 3));
+
 	this->addChild(this->sprite);
 }
 

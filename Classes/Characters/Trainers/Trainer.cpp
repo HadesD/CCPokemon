@@ -216,6 +216,7 @@ void Trainer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		{
 			this->isMoving = true;
 			this->lastMoveKeyCode = keyCode;
+			this->updateSpriteAnimate(0.f);
 		}
 	}
 }
