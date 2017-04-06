@@ -162,9 +162,14 @@ void Character::setMovePos(float delta)
 
 	float speed = this->moveSpeed;
 
-	if (this->curAnimeType == Character::ANIMETYPE::RUN)
+	switch (this->curAnimeType)
 	{
-		speed *= 1.5f;
+		case Character::ANIMETYPE::RUN:
+			speed *= 1.5f;
+			break;
+		case Character::ANIMETYPE::BIKE:
+			speed *= 1.8f;
+			break;
 	}
 
 	float moveTime = tileSize.width / speed;
@@ -223,7 +228,7 @@ void Character::updateSpriteAnimate(float delta)
 	x = 0;
 	y = 0;
 
-	this->curAnimeType = Character::ANIMETYPE::BIKE;
+	//this->curAnimeType = Character::ANIMETYPE::BIKE;
 
 	switch (this->curAnimeType)
 	{
