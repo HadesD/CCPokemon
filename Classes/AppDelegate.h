@@ -2,6 +2,7 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
+#include "stdafx.h"
 
 /**
 @brief    The cocos2d Application.
@@ -37,4 +38,3 @@ public:
 };
 
 #endif // _APP_DELEGATE_H_
-
