@@ -10,21 +10,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Characters">
-      <UniqueIdentifier>{eed10e7c-2123-4bf7-9b91-528737feed29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Characters\Trainers">
-      <UniqueIdentifier>{54a0f733-38ce-4bd4-8cef-429ba425e1e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Maps">
-      <UniqueIdentifier>{68fa68c1-b99d-40cb-9227-7cfd1d2314dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Pokemons">
-      <UniqueIdentifier>{0b369f51-aea5-43ea-8d58-fcfff0c363b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI">
-      <UniqueIdentifier>{3c897341-d7bf-46d9-93a9-6d02b8da2585}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,38 +18,8 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CreditLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MenuLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PlayLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SceneManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\stdafx.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Characters\Character.cpp">
-      <Filter>src\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Characters\Trainers\Trainer.cpp">
-      <Filter>src\Characters\Trainers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Maps\MapManager.cpp">
-      <Filter>src\Maps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Pokemons\Pokemon.cpp">
-      <Filter>src\Pokemons</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\Joystick.cpp">
-      <Filter>src\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,46 +29,13 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CreditLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MenuLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PlayLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SceneManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\stdafx.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Characters\Character.h">
-      <Filter>src\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Characters\Trainers\Trainer.h">
-      <Filter>src\Characters\Trainers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Maps\MapManager.h">
-      <Filter>src\Maps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Pokemons\Pokemon.h">
-      <Filter>src\Pokemons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\Joystick.h">
-      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\game.ico" />
   </ItemGroup>
 </Project>
