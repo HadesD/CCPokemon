@@ -122,14 +122,14 @@ void Character::setMovePos(float delta)
 			break;
 	}
 
-	auto barriers = mapInfo->getLayer("BARRIER");
+	/*auto barriers = mapInfo->getLayer("BARRIER");
 	if (barriers)
 	{
 		if(barriers->getTileAt(Vec2(xx / tileSize.width, ((mapSize.height * tileSize.height) - yy) / tileSize.height)))
 		{
 			this->collision = Character::COLLISION::BARRIER;
 		}
-	}
+	}*/
 
 	if (this->isMoving == false)
 	{
