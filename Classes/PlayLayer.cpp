@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 #include "PlayLayer.h"
-#include "UI/Joystick.h"
+#include "UI/JoyStick.h"
 #include "Maps/MapManager.h"
 #include "Characters/Trainers/Trainer.h"
 

@@ -92,6 +92,7 @@ const char *Director::EVENT_AFTER_VISIT = "director_after_visit";
 const char *Director::EVENT_BEFORE_UPDATE = "director_before_update";
 const char *Director::EVENT_AFTER_UPDATE = "director_after_update";
 const char *Director::EVENT_RESET = "director_reset";
+const char *Director::EVENT_BEFORE_DRAW = "director_before_draw";
 
 Director* Director::getInstance()
 {
@@ -108,6 +109,7 @@ Director* Director::getInstance()
 Director::Director()
 : _isStatusLabelUpdated(true)
 , _invalid(true)
+, _deltaTimePassedByCaller(false)
 {
 }
 
@@ -161,6 +163,8 @@ bool Director::init(void)
     _eventDispatcher = new (std::nothrow) EventDispatcher();
     _eventAfterDraw = new (std::nothrow) EventCustom(EVENT_AFTER_DRAW);
     _eventAfterDraw->setUserData(this);
+    _eventBeforeDraw = new (std::nothrow) EventCustom(EVENT_BEFORE_DRAW);
+    _eventBeforeDraw->setUserData(this);
     _eventAfterVisit = new (std::nothrow) EventCustom(EVENT_AFTER_VISIT);
     _eventAfterVisit->setUserData(this);
     _eventBeforeUpdate = new (std::nothrow) EventCustom(EVENT_BEFORE_UPDATE);
@@ -197,6 +201,7 @@ Director::~Director(void)
     delete _eventBeforeUpdate;
     delete _eventAfterUpdate;
     delete _eventAfterDraw;
+    delete _eventBeforeDraw;
     delete _eventAfterVisit;
     delete _eventProjectionChanged;
     delete _eventResetDirector;
@@ -280,6 +285,9 @@ void Director::drawScene()
 
     _renderer->clear();
     experimental::FrameBuffer::clearAllFBOs();
+    
+    _eventDispatcher->dispatchEvent(_eventBeforeDraw);
+    
     /* to avoid flickr, nextScene MUST be here: after tick and before draw.
      * FIXME: Which bug is this one. It seems that it can't be reproduced with v0.9
      */
@@ -346,7 +354,12 @@ void Director::calculateDeltaTime()
     }
     else
     {
-        _deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(now - _lastUpdate).count() / 1000000.0f;
+        // delta time may passed by invoke mainLoop(dt)
+        if (!_deltaTimePassedByCaller)
+        {
+            _deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(now - _lastUpdate).count() / 1000000.0f;
+            _lastUpdate = now;
+        }
         _deltaTime = MAX(0, _deltaTime);
     }
 
@@ -357,8 +370,6 @@ void Director::calculateDeltaTime()
         _deltaTime = 1 / 60.0f;
     }
 #endif
-
-    _lastUpdate = now;
 }
 float Director::getDeltaTime() const
 {
@@ -707,7 +718,7 @@ void Director::purgeCachedData(void)
 
 float Director::getZEye(void) const
 {
-    return (_winSizeInPoints.height / 1.1566f);
+    return (_winSizeInPoints.height / 1.154700538379252f);//(2 * tanf(M_PI/6))
 }
 
 void Director::setAlphaBlending(bool on)
@@ -1445,6 +1456,13 @@ void Director::mainLoop()
         // release the objects
         PoolManager::getInstance()->getCurrentPool()->clear();
     }
+}
+
+void Director::mainLoop(float dt)
+{
+    _deltaTime = dt;
+    _deltaTimePassedByCaller = true;
+    mainLoop();
 }
 
 void Director::stopAnimation()

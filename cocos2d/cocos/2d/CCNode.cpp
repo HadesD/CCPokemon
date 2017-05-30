@@ -212,6 +212,8 @@ void Node::cleanup()
     this->stopAllActions();
     // timers
     this->unscheduleAllCallbacks();
+
+    _eventDispatcher->removeEventListenersForTarget(this);
     
     for( const auto &child: _children)
         child->cleanup();
@@ -1498,12 +1500,12 @@ void Node::setScheduler(Scheduler* scheduler)
     }
 }
 
-bool Node::isScheduled(SEL_SCHEDULE selector)
+bool Node::isScheduled(SEL_SCHEDULE selector) const
 {
     return _scheduler->isScheduled(selector, this);
 }
 
-bool Node::isScheduled(const std::string &key)
+bool Node::isScheduled(const std::string &key) const
 {
     return _scheduler->isScheduled(key, this);
 }

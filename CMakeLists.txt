@@ -127,13 +127,35 @@ endif( WIN32 )
 
 set(GAME_SRC
   Classes/AppDelegate.cpp
-  Classes/HelloWorldScene.cpp
+  #  Classes/HelloWorldScene.cpp
+  Classes/CreditLayer.cpp
+  Classes/GameScene.cpp
+  Classes/MenuLayer.cpp
+  Classes/PlayLayer.cpp
+  Classes/SceneManager.cpp
+  Classes/stdafx.cpp
+  Classes/Characters/Character.cpp
+  Classes/Characters/Trainers/Trainer.cpp
+  Classes/Maps/MapManager.cpp
+  Classes/Pokemons/Pokemon.cpp
+  Classes/UI/JoyStick.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
 set(GAME_HEADERS
   Classes/AppDelegate.h
-  Classes/HelloWorldScene.h
+  #  Classes/HelloWorldScene.h
+  Classes/CreditLayer.h
+  Classes/GameScene.h
+  Classes/MenuLayer.h
+  Classes/PlayLayer.h
+  Classes/SceneManager.h
+  Classes/stdafx.h
+  Classes/Characters/Character.h
+  Classes/Characters/Trainers/Trainer.h
+  Classes/Maps/MapManager.h
+  Classes/Pokemons/Pokemon.h
+  Classes/UI/JoyStick.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

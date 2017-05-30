@@ -109,6 +109,8 @@ public:
     static const char* EVENT_AFTER_VISIT;
     /** Director will trigger an event after a scene is drawn, the data is sent to GPU. */
     static const char* EVENT_AFTER_DRAW;
+    /** Director will trigger an event before a scene is drawn, right after clear. */
+    static const char* EVENT_BEFORE_DRAW;
 
     /**
      * @brief Possible OpenGL projections used by director
@@ -386,6 +388,11 @@ public:
     void setDepthTest(bool on);
 
     void mainLoop();
+    /** Invoke main loop with delta time. Then `calculateDeltaTime` can just use the delta time directly.
+     * The delta time paseed may include vsync time. See issue #17806
+     * @since 3.16
+     */
+    void mainLoop(float dt);
 
     /** The size in pixels of the surface. It could be different than the screen size.
      * High-res devices might have a higher surface size than the screen size.
@@ -611,10 +618,11 @@ protected:
      @since v3.0
      */
     EventDispatcher* _eventDispatcher;
-    EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventAfterVisit, *_eventBeforeUpdate, *_eventAfterUpdate, *_eventResetDirector;
+    EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventBeforeDraw, *_eventAfterVisit, *_eventBeforeUpdate, *_eventAfterUpdate, *_eventResetDirector;
         
     /* delta time since last tick to main loop */
 	float _deltaTime;
+    bool _deltaTimePassedByCaller;
     
     /* The _openGLView, where everything is rendered, GLView is a abstract class,cocos2d-x provide GLViewImpl
      which inherit from it as default renderer context,you can have your own by inherit from it*/

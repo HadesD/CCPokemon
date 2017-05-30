@@ -4,9 +4,9 @@
 cocos2d-x
 =========
 
-|  |iOS|Mac|Linux|Win32|Android|Win8.1-Universal|
+|  |iOS|Mac|Linux|Win32|Android|Tizen|
 | ----|----|----- | ---|----|------|---|
-|v3|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=ios)](http://45.56.80.45:8080/job/daily-build-v3/node=ios)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=mac)](http://45.56.80.45:8080/job/daily-build-v3/node=mac)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=linux)](http://45.56.80.45:8080/job/daily-build-v3/node=linux)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=win32_bak)](http://45.56.80.45:8080/job/daily-build-v3/node=win32_bak)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=android)](http://45.56.80.45:8080/job/daily-build-v3/node=android)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=windows-universal_bak)](http://45.56.80.45:8080/job/daily-build-v3/node=windows-universal_bak)|
+|v3|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=ios)](http://45.56.80.45:8080/job/daily-build-v3/node=ios)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=mac)](http://45.56.80.45:8080/job/daily-build-v3/node=mac)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=linux)](http://45.56.80.45:8080/job/daily-build-v3/node=linux)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=win32_bak)](http://45.56.80.45:8080/job/daily-build-v3/node=win32_bak)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=daily-build-v3/node=android)](http://45.56.80.45:8080/job/daily-build-v3/node=android)|[![Build Status](http://45.56.80.45:8080/buildStatus/icon?job=tizen-daily-build/node=tizen_mac)](http://45.56.80.45:8080/job/tizen-daily-build/node=tizen_mac/)|
 
 
 [cocos2d-x][1] is a multi-platform framework for building 2d games, interactive books, demos and other graphical applications.
@@ -77,9 +77,13 @@ You can also create a JS project or Lua project with `-l js` or `-l lua`.
 
 ### Build and run a new project for Tizen ###
 
-The cocos command line tools doesn't support Tizen on Windows yet, you have to use Tizen IDE to do the build.
+There are two ways to build and run Tizen project:
 
-Please refer to this [guide](http://cocos2d-x.org/docs/installation/Tizen/index.html ).
+* use coocs console(can not work on 32-bit Windows currently)
+  ```
+  cocos run -p tizen
+  ```
+* use Tizen IDE, can refer to [this doc](http://cocos2d-x.org/docs/installation/Tizen/index.html ) for detail usage
 
 
 ### Build and run a new project for Linux ###
@@ -258,11 +262,11 @@ Open the `cocos2d-x/build/cocos2d-win10.sln`
 
 ```
 $ cd cocos2d-x/build
-$ python ./android-build.py cpp-empty-test -p 10
+$ python ./android-build.py cpp-empty-test -p 13
 $ adb install ../tests/cpp-empty-test/proj.android/bin/CppEmptyTest-debug.apk
 ```
 
-Then click item on Android device to run tests. Available value of `-p` is the API level, cocos2d-x supports from level 10.
+Then click item on Android device to run tests. Available value of `-p` is the API level, cocos2d-x supports from level 13.
 
 * For Tizen
 

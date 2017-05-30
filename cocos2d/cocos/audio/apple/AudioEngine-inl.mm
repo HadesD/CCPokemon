@@ -192,12 +192,18 @@ static id s_AudioEngineSessionHandler = nullptr;
 AudioEngineImpl::AudioEngineImpl()
 : _lazyInitLoop(true)
 , _currentAudioID(0)
+, _scheduler(nullptr)
 {
 
 }
 
 AudioEngineImpl::~AudioEngineImpl()
 {
+    if (_scheduler != nullptr)
+    {
+        _scheduler->unschedule(CC_SCHEDULE_SELECTOR(AudioEngineImpl::update), this);
+    }
+
     if (s_ALContext) {
         alDeleteSources(MAX_AUDIOINSTANCES, _alSources);
 
@@ -498,6 +504,9 @@ void AudioEngineImpl::stop(int audioID)
     //Note: Don't set the flag to false here, it should be set in 'update' function.
     // Otherwise, the state got from alSourceState may be wrong
 //    _alSourceUsed[player->_alSource] = false;
+
+    // Call 'update' method to cleanup immediately since the schedule may be cancelled without any notification.
+    update(0.0f);
 }
 
 void AudioEngineImpl::stopAll()
@@ -512,6 +521,9 @@ void AudioEngineImpl::stopAll()
 //    {
 //        _alSourceUsed[_alSources[index]] = false;
 //    }
+
+    // Call 'update' method to cleanup immediately since the schedule may be cancelled without any notification.
+    update(0.0f);
 }
 
 float AudioEngineImpl::getDuration(int audioID)

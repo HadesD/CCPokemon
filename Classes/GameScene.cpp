@@ -1,10 +1,10 @@
-#include "HelloWorldScene.h"
-#include "cocostudio/CocoStudio.h"
+#include "GameScene.h"
+//#include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
 USING_NS_CC;
 
-using namespace cocostudio::timeline;
+//using namespace cocostudio::timeline;
 
 Scene* HelloWorld::createScene()
 {
@@ -84,9 +84,9 @@ bool HelloWorld::init()
         return false;
     }
     
-    auto rootNode = CSLoader::createNode("MainScene.csb");
+    //auto rootNode = CSLoader::createNode("MainScene.csb");
 
-    addChild(rootNode);
+    //addChild(rootNode);
 
     return true;
 }
