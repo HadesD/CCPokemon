@@ -9,6 +9,6 @@
   </data>
  </layer>
  <objectgroup name="FLY_SPACE">
-  <object id="4" name="PALLETTOWN_CITY" x="1080" y="3104" width="72" height="64"/>
+  <object id="4" name="PALLETTOWN_CITY" x="1054" y="4289" width="17" height="15"/>
  </objectgroup>
 </map>

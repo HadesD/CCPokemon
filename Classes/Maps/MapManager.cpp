@@ -82,7 +82,6 @@ void MapManager::build()
 			this->addCharToMap(newNPC);
 			newNPC->goTo(Vec2(v.at("x").asFloat(), v.at("y").asFloat()));
 
-			CCLOG("Has NPC: %s", v.at("sprite").asString());
 		}
 	}
 

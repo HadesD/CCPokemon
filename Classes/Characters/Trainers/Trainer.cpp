@@ -120,17 +120,17 @@ void Trainer::onGate(float delta)
 	auto toY = g["toY"];
 	if (toX.asBool() && toY.asBool())
 	{
-		toPos = Vec2(toX.asFloat() + map->getMapInfo()->getTileSize().width/2, map->getMapInfo()->getMapSize().height * map->getMapInfo()->getTileSize().height - toY.asFloat());
+		toPos = Vec2(toX.asFloat() + 8, map->getMapInfo()->getMapSize().height * 16 - toY.asFloat());
 	}
 	else
 	{
-		auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
+		auto mapDetails = map->getMapInfo()->getObjectGroup("FLY_SPACE");
 		if (mapDetails)
 		{
-			auto playerStart = mapDetails->getObject("FLY_SPACE");
+			auto playerStart = mapDetails->getObject("PALLETTOWN_CITY");
 			if (playerStart["x"].asBool())
 			{
-				toPos = Vec2(playerStart["x"].asFloat() + map->getMapInfo()->getTileSize().width / 2, playerStart["y"].asFloat() + map->getMapInfo()->getTileSize().height / 2);
+				toPos = Vec2(playerStart["x"].asFloat() + 8, playerStart["y"].asFloat() + 8);
 			}
 		}
 	}

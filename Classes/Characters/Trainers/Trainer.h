@@ -11,23 +11,13 @@ public:
 	~Trainer();
 
 	virtual void build();
-
 	virtual void update(float delta);
-
-#pragma region GETs/SETs
-
 	virtual void setMovePos(float delta);
 
-#pragma endregion
-
 protected:
-
 	EventKeyboard::KeyCode lastMoveKeyCode;
-
 	void cameraFollow();
-
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
-
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 	//Check if At the Gate
 	void onGate(float dt);
