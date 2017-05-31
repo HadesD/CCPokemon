@@ -1,11 +1,3 @@
-//
-//  PlayerLayer.cpp
-//  MenuTutorial
-//
-//  Created by Denger on 14-2-12.
-//
-//
-
 #include "stdafx.h"
 #include "PlayLayer.h"
 #include "UI/JoyStick.h"
@@ -49,22 +41,19 @@ bool PlayLayer::init()
 	this->addChild(camera);
 
 	auto map = new MapManager;
-	map->setMapInfo("PALLETTOWN_CITY.tmx");
+	map->setMapInfo("MainMap.tmx");
 	//map->setMapInfo("ROUTE_1.tmx");
 	this->addChild(map);
-	auto mapDetails = map->getMapInfo()->getObjectGroup("DETAILS");
 
 	auto trainer = new Trainer;
 	trainer->setSprite(RD_C_TRAINERS + "/male_frlg.png");
 	trainer->setName("Dark.Hades");
+    trainer->setMoveSpeed(50);
 	auto toPos = Vec2(0, 0);
-	if (mapDetails)
+	auto playerStart = map->getMapInfo()->getObjectGroup("FLY_SPACE")->getObject("PALLETTOWN_CITY");
+	if (playerStart.at("x").asBool())
 	{
-		auto playerStart = mapDetails->getObject("FLY_SPACE");
-		if (playerStart["x"].asBool())
-		{
-			toPos = Vec2(playerStart["x"].asFloat(), playerStart["y"].asFloat());
-		}
+		toPos = Vec2(playerStart.at("x").asFloat(), playerStart.at("y").asFloat());
 	}
 
 	trainer->build();

@@ -413,4 +413,8 @@ Character::COLLISION Character::getCollision()
 {
 	return this->collision;
 }
+void Character::setMoveSpeed(float moveSpeed)
+{
+  this->moveSpeed = moveSpeed;
+}
 #pragma endregion

@@ -75,7 +75,7 @@ public:
 	Character::COLLISION getCollision();
 
 	void goTo(Vec2 pos);
-
+    void setMoveSpeed(float moveSpeed);
 #pragma endregion
 
 protected:
