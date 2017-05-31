@@ -48,7 +48,7 @@ bool PlayLayer::init()
 	auto trainer = new Trainer;
 	trainer->setSprite(RD_C_TRAINERS + "/male_frlg.png");
 	trainer->setName("Dark.Hades");
-    trainer->setMoveSpeed(50);
+    //trainer->setMoveSpeed(50);
 	auto toPos = Vec2(0, 0);
 	auto playerStart = map->getMapInfo()->getObjectGroup("FLY_SPACE")->getObject("PALLETTOWN_CITY");
 	if (playerStart.at("x").asBool())

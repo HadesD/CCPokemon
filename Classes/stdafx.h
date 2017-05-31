@@ -2,10 +2,11 @@
 #define __STDAFX_H_CCPOKEMON__
 
 #include <iostream>
-#include <SimpleAudioEngine.h>
+
+#include "audio/include/SimpleAudioEngine.h"
 
 #define COCOS2D_DEBUG 1
-#define SCALE 1
+#define SCALE 2
 
 using namespace std;
 

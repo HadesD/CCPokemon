@@ -11,7 +11,7 @@ Character::Character()
 	this->curAnimeType = Character::ANIMETYPE::STAND;
 	this->oldAnimePos = 0;
 	this->direction = Character::DIRECTION::DOWN;
-	this->moveSpeed = 112.f;// px/s
+	this->moveSpeed = 112.f*500;// px/s
 	this->charType = Character::CHARTYPE::PLAYER;
 }
 
@@ -103,8 +103,8 @@ void Character::setMovePos(float delta)
 	xx = this->getPositionX();
 	yy = this->getPositionY();
 
-	tileW = tileSize.width;
-	tileH = tileSize.height;
+	tileW = 16.f;//tileSize.width;
+	tileH = 16.f;//tileSize.height;
 
 	switch (this->direction)
 	{
@@ -341,8 +341,6 @@ void Character::goTo(Vec2 pos)
 	this->setPosition(pos);
 }
 
-#pragma region GETs/SETs
-
 void Character::setSprite(std::string sprite)
 {
 	this->sprite = Sprite::create(sprite, Rect(0, 0, 16.f, 20.f));
@@ -417,4 +415,3 @@ void Character::setMoveSpeed(float moveSpeed)
 {
   this->moveSpeed = moveSpeed;
 }
-#pragma endregion

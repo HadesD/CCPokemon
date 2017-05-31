@@ -46,8 +46,7 @@ public:
 	 */
 	virtual void build();
 
-#pragma region GETs/SETs
-
+public:
 	void setSprite(std::string sprite);
 	Sprite* getSprite();
 
@@ -76,11 +75,8 @@ public:
 
 	void goTo(Vec2 pos);
     void setMoveSpeed(float moveSpeed);
-#pragma endregion
 
-protected:
-	
-#pragma region CharAttrs
+protected:	
 	int id;
 	std::string name;
 	Sprite *sprite;
@@ -94,8 +90,8 @@ protected:
 	int oldAnimePos;
 	Character::CHARTYPE charType;
 	Character::COLLISION collision;
-#pragma endregion
 
+protected:
 	void updateSpriteAnimate(float delta);
 };
 #endif

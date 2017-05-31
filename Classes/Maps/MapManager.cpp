@@ -88,20 +88,6 @@ void MapManager::build()
 
 	this->addChild(this->mapInfo);
 }
-#pragma region GETs/SETs
-
-void MapManager::setMapInfo(std::string mapInfo)
-{
-	this->mapInfo = TMXTiledMap::create(RD_MAPS + "/" + mapInfo);
-
-	this->build();
-}
-
-TMXTiledMap *MapManager::getMapInfo()
-{
-	return this->mapInfo;
-}
-#pragma endregion
 
 void MapManager::addCharToMap(Character* character)
 {
@@ -125,3 +111,16 @@ void MapManager::addCharToMap(Character* character)
 
 	playSound("gotomap.wav", SOUNDTYPE::EFFECT, false);
 }
+
+void MapManager::setMapInfo(std::string mapInfo)
+{
+	this->mapInfo = TMXTiledMap::create(RD_MAPS + "/" + mapInfo);
+
+	this->build();
+}
+
+TMXTiledMap *MapManager::getMapInfo()
+{
+	return this->mapInfo;
+}
+

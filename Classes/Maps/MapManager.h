@@ -24,10 +24,9 @@ public:
 
 	void addCharToMap(Character* character);
 
-#pragma region GETs/SETs
+public:
 	void setMapInfo(std::string fileName);
 	TMXTiledMap *getMapInfo();
-#pragma endregion
 
 private:
 	int id;
